@@ -1,0 +1,4 @@
+npm i react-router-dom
+npm i query-string
+
+difference between replace and push of history in Route
