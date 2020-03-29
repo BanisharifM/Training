@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="435fe67f-9be0-4a0a-919b-42c50277c958" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ProjectId" id="1Zl0KLHZjo6KiDPeS7Pra2Bn9DT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="NewWatcherDialog.advanced.open" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Understanding" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="435fe67f-9be0-4a0a-919b-42c50277c958" name="Default Changelist" comment="" />
+      <created>1585398308233</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585398308233</updated>
+      <workItem from="1585398312433" duration="1900000" />
+      <workItem from="1585400249174" duration="604000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/using-ts.js" />
+        <option value="$PROJECT_DIR$/using-ts.js" />
+      </list>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="233" y="0" key="#File_Watchers" timestamp="1585400620588">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="#File_Watchers/0.0.1280.680@0.0.1280.680" timestamp="1585400620588" />
+    <state x="233" y="0" key="#Notifications" timestamp="1585400537460">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="#Notifications/0.0.1280.680@0.0.1280.680" timestamp="1585400537460" />
+    <state x="308" y="12" width="664" height="668" key="EditFileWatcherDialog" timestamp="1585400597318">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="308" y="12" width="664" height="668" key="EditFileWatcherDialog/0.0.1280.680@0.0.1280.680" timestamp="1585400597318" />
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1585400851420">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1585400851420" />
+    <state x="142" y="0" key="SettingsEditor" timestamp="1585400484447">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="142" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1585400484447" />
+    <state x="233" y="0" key="scopes" timestamp="1585400576591">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="233" y="0" key="scopes/0.0.1280.680@0.0.1280.680" timestamp="1585400576591" />
+  </component>
+</project>
