@@ -2,14 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01870a24-fbc4-4213-8a61-074501b5bfea" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/analytic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/analytic.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Understanding/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Understanding/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/analytic.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/analytic.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/analytic.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/analytic.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Understanding/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Understanding/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,19 +27,41 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="ProjectId" id="1ZnQuS3FT8id5RCmrE6p9RfhtSu" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="NewWatcherDialog.advanced.open" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Understanding" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.3\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Git Hub\Training\TypeScript\Udemy\Compiler\src" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -50,7 +79,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585472600243</updated>
       <workItem from="1585472601672" duration="1627000" />
-      <workItem from="1585488360551" duration="1964000" />
+      <workItem from="1585732947957" duration="3228000" />
     </task>
     <servers />
   </component>
@@ -60,22 +89,30 @@
       <list>
         <option value="$PROJECT_DIR$/App.js" />
         <option value="$PROJECT_DIR$/analytic.js" />
+        <option value="$PROJECT_DIR$/src/analytic.js" />
       </list>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="409" y="131" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1585472625302">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="409" y="131" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1585472625302" />
-    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585490809511">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1585735029556">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="371" y="88" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.680@0.0.1280.680" timestamp="1585490809511" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1585988039080">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1585735029556" />
+    <state x="436" y="153" width="663" height="671" key="EditFileWatcherDialog" timestamp="1585735818186">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1585988039080" />
+    <state x="436" y="153" width="663" height="671" key="EditFileWatcherDialog/0.0.1536.824@0.0.1536.824" timestamp="1585735818186" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1585734362411">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1585734362411" />
     <state width="1259" height="143" key="GridCell.Tab.0.bottom" timestamp="1585475734511">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -92,5 +129,17 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1259" height="143" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1585475734511" />
+    <state x="349" y="147" key="IDE.errors.dialog" timestamp="1585735933678">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="349" y="147" key="IDE.errors.dialog/0.0.1536.824@0.0.1536.824" timestamp="1585735933678" />
+    <state x="277" y="54" key="SettingsEditor" timestamp="1585735863178">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1585735863178" />
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1585735724705">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1585735724705" />
   </component>
 </project>
