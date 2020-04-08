@@ -23,4 +23,39 @@ function countAndDescribe(element) {
     return [element, descriptionText];
 }
 console.log(countAndDescribe("Hi there!"));
+function extractAndConvert(obj, key) {
+    return "value: " + obj[key];
+}
+console.log(extractAndConvert({ name: "Max" }, "name"));
+class DataStorage {
+    constructor() {
+        this.data = [];
+    }
+    addItem(item) {
+        this.data.push(item);
+    }
+    removeItem(item) {
+        if (this.data.indexOf(item) === -1) {
+            return;
+        }
+        this.data.splice(this.data.indexOf(item), 1);
+    }
+    getItem() {
+        return [...this.data];
+    }
+}
+const textStorage = new DataStorage();
+textStorage.addItem("Ali");
+textStorage.addItem("Mahdi");
+textStorage.removeItem("Ali");
+console.log(textStorage.getItem());
+const numberStorage = new DataStorage();
+function createCourseGoal(title, description, completeUntil) {
+    let courseGoal = {};
+    courseGoal.title = title;
+    courseGoal.description = description;
+    courseGoal.completeUntil = completeUntil;
+    return courseGoal;
+}
+const studentsNames = ["Mahdi", "Ali"];
 //# sourceMappingURL=app.js.map
