@@ -1,0 +1,11 @@
+
+BIOS
+bootloader
+Kernel
+init
+dmesg
+	cat /var/log/dmesg
+	dmesg
+	cat /var/log/syslog  -> ubuntu
+	cat /var/log/messages -> other systems
+
