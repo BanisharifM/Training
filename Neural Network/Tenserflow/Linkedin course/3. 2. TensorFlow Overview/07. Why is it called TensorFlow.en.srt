@@ -1,0 +1,156 @@
+1
+00:00:00.06 --> 00:00:02.08
+- [Teacher] Alright, what's with the name?
+
+2
+00:00:02.08 --> 00:00:06.05
+The name TensorFlow comes
+from the design of the system.
+
+3
+00:00:06.05 --> 00:00:09.06
+TensorFlow is designed to
+work with large data sets
+
+4
+00:00:09.06 --> 00:00:13.00
+made up of many different
+individual attributes.
+
+5
+00:00:13.00 --> 00:00:15.07
+Any data that you want to
+process with TensorFlow
+
+6
+00:00:15.07 --> 00:00:18.06
+has to be stored in the
+multi-dimensional array.
+
+7
+00:00:18.06 --> 00:00:22.01
+These multi-dimensional arrays
+are also called tensors.
+
+8
+00:00:22.01 --> 00:00:24.02
+To run operations on the data set,
+
+9
+00:00:24.02 --> 00:00:26.04
+you construct a computational graph
+
+10
+00:00:26.04 --> 00:00:28.01
+similar to a flow chart
+
+11
+00:00:28.01 --> 00:00:30.00
+that determines how data flows
+
+12
+00:00:30.00 --> 00:00:31.09
+from one operation to the next.
+
+13
+00:00:31.09 --> 00:00:33.04
+So it's called TensorFlow
+
+14
+00:00:33.04 --> 00:00:36.01
+because you're defining
+how data or tensors
+
+15
+00:00:36.01 --> 00:00:38.04
+will flow through the system.
+
+16
+00:00:38.04 --> 00:00:41.09
+Here, we are passing in two
+tensors, adding those numbers,
+
+17
+00:00:41.09 --> 00:00:44.06
+squaring them and then
+outputting the result
+
+18
+00:00:44.06 --> 00:00:46.03
+as another tensor.
+
+19
+00:00:46.03 --> 00:00:49.08
+TensorFlow is designed to be
+very generic and open-ended.
+
+20
+00:00:49.08 --> 00:00:51.07
+You can define the graph of operations
+
+21
+00:00:51.07 --> 00:00:54.02
+that does any calculation that you want.
+
+22
+00:00:54.02 --> 00:00:56.02
+While TensorFlow is most often used
+
+23
+00:00:56.02 --> 00:00:57.08
+to build deep neural networks,
+
+24
+00:00:57.08 --> 00:00:59.06
+it can be used to build nearly anything
+
+25
+00:00:59.06 --> 00:01:01.03
+that involves processing data
+
+26
+00:01:01.03 --> 00:01:04.01
+by running a series of
+mathematical operations.
+
+27
+00:01:04.01 --> 00:01:07.02
+There are pros and cons
+to this open-ended design.
+
+28
+00:01:07.02 --> 00:01:10.03
+This design makes TensorFlow
+very powerful and flexible.
+
+29
+00:01:10.03 --> 00:01:12.07
+It can be adapted to do almost anything,
+
+30
+00:01:12.07 --> 00:01:14.00
+but on the other hand,
+
+31
+00:01:14.00 --> 00:01:16.08
+this make TensorFlow difficult
+for new users to learn
+
+32
+00:01:16.08 --> 00:01:19.03
+since very little is done for you.
+
+33
+00:01:19.03 --> 00:01:20.03
+In this course,
+
+34
+00:01:20.03 --> 00:01:23.06
+we'll focus on the most common
+operations you'll need to use
+
+35
+00:01:23.06 --> 00:01:26.09
+to build and deploy neural
+networks with TensorFlow.
+

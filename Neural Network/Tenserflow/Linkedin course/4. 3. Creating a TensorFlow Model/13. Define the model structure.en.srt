@@ -1,0 +1,1206 @@
+1
+00:00:00.04 --> 00:00:01.02
+- [Instructor] Alright, let's build
+
+2
+00:00:01.02 --> 00:00:03.04
+a neural network with TensorFlow.
+
+3
+00:00:03.04 --> 00:00:06.00
+Our training data set
+has nine input features,
+
+4
+00:00:06.00 --> 00:00:08.04
+so we'll need nine inputs
+in our neural network.
+
+5
+00:00:08.04 --> 00:00:11.03
+We can model that with
+a placeholder called X
+
+6
+00:00:11.03 --> 00:00:13.05
+that holds nine values.
+
+7
+00:00:13.05 --> 00:00:16.03
+Then, let's have three layers
+in their neural network
+
+8
+00:00:16.03 --> 00:00:18.07
+that will train to find
+the relationship between
+
+9
+00:00:18.07 --> 00:00:20.07
+the inputs and the output.
+
+10
+00:00:20.07 --> 00:00:22.08
+There are many different
+types of layers you can use
+
+11
+00:00:22.08 --> 00:00:24.05
+in the neural network,
+but we're going to use
+
+12
+00:00:24.05 --> 00:00:26.03
+the most straightforward type,
+
+13
+00:00:26.03 --> 00:00:28.07
+a fully connected neural network layer.
+
+14
+00:00:28.07 --> 00:00:30.07
+That means that every node in each layer
+
+15
+00:00:30.07 --> 00:00:34.03
+is connected to every node
+in the following layer.
+
+16
+00:00:34.03 --> 00:00:36.04
+The first layer will have 50 nodes,
+
+17
+00:00:36.04 --> 00:00:38.04
+the second layer will have 100 nodes,
+
+18
+00:00:38.04 --> 00:00:41.03
+and the third layer will
+have 50 nodes again.
+
+19
+00:00:41.03 --> 00:00:44.03
+To me, these layer sizes seem
+like a good starting point,
+
+20
+00:00:44.03 --> 00:00:45.09
+but it's just a guess.
+
+21
+00:00:45.09 --> 00:00:47.04
+Once the neural network is coded
+
+22
+00:00:47.04 --> 00:00:49.04
+we can test out different layer sizes
+
+23
+00:00:49.04 --> 00:00:52.03
+to see what layer size
+gives us the best accuracy.
+
+24
+00:00:52.03 --> 00:00:55.00
+And since we are trying
+to predict a single value,
+
+25
+00:00:55.00 --> 00:00:57.05
+we'll have an output
+layer with just one node,
+
+26
+00:00:57.05 --> 00:00:59.06
+that will be out prediction.
+
+27
+00:00:59.06 --> 00:01:01.05
+Let's open up model.py and create
+
+28
+00:01:01.05 --> 00:01:05.05
+a neural network with this
+structure and TensorFlow.
+
+29
+00:01:05.05 --> 00:01:08.08
+Open model.py.
+
+30
+00:01:08.08 --> 00:01:10.09
+Here at the top of the file we've already
+
+31
+00:01:10.09 --> 00:01:12.02
+loaded our dataset and we're ready to
+
+32
+00:01:12.02 --> 00:01:15.08
+define the neural network
+starting on line 38.
+
+33
+00:01:15.08 --> 00:01:18.02
+First, let's define
+variables with how many
+
+34
+00:01:18.02 --> 00:01:20.04
+input and output nodes we'll have.
+
+35
+00:01:20.04 --> 00:01:21.04
+That'll make it easy to adjust
+
+36
+00:01:21.04 --> 00:01:23.04
+these numbers later if needed.
+
+37
+00:01:23.04 --> 00:01:26.03
+So we'll have nine input
+nodes, so put nine.
+
+38
+00:01:26.03 --> 00:01:30.07
+On line 39 we'll have
+one output, so put one.
+
+39
+00:01:30.07 --> 00:01:32.01
+Let's also create variables for
+
+40
+00:01:32.01 --> 00:01:35.06
+how many nodes we want in each
+layer of our neural network.
+
+41
+00:01:35.06 --> 00:01:39.05
+So on line 42 for layer
+one nodes we'll have 50,
+
+42
+00:01:39.05 --> 00:01:42.08
+and for layer two nodes we'll have 100.
+
+43
+00:01:42.08 --> 00:01:46.02
+And then for layer three
+nodes we'll have 50 again.
+
+44
+00:01:46.02 --> 00:01:47.05
+Now we are ready to start building
+
+45
+00:01:47.05 --> 00:01:49.06
+the neural network itself.
+
+46
+00:01:49.06 --> 00:01:51.07
+First, let's define the input layer
+
+47
+00:01:51.07 --> 00:01:55.01
+of our neural network starting on line 49.
+
+48
+00:01:55.01 --> 00:01:57.01
+To keep things organized it's helpful
+
+49
+00:01:57.01 --> 00:01:59.00
+to put each layer of our neural network
+
+50
+00:01:59.00 --> 00:02:01.02
+in its own variable scope.
+
+51
+00:02:01.02 --> 00:02:03.07
+Normally in Python we organize our code
+
+52
+00:02:03.07 --> 00:02:06.01
+by creating new functions.
+
+53
+00:02:06.01 --> 00:02:08.05
+In TensorFlow we can
+create variable scopes
+
+54
+00:02:08.05 --> 00:02:12.01
+by using the tf.variablescope
+function instead.
+
+55
+00:02:12.01 --> 00:02:13.09
+Any variables we create within this scope
+
+56
+00:02:13.09 --> 00:02:16.07
+will automatically get a
+prefix of input to their name
+
+57
+00:02:16.07 --> 00:02:19.03
+internally in TensorFlow.
+
+58
+00:02:19.03 --> 00:02:21.07
+TensorFlow has the ability
+to generate diagrams
+
+59
+00:02:21.07 --> 00:02:23.05
+of the computational graph.
+
+60
+00:02:23.05 --> 00:02:25.05
+By putting our nodes into scopes
+
+61
+00:02:25.05 --> 00:02:27.09
+it helps TensorFlow generate
+more useful diagrams
+
+62
+00:02:27.09 --> 00:02:29.09
+that are easier to understand.
+
+63
+00:02:29.09 --> 00:02:31.00
+Everything within the same scope
+
+64
+00:02:31.00 --> 00:02:33.07
+will be grouped together
+within the diagram.
+
+65
+00:02:33.07 --> 00:02:36.05
+Our neural network should accept
+nine floating point numbers
+
+66
+00:02:36.05 --> 00:02:39.00
+as the input for making predictions.
+
+67
+00:02:39.00 --> 00:02:40.08
+But each time we want a new prediction
+
+68
+00:02:40.08 --> 00:02:43.04
+the specific values we
+pass in will be different.
+
+69
+00:02:43.04 --> 00:02:46.07
+So we can use a placeholder
+node to represent that.
+
+70
+00:02:46.07 --> 00:02:50.06
+So for X the input to our
+neural network, on line 50,
+
+71
+00:02:50.06 --> 00:02:54.05
+will be a tf.placeholder object.
+
+72
+00:02:54.05 --> 00:02:56.06
+When we create a new
+node we need to tell it
+
+73
+00:02:56.06 --> 00:02:58.09
+what type of tensor it will accept.
+
+74
+00:02:58.09 --> 00:03:00.05
+The data we are passing into our network
+
+75
+00:03:00.05 --> 00:03:02.00
+will be floating point numbers,
+
+76
+00:03:02.00 --> 00:03:06.05
+so we'll tell it to inspect
+the tf.float32 object.
+
+77
+00:03:06.05 --> 00:03:08.00
+We also need to tell it the size
+
+78
+00:03:08.00 --> 00:03:11.01
+or the shape of the tensor to expect.
+
+79
+00:03:11.01 --> 00:03:12.02
+For the shape of the input,
+
+80
+00:03:12.02 --> 00:03:15.01
+we use None, number_of_inputs.
+
+81
+00:03:15.01 --> 00:03:19.00
+So we'll say shape= and then a tuple,
+
+82
+00:03:19.00 --> 00:03:23.00
+None, number_of_inputs.
+
+83
+00:03:23.00 --> 00:03:25.03
+None tells TensorFlow our neural network
+
+84
+00:03:25.03 --> 00:03:26.09
+can mix up batches of any size
+
+85
+00:03:26.09 --> 00:03:29.01
+and number_of_inputs tells it to expect
+
+86
+00:03:29.01 --> 00:03:32.00
+nine values for each record in the batch.
+
+87
+00:03:32.00 --> 00:03:34.07
+We already defined number_of_inputs above.
+
+88
+00:03:34.07 --> 00:03:38.03
+Now, let's define the first
+layer of our neural network.
+
+89
+00:03:38.03 --> 00:03:41.08
+We'll start with a new
+variable scope on line 53.
+
+90
+00:03:41.08 --> 00:03:45.04
+We'll call this one layer_1.
+
+91
+00:03:45.04 --> 00:03:47.04
+Variable scope names
+can't have spaces in them
+
+92
+00:03:47.04 --> 00:03:51.03
+so we can use an underscore instead.
+
+93
+00:03:51.03 --> 00:03:53.06
+Now, we can define the layer itself.
+
+94
+00:03:53.06 --> 00:03:54.09
+Each fully connected layer of
+
+95
+00:03:54.09 --> 00:03:56.08
+the neural network has three parts.
+
+96
+00:03:56.08 --> 00:03:59.04
+A weight value for each
+connection between each node
+
+97
+00:03:59.04 --> 00:04:01.06
+and the nodes in the previous layer.
+
+98
+00:04:01.06 --> 00:04:03.05
+A bias value for each node,
+
+99
+00:04:03.05 --> 00:04:05.02
+and an activation function that outputs
+
+100
+00:04:05.02 --> 00:04:07.09
+the result of the layer.
+
+101
+00:04:07.09 --> 00:04:09.05
+First, we need variables to store
+
+102
+00:04:09.05 --> 00:04:11.08
+the bias values for each node.
+
+103
+00:04:11.08 --> 00:04:14.00
+This will be a variable
+instead of a placeholder
+
+104
+00:04:14.00 --> 00:04:17.02
+because we want TensorFlow to
+remember the value over time.
+
+105
+00:04:17.02 --> 00:04:20.01
+To create a variable we
+can call tf.getvariable
+
+106
+00:04:20.01 --> 00:04:21.03
+and pass in the name.
+
+107
+00:04:21.03 --> 00:04:24.01
+Let's do that on line 55 for biases.
+
+108
+00:04:24.01 --> 00:04:27.09
+Tf.getvariable.
+
+109
+00:04:27.09 --> 00:04:32.07
+And we'll pass in name=, and use biases1.
+
+110
+00:04:32.07 --> 00:04:36.01
+Next, we need to pass in
+the shape of this variable.
+
+111
+00:04:36.01 --> 00:04:38.06
+There's one bias value for
+each node in this layer,
+
+112
+00:04:38.06 --> 00:04:39.09
+so the shape should be the same as
+
+113
+00:04:39.09 --> 00:04:41.05
+the number of nodes in the layer.
+
+114
+00:04:41.05 --> 00:04:44.04
+We define that above as Layer_1_nodes.
+
+115
+00:04:44.04 --> 00:04:47.00
+So we'll say shape=,
+
+116
+00:04:47.00 --> 00:04:51.04
+and then we'll pass in
+the size as Layer_1_nodes.
+
+117
+00:04:51.04 --> 00:04:53.00
+We also need to tell TensorFlow
+
+118
+00:04:53.00 --> 00:04:55.02
+the initial value of this variable.
+
+119
+00:04:55.02 --> 00:04:57.04
+We can tell TensorFlow how
+to set the initial value
+
+120
+00:04:57.04 --> 00:04:59.07
+of a variable by passing
+it one of TensorFlow's
+
+121
+00:04:59.07 --> 00:05:02.01
+built-in initializer functions.
+
+122
+00:05:02.01 --> 00:05:04.09
+We want the bias values for
+each node to default to zero,
+
+123
+00:05:04.09 --> 00:05:06.07
+so I'll pass in the inititalizer function
+
+124
+00:05:06.07 --> 00:05:10.05
+of tf.zeros_initializer
+as the initializer to use.
+
+125
+00:05:10.05 --> 00:05:13.02
+So we'll pass in initializer=,
+
+126
+00:05:13.02 --> 00:05:17.09
+and pass in tf.zeros_initializer.
+
+127
+00:05:17.09 --> 00:05:19.06
+Next let's create a variable to hold
+
+128
+00:05:19.06 --> 00:05:21.02
+the weights for this layer.
+
+129
+00:05:21.02 --> 00:05:25.01
+Again we'll the tg.get_variable
+to create a variable.
+
+130
+00:05:25.01 --> 00:05:27.08
+Let's do this on line 54.
+
+131
+00:05:27.08 --> 00:05:31.00
+Tf.get_variable.
+
+132
+00:05:31.00 --> 00:05:33.04
+We'll pass in the name weight1.
+
+133
+00:05:33.04 --> 00:05:36.04
+Name equals weight1.
+
+134
+00:05:36.04 --> 00:05:38.03
+We also need to give
+this variable a shape.
+
+135
+00:05:38.03 --> 00:05:39.08
+This part's a little tricky.
+
+136
+00:05:39.08 --> 00:05:42.05
+We want to have one weight
+for each node's connection
+
+137
+00:05:42.05 --> 00:05:44.03
+to each node in the previous layer.
+
+138
+00:05:44.03 --> 00:05:46.04
+So we can define the shape like this.
+
+139
+00:05:46.04 --> 00:05:50.03
+We'll say shape equals, and as an array,
+
+140
+00:05:50.03 --> 00:05:53.07
+one side of the array
+will be number of inputs,
+
+141
+00:05:53.07 --> 00:05:58.04
+and the other side will be layer_1_nodes.
+
+142
+00:05:58.04 --> 00:06:01.08
+And finally, we need to set
+the variable initializer.
+
+143
+00:06:01.08 --> 00:06:03.09
+With neural networks, a lot
+of research has gone into
+
+144
+00:06:03.09 --> 00:06:06.07
+the best initial values
+to use for weights.
+
+145
+00:06:06.07 --> 00:06:10.03
+A good choice is an algorithm
+called Xavier initialization.
+
+146
+00:06:10.03 --> 00:06:13.02
+TensorFlow has a built-in
+xavier_initializer function
+
+147
+00:06:13.02 --> 00:06:15.00
+so we can use that.
+
+148
+00:06:15.00 --> 00:06:18.08
+So we'll pass in initializer=,
+
+149
+00:06:18.08 --> 00:06:25.03
+tf.contrib.layers.xavier_initializer.
+
+150
+00:06:25.03 --> 00:06:26.09
+The last part of defining this layer
+
+151
+00:06:26.09 --> 00:06:29.01
+is multiplying the weights by the inputs
+
+152
+00:06:29.01 --> 00:06:31.07
+and calling an activation function.
+
+153
+00:06:31.07 --> 00:06:33.06
+TensorFlow is very flexible here
+
+154
+00:06:33.06 --> 00:06:35.09
+and let's you do this in any way you want.
+
+155
+00:06:35.09 --> 00:06:38.09
+We're going to do this on line 56.
+
+156
+00:06:38.09 --> 00:06:40.07
+We're going to use matrix multiplication
+
+157
+00:06:40.07 --> 00:06:42.07
+and a standard rectified linear unit
+
+158
+00:06:42.07 --> 00:06:45.01
+or relu activation function.
+
+159
+00:06:45.01 --> 00:06:48.05
+We can do this by first calling tf.matmul
+
+160
+00:06:48.05 --> 00:06:50.05
+for matrix multiplication.
+
+161
+00:06:50.05 --> 00:06:53.02
+And we'll multiply the inputs, X,
+
+162
+00:06:53.02 --> 00:06:55.06
+by the weights in this layer.
+
+163
+00:06:55.06 --> 00:06:58.01
+To that we'll add the biases,
+
+164
+00:06:58.01 --> 00:07:01.09
+and we'll wrap that with a
+call to the relu function.
+
+165
+00:07:01.09 --> 00:07:07.00
+Tf.nn.relu, and then parenthesis.
+
+166
+00:07:07.00 --> 00:07:09.03
+If you're not familiar with the
+math behind neural networks,
+
+167
+00:07:09.03 --> 00:07:10.09
+this might not be familiar to you,
+
+168
+00:07:10.09 --> 00:07:12.09
+but this is how you define the standard
+
+169
+00:07:12.09 --> 00:07:16.06
+fully-connected neural network.
+
+170
+00:07:16.06 --> 00:07:19.06
+Alright, we can define the
+second layer in a similar way.
+
+171
+00:07:19.06 --> 00:07:23.06
+So first I'll copy the
+definition of layer one,
+
+172
+00:07:23.06 --> 00:07:26.00
+and then I'm going to
+paste it under layer two,
+
+173
+00:07:26.00 --> 00:07:28.03
+I'm going to hold down shift
+and select the first three lines
+
+174
+00:07:28.03 --> 00:07:31.02
+and paste it here just to
+maintain the formatting.
+
+175
+00:07:31.02 --> 00:07:33.09
+And now we need to change
+all the ones to twos.
+
+176
+00:07:33.09 --> 00:07:37.02
+Weights1 equals weights2.
+
+177
+00:07:37.02 --> 00:07:40.07
+Layer_1_nodes is layer_2_nodes and so on.
+
+178
+00:07:40.07 --> 00:07:42.06
+Biases2.
+
+179
+00:07:42.06 --> 00:07:45.05
+Layer_2_nodes.
+
+180
+00:07:45.05 --> 00:07:48.05
+Change the output to layer_2_output.
+
+181
+00:07:48.05 --> 00:07:50.05
+We also need to change
+the shape of the weights
+
+182
+00:07:50.05 --> 00:07:54.02
+so the input now is the output
+from the previous layer.
+
+183
+00:07:54.02 --> 00:07:57.06
+So here we'll use layer_1_nodes
+
+184
+00:07:57.06 --> 00:07:59.07
+instead of number of inputs.
+
+185
+00:07:59.07 --> 00:08:01.02
+And then when we calculate the output,
+
+186
+00:08:01.02 --> 00:08:04.02
+instead of multiplying X,
+which is the initial input,
+
+187
+00:08:04.02 --> 00:08:06.02
+we want to multiply by the previous layer.
+
+188
+00:08:06.02 --> 00:08:11.05
+So we'll multiply by layer_1_output.
+
+189
+00:08:11.05 --> 00:08:13.08
+Then we can define the
+third layer in the same way,
+
+190
+00:08:13.08 --> 00:08:17.01
+so we'll copy the definition of layer two.
+
+191
+00:08:17.01 --> 00:08:18.09
+And again I'll hold shift
+
+192
+00:08:18.09 --> 00:08:20.08
+and go down three lines and paste
+
+193
+00:08:20.08 --> 00:08:22.05
+to maintain the formatting.
+
+194
+00:08:22.05 --> 00:08:24.09
+And I'll change all the twos to threes.
+
+195
+00:08:24.09 --> 00:08:26.07
+Weights3, change layer_1_nodes
+
+196
+00:08:26.07 --> 00:08:28.05
+to layer_2_nodes in this case.
+
+197
+00:08:28.05 --> 00:08:30.04
+Layer_2_nodes to layer_3_nodes.
+
+198
+00:08:30.04 --> 00:08:35.06
+Biases3, layer_3_nodes, the
+output will be layer_3_output,
+
+199
+00:08:35.06 --> 00:08:37.03
+and in this case we'll be
+multiplying the weights
+
+200
+00:08:37.03 --> 00:08:39.07
+for this layer by the
+output for layer two,
+
+201
+00:08:39.07 --> 00:08:43.06
+so here we'll use layer_2_output.
+
+202
+00:08:43.06 --> 00:08:45.05
+Now we're ready to
+define the output layer.
+
+203
+00:08:45.05 --> 00:08:47.06
+It's similar but slightly different.
+
+204
+00:08:47.06 --> 00:08:52.05
+So we'll start by again
+copying the layer 3 definition
+
+205
+00:08:52.05 --> 00:08:56.05
+and pasting it the same way
+to maintain the formatting.
+
+206
+00:08:56.05 --> 00:09:01.05
+We'll call it weights4 and biases4,
+
+207
+00:09:01.05 --> 00:09:04.02
+and we'll change layer_two_nodes
+to layer_three_nodes,
+
+208
+00:09:04.02 --> 00:09:06.06
+but instead of having the
+shape be layer_four_nodes,
+
+209
+00:09:06.06 --> 00:09:08.09
+we're going to use the
+number_of_outputs variable
+
+210
+00:09:08.09 --> 00:09:12.07
+that we defined earlier since
+this is the final layer.
+
+211
+00:09:12.07 --> 00:09:14.05
+And the same for the biases.
+
+212
+00:09:14.05 --> 00:09:16.08
+Then again we want to multiply
+the weights from this layer
+
+213
+00:09:16.08 --> 00:09:18.05
+by the output from layer three.
+
+214
+00:09:18.05 --> 00:09:20.06
+So change that.
+
+215
+00:09:20.06 --> 00:09:22.00
+And then for the final output,
+
+216
+00:09:22.00 --> 00:09:23.05
+instead of calling it layer_three_output,
+
+217
+00:09:23.05 --> 00:09:25.02
+let's just call it prediction.
+
+218
+00:09:25.02 --> 00:09:27.01
+Since this is the final
+output from our network,
+
+219
+00:09:27.01 --> 00:09:28.09
+that'll make it easier to follow.
+
+220
+00:09:28.09 --> 00:09:31.08
+Right now we have the entire
+neural network defined,
+
+221
+00:09:31.08 --> 00:09:33.07
+but we don't have any way to train it yet.
+
+222
+00:09:33.07 --> 00:09:36.00
+To be able to train it
+we need a cost function.
+
+223
+00:09:36.00 --> 00:09:38.07
+A cost function, also
+called a lost function
+
+224
+00:09:38.07 --> 00:09:40.09
+tells us how wrong the neural network is
+
+225
+00:09:40.09 --> 00:09:42.07
+when trying to predict the correct output
+
+226
+00:09:42.07 --> 00:09:44.08
+for a single piece of training data.
+
+227
+00:09:44.08 --> 00:09:47.04
+Let's define the cost function
+
+228
+00:09:47.04 --> 00:09:51.03
+First on line 78 we have
+another scope called cost.
+
+229
+00:09:51.03 --> 00:09:54.05
+Next, we'll define Y, a
+node for the expected value
+
+230
+00:09:54.05 --> 00:09:56.06
+that we'll feed in during training.
+
+231
+00:09:56.06 --> 00:09:58.09
+Just like the input values
+it will be a placeholder node
+
+232
+00:09:58.09 --> 00:10:01.06
+because we'll feed in
+a new value each time.
+
+233
+00:10:01.06 --> 00:10:05.00
+So we'll create a tf.placeholder node.
+
+234
+00:10:05.00 --> 00:10:06.07
+The type will be floating point again,
+
+235
+00:10:06.07 --> 00:10:09.08
+so we'll use tf.float32.
+
+236
+00:10:09.08 --> 00:10:13.00
+And for the shape in this
+case we'll pass in None, 1
+
+237
+00:10:13.00 --> 00:10:15.05
+since there's just one single output.
+
+238
+00:10:15.05 --> 00:10:20.01
+Shape equals None, 1.
+
+239
+00:10:20.01 --> 00:10:22.01
+Next we need to calculate the cost.
+
+240
+00:10:22.01 --> 00:10:24.09
+To measure the cost we'll
+calculate the mean squared error
+
+241
+00:10:24.09 --> 00:10:26.08
+between what the neural network predicted
+
+242
+00:10:26.08 --> 00:10:29.03
+and what we expected it to calculate.
+
+243
+00:10:29.03 --> 00:10:32.04
+To do that we'll call the
+tf.squared_difference function
+
+244
+00:10:32.04 --> 00:10:35.07
+and pass in the actual predication
+and the expected value.
+
+245
+00:10:35.07 --> 00:10:41.07
+So tf.squared_difference, and
+we'll pass in our prediction
+
+246
+00:10:41.07 --> 00:10:43.03
+which we defined above.
+
+247
+00:10:43.03 --> 00:10:45.07
+And our expected value, which is Y.
+
+248
+00:10:45.07 --> 00:10:47.04
+That will give us the square difference.
+
+249
+00:10:47.04 --> 00:10:49.02
+To turn it into a mean square difference,
+
+250
+00:10:49.02 --> 00:10:51.09
+we want to get the average
+value of that difference.
+
+251
+00:10:51.09 --> 00:10:54.03
+So we'll wrap that with a call
+to the reduce_mean function
+
+252
+00:10:54.03 --> 00:10:56.00
+which will do that for us.
+
+253
+00:10:56.00 --> 00:11:02.04
+So we'll wrap that with
+a call to tf.reduce_mean.
+
+254
+00:11:02.04 --> 00:11:03.08
+And that's it.
+
+255
+00:11:03.08 --> 00:11:06.06
+The very last step is to
+create an optimizer operation
+
+256
+00:11:06.06 --> 00:11:09.02
+that TensorFlow can call
+to train the network.
+
+257
+00:11:09.02 --> 00:11:13.04
+As usual, let's create a new
+scope starting on line 85.
+
+258
+00:11:13.04 --> 00:11:15.04
+We can call this one train.
+
+259
+00:11:15.04 --> 00:11:17.03
+To define an optimizer,
+we just need to call
+
+260
+00:11:17.03 --> 00:11:20.02
+one of the optimizers
+supplied by TensorFlow.
+
+261
+00:11:20.02 --> 00:11:22.05
+One of the standard optimizers
+that's very powerful
+
+262
+00:11:22.05 --> 00:11:24.01
+is called the Adam optimizer.
+
+263
+00:11:24.01 --> 00:11:28.06
+To use it just call
+tf.train.AdamOptimizer.
+
+264
+00:11:28.06 --> 00:11:30.04
+We just need to pass in the learning rate
+
+265
+00:11:30.04 --> 00:11:33.05
+which we've already pre-defined above.
+
+266
+00:11:33.05 --> 00:11:35.01
+Next, we need to tell it which variable
+
+267
+00:11:35.01 --> 00:11:36.08
+we want it to minimize.
+
+268
+00:11:36.08 --> 00:11:38.02
+So we'll pass in our cost function
+
+269
+00:11:38.02 --> 00:11:39.08
+as the value to minimize call.
+
+270
+00:11:39.08 --> 00:11:43.06
+So we'll call .minimize,
+and we'll pass in cost.
+
+271
+00:11:43.06 --> 00:11:45.04
+That tells TensorFlow
+that whenever we tell it
+
+272
+00:11:45.04 --> 00:11:48.02
+to execute the optimizer,
+it should run one iteration
+
+273
+00:11:48.02 --> 00:11:49.08
+of the Adam optimizer in an attempt
+
+274
+00:11:49.08 --> 00:11:51.08
+to make the cost value smaller.
+
+275
+00:11:51.08 --> 00:11:55.00
+And that's it, now our neural
+network is fully defined.
+

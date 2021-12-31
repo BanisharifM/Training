@@ -1,0 +1,431 @@
+1
+00:00:00.08 --> 00:00:02.00
+- [Instructor] Now that
+we have created the
+
+2
+00:00:02.00 --> 00:00:05.00
+cloud based machine learning
+model, let's put it to use.
+
+3
+00:00:05.00 --> 00:00:07.08
+If you haven't already
+created the cloud based model,
+
+4
+00:00:07.08 --> 00:00:10.09
+please review the previous
+video before continuing.
+
+5
+00:00:10.09 --> 00:00:12.07
+In this video, we'll learn how to call
+
+6
+00:00:12.07 --> 00:00:15.03
+our machine learning model
+from a Python program.
+
+7
+00:00:15.03 --> 00:00:17.06
+But you can also use
+the same approach to use
+
+8
+00:00:17.06 --> 00:00:19.04
+cloud based machine learning models
+
+9
+00:00:19.04 --> 00:00:21.08
+in programs not written in Python.
+
+10
+00:00:21.08 --> 00:00:25.01
+Google provides implementations
+of its API client library
+
+11
+00:00:25.01 --> 00:00:27.02
+for many popular programming languages.
+
+12
+00:00:27.02 --> 00:00:32.05
+Let's take a look at
+developers.google.com/apiclientlibrary
+
+13
+00:00:32.05 --> 00:00:35.06
+and let's scroll down to
+the supported languages.
+
+14
+00:00:35.06 --> 00:00:37.02
+You can call Google services from
+
+15
+00:00:37.02 --> 00:00:38.09
+any of these languages, using the same
+
+16
+00:00:38.09 --> 00:00:41.02
+basic approach we'll use here.
+
+17
+00:00:41.02 --> 00:00:43.05
+Just check the documentation
+and code samples
+
+18
+00:00:43.05 --> 00:00:45.05
+provided by Google, to see how the syntax
+
+19
+00:00:45.05 --> 00:00:47.00
+varies for each language.
+
+20
+00:00:47.00 --> 00:00:50.03
+Okay, let's get started,
+to use a cloud based
+
+21
+00:00:50.03 --> 00:00:52.05
+machine learning model
+from another program,
+
+22
+00:00:52.05 --> 00:00:55.05
+we need two things, first, we need access
+
+23
+00:00:55.05 --> 00:00:57.06
+to make calls to the cloud.
+
+24
+00:00:57.06 --> 00:00:59.07
+For this, we need a credentials file.
+
+25
+00:00:59.07 --> 00:01:01.05
+This file keeps our cloud based
+
+26
+00:01:01.05 --> 00:01:03.06
+service secure from unauthorized use.
+
+27
+00:01:03.06 --> 00:01:05.06
+Second, we need to write the code
+
+28
+00:01:05.06 --> 00:01:07.09
+to call our cloud based model, for that,
+
+29
+00:01:07.09 --> 00:01:11.07
+we'll use the Google
+cloud API client library.
+
+30
+00:01:11.07 --> 00:01:13.09
+Let's set up the credentials file.
+
+31
+00:01:13.09 --> 00:01:16.02
+In your web browser, open
+up the Google console,
+
+32
+00:01:16.02 --> 00:01:20.04
+at console.cloud.google.com,
+if you aren't already
+
+33
+00:01:20.04 --> 00:01:22.07
+logged in, just log back in and then,
+
+34
+00:01:22.07 --> 00:01:24.09
+double check on the toolbar, to make sure
+
+35
+00:01:24.09 --> 00:01:27.02
+you have the correct project selected.
+
+36
+00:01:27.02 --> 00:01:29.02
+Now in the menu, we're going to look at
+
+37
+00:01:29.02 --> 00:01:32.06
+API manager and then, credentials.
+
+38
+00:01:32.06 --> 00:01:35.02
+Then on the dropdown menu
+next to create credentials,
+
+39
+00:01:35.02 --> 00:01:39.00
+we're going to choose service account key.
+
+40
+00:01:39.00 --> 00:01:42.07
+Here, we need to choose
+which service account to use.
+
+41
+00:01:42.07 --> 00:01:44.00
+We're going to use the default
+
+42
+00:01:44.00 --> 00:01:45.08
+service account for convenience.
+
+43
+00:01:45.08 --> 00:01:47.04
+But you can also create
+a new service account
+
+44
+00:01:47.04 --> 00:01:51.06
+with limited permissions if
+you're concerned about security.
+
+45
+00:01:51.06 --> 00:01:54.07
+Now, click create.
+
+46
+00:01:54.07 --> 00:01:58.04
+The credentials file will be
+downloaded to your computer.
+
+47
+00:01:58.04 --> 00:02:00.04
+Let's look at the file on our computer,
+
+48
+00:02:00.04 --> 00:02:04.05
+show in finder, and now,
+let's rename this file.
+
+49
+00:02:04.05 --> 00:02:06.06
+I'm going to right click and choose rename
+
+50
+00:02:06.06 --> 00:02:10.08
+and then call it, credentials.json,
+just to make it simple.
+
+51
+00:02:10.08 --> 00:02:14.00
+Now I'm going to copy
+this file into PyCharm
+
+52
+00:02:14.00 --> 00:02:15.09
+by right clicking and choosing copy,
+
+53
+00:02:15.09 --> 00:02:19.05
+and then going to PyCharm
+and then right clicking
+
+54
+00:02:19.05 --> 00:02:22.01
+on the 06 folder and pasting it,
+
+55
+00:02:22.01 --> 00:02:26.01
+and then, click okay.
+
+56
+00:02:26.01 --> 00:02:28.09
+Now, open up call_cloud_service.py.
+
+57
+00:02:28.09 --> 00:02:32.07
+This file uses the Google
+cloud services API client
+
+58
+00:02:32.07 --> 00:02:35.00
+to make request to our cloud based model.
+
+59
+00:02:35.00 --> 00:02:36.09
+First, put in your project ID on line five
+
+60
+00:02:36.09 --> 00:02:38.09
+where it says, change me.
+
+61
+00:02:38.09 --> 00:02:40.07
+You can check your project ID by
+
+62
+00:02:40.07 --> 00:02:42.03
+going back to your web browser
+
+63
+00:02:42.03 --> 00:02:44.03
+and clicking on Google cloud platform,
+
+64
+00:02:44.03 --> 00:02:46.04
+to go back to the dashboard and then,
+
+65
+00:02:46.04 --> 00:02:48.05
+looking under project info.
+
+66
+00:02:48.05 --> 00:02:51.03
+This is my project ID,
+I'm going to copy that
+
+67
+00:02:51.03 --> 00:02:54.04
+and go back to PyCharm and paste that in.
+
+68
+00:02:54.04 --> 00:02:57.00
+On the next line, make sure the model name
+
+69
+00:02:57.00 --> 00:02:59.09
+matches the name you use
+to create your model.
+
+70
+00:02:59.09 --> 00:03:04.04
+My model's called, earnings.
+
+71
+00:03:04.04 --> 00:03:06.07
+Now let's look at line 10, this is where
+
+72
+00:03:06.07 --> 00:03:08.08
+we put in the data we want to use as input
+
+73
+00:03:08.08 --> 00:03:10.05
+to our machine learning model.
+
+74
+00:03:10.05 --> 00:03:13.04
+I've hard coded some example
+data here that we can try,
+
+75
+00:03:13.04 --> 00:03:16.02
+but in the real program,
+you might feed in user input
+
+76
+00:03:16.02 --> 00:03:17.09
+or read this data from a file.
+
+77
+00:03:17.09 --> 00:03:20.02
+The rest of the code
+here, is the minimum code
+
+78
+00:03:20.02 --> 00:03:24.00
+needed to make request to
+the Google cloud ML service.
+
+79
+00:03:24.00 --> 00:03:27.01
+First, on line 15, we read
+the account credentials
+
+80
+00:03:27.01 --> 00:03:29.09
+from the json file, we
+need this to have access
+
+81
+00:03:29.09 --> 00:03:32.03
+to make a call to the cloud service.
+
+82
+00:03:32.03 --> 00:03:35.03
+Then, on line 16, we
+create the Python object
+
+83
+00:03:35.03 --> 00:03:37.07
+to connect to the cloud ML service.
+
+84
+00:03:37.07 --> 00:03:41.04
+Next on line 19, we
+format our project name,
+
+85
+00:03:41.04 --> 00:03:44.06
+into the format that Google expects.
+
+86
+00:03:44.06 --> 00:03:47.05
+And then, on line 20, we
+make a predictionary quest,
+
+87
+00:03:47.05 --> 00:03:51.02
+where we connect to the service
+and send it our input data.
+
+88
+00:03:51.02 --> 00:03:53.06
+And then, on line 26, we check for errors
+
+89
+00:03:53.06 --> 00:03:55.03
+and as long as everything looks good,
+
+90
+00:03:55.03 --> 00:03:57.07
+then on line 30, we get the response.
+
+91
+00:03:57.07 --> 00:04:00.00
+And finally on line 33,
+we print the results.
+
+92
+00:04:00.00 --> 00:04:01.08
+Now, let's run the code and try it out.
+
+93
+00:04:01.08 --> 00:04:06.06
+Right click, choose run.
+
+94
+00:04:06.06 --> 00:04:08.02
+Great, we're able to successfully connect
+
+95
+00:04:08.02 --> 00:04:10.02
+to our machine learning model in the cloud
+
+96
+00:04:10.02 --> 00:04:11.07
+and use it to make a prediction.
+
+97
+00:04:11.07 --> 00:04:13.05
+Now we can call this
+machine learning model
+
+98
+00:04:13.05 --> 00:04:15.05
+from inside of any program we write.
+

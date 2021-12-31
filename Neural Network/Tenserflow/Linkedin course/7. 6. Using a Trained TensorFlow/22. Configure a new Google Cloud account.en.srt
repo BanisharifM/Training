@@ -1,0 +1,363 @@
+1
+00:00:00.03 --> 00:00:02.00
+- [Instructor] To host
+machine learning models
+
+2
+00:00:02.00 --> 00:00:03.06
+on the Google Cloud service
+
+3
+00:00:03.06 --> 00:00:05.05
+you need to set up your Google account.
+
+4
+00:00:05.05 --> 00:00:08.04
+We also need to install
+the Google Cloud SDK.
+
+5
+00:00:08.04 --> 00:00:11.00
+The Google Cloud SDK contains utilities
+
+6
+00:00:11.00 --> 00:00:12.05
+that we can use to interact
+
+7
+00:00:12.05 --> 00:00:15.05
+with the Google Cloud
+services from our computer.
+
+8
+00:00:15.05 --> 00:00:16.06
+First in your browser,
+
+9
+00:00:16.06 --> 00:00:22.02
+let's go to console.cloud.google.com.
+
+10
+00:00:22.02 --> 00:00:24.06
+Here log in with your Google account.
+
+11
+00:00:24.06 --> 00:00:26.00
+If you already have a Gmail account
+
+12
+00:00:26.00 --> 00:00:28.08
+you can use that email
+address and password.
+
+13
+00:00:28.08 --> 00:00:30.04
+If you don't have a Google account
+
+14
+00:00:30.04 --> 00:00:34.08
+you'll be given the option
+to create a new one.
+
+15
+00:00:34.08 --> 00:00:37.06
+This is the Google Cloud
+platform dashboard.
+
+16
+00:00:37.06 --> 00:00:39.02
+From here you can access all
+
+17
+00:00:39.02 --> 00:00:41.04
+the different Google Cloud services.
+
+18
+00:00:41.04 --> 00:00:43.00
+If you don't have any projects,
+
+19
+00:00:43.00 --> 00:00:45.07
+you may see a button that
+says create new project.
+
+20
+00:00:45.07 --> 00:00:46.09
+So you can click that.
+
+21
+00:00:46.09 --> 00:00:47.09
+If you do have projects,
+
+22
+00:00:47.09 --> 00:00:49.08
+just click on the project dropdown
+
+23
+00:00:49.08 --> 00:00:55.00
+and then click plus to
+create the new project.
+
+24
+00:00:55.00 --> 00:00:59.02
+Name your project Tensor Flow Class.
+
+25
+00:00:59.02 --> 00:01:01.04
+You'll notice that the
+project will also get assigned
+
+26
+00:01:01.04 --> 00:01:02.07
+a unique key like
+
+27
+00:01:02.07 --> 00:01:06.04
+tensorflowclass170621.
+
+28
+00:01:06.04 --> 00:01:08.09
+That's the ID you can
+use to access the project
+
+29
+00:01:08.09 --> 00:01:10.02
+from your programs.
+
+30
+00:01:10.02 --> 00:01:12.06
+Now click create.
+
+31
+00:01:12.06 --> 00:01:14.07
+And we have to wait until it finishes.
+
+32
+00:01:14.07 --> 00:01:16.09
+You can watch the progress
+in the notifications tray
+
+33
+00:01:16.09 --> 00:01:18.09
+in the top right.
+
+34
+00:01:18.09 --> 00:01:20.07
+Great the project's been created.
+
+35
+00:01:20.07 --> 00:01:23.03
+Since the Google Cloud
+platform has so many features,
+
+36
+00:01:23.03 --> 00:01:25.05
+not all of them are enabled by default.
+
+37
+00:01:25.05 --> 00:01:27.06
+We need to enable Google
+Cloud machine learning
+
+38
+00:01:27.06 --> 00:01:29.05
+before we can use it.
+
+39
+00:01:29.05 --> 00:01:31.08
+So click on the main menu on the left,
+
+40
+00:01:31.08 --> 00:01:35.08
+go to API manager, and
+then choose library.
+
+41
+00:01:35.08 --> 00:01:39.09
+This is a list of all the
+Google services you can enable.
+
+42
+00:01:39.09 --> 00:01:43.03
+Look for Google Cloud machine learning.
+
+43
+00:01:43.03 --> 00:01:46.00
+And under that look for the
+machine learning engine API
+
+44
+00:01:46.00 --> 00:01:48.06
+and click on it.
+
+45
+00:01:48.06 --> 00:01:50.01
+If you've never used it before,
+
+46
+00:01:50.01 --> 00:01:51.08
+you'll have to click here to enable it.
+
+47
+00:01:51.08 --> 00:01:52.08
+If you've already enabled it
+
+48
+00:01:52.08 --> 00:01:54.05
+you'll see a screen like this.
+
+49
+00:01:54.05 --> 00:01:57.02
+Finally you need to provide
+billing details for your account
+
+50
+00:01:57.02 --> 00:02:00.02
+before you can use some of
+the features of Google Cloud.
+
+51
+00:02:00.02 --> 00:02:02.00
+To do that, click on the main menu
+
+52
+00:02:02.00 --> 00:02:04.04
+and then go to the billing section.
+
+53
+00:02:04.04 --> 00:02:05.08
+You might be offered the free trial
+
+54
+00:02:05.08 --> 00:02:07.07
+which you can take
+advantage if you'd like.
+
+55
+00:02:07.07 --> 00:02:10.01
+Be aware that you're
+responsible for any charges
+
+56
+00:02:10.01 --> 00:02:12.07
+that you incur on Google Cloud.
+
+57
+00:02:12.07 --> 00:02:14.09
+Great, now that we've created the project
+
+58
+00:02:14.09 --> 00:02:16.05
+and enabled the machine learning API's,
+
+59
+00:02:16.05 --> 00:02:18.01
+the account's ready to go.
+
+60
+00:02:18.01 --> 00:02:21.06
+The next step is to install
+the Google Cloud SDK.
+
+61
+00:02:21.06 --> 00:02:24.01
+The Google Cloud SDK is a set of tools
+
+62
+00:02:24.01 --> 00:02:25.08
+that let us work with
+the Google Cloud service
+
+63
+00:02:25.08 --> 00:02:27.04
+from our computer.
+
+64
+00:02:27.04 --> 00:02:28.09
+To do that, let's go to the
+
+65
+00:02:28.09 --> 00:02:34.06
+cloud.google.com/sdk/downloads.
+
+66
+00:02:34.06 --> 00:02:38.01
+On this page you'll be given
+several installation options.
+
+67
+00:02:38.01 --> 00:02:40.08
+Choose the option for run
+the interactive installer
+
+68
+00:02:40.08 --> 00:02:44.04
+to download and install
+the latest release.
+
+69
+00:02:44.04 --> 00:02:47.07
+This will give you directions
+for Mac and for Windows.
+
+70
+00:02:47.07 --> 00:02:49.09
+The directions are
+different for each platform,
+
+71
+00:02:49.09 --> 00:02:54.02
+follow the instructions for
+your platform to install it.
+
+72
+00:02:54.02 --> 00:02:56.04
+Once you have the Google
+Cloud SDK installed,
+
+73
+00:02:56.04 --> 00:02:59.06
+we need to activate it by
+logging in from the command line.
+
+74
+00:02:59.06 --> 00:03:01.08
+Open up the command line
+window in your computer
+
+75
+00:03:01.08 --> 00:03:08.05
+and in that window type
+gcloud init and hit enter.
+
+76
+00:03:08.05 --> 00:03:10.03
+Now the Google Cloud SDK will attempt
+
+77
+00:03:10.03 --> 00:03:12.07
+to open a web browser window
+to the Google login page
+
+78
+00:03:12.07 --> 00:03:14.03
+when we hit enter.
+
+79
+00:03:14.03 --> 00:03:17.08
+Choose the correct account
+and then click Allow.
+
+80
+00:03:17.08 --> 00:03:19.01
+Once you see this message
+
+81
+00:03:19.01 --> 00:03:21.09
+you are now authenticated
+with the Google Cloud SDK,
+
+82
+00:03:21.09 --> 00:03:24.00
+everything is ready to go.
+

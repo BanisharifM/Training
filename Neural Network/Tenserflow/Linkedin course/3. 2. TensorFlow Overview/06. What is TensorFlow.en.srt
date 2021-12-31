@@ -1,0 +1,388 @@
+1
+00:00:00.05 --> 00:00:02.03
+- If you are new to machine learning,
+
+2
+00:00:02.03 --> 00:00:05.04
+you may be wondering what
+TensorFlow actually is.
+
+3
+00:00:05.04 --> 00:00:07.06
+TensorFlow is a software
+framework for building
+
+4
+00:00:07.06 --> 00:00:10.01
+and deploying machine learning models.
+
+5
+00:00:10.01 --> 00:00:11.08
+Machine learning is a different approach
+
+6
+00:00:11.08 --> 00:00:13.08
+than traditional programming.
+
+7
+00:00:13.08 --> 00:00:15.02
+With traditional programming,
+
+8
+00:00:15.02 --> 00:00:17.00
+we write the program
+that tells the computer
+
+9
+00:00:17.00 --> 00:00:20.03
+exactly what to do to complete the task.
+
+10
+00:00:20.03 --> 00:00:22.02
+With machine learning, we don't explicitly
+
+11
+00:00:22.02 --> 00:00:24.02
+tell the computer how to do something.
+
+12
+00:00:24.02 --> 00:00:26.02
+Instead we show a training data
+
+13
+00:00:26.02 --> 00:00:28.06
+and the machine learning
+algorithm uses the training data
+
+14
+00:00:28.06 --> 00:00:31.07
+that come up with its own
+rules to complete the task.
+
+15
+00:00:31.07 --> 00:00:34.00
+Developed at Google,
+TensorFlow was designed
+
+16
+00:00:34.00 --> 00:00:36.03
+to be a common platform for
+building machine learning
+
+17
+00:00:36.03 --> 00:00:38.03
+applications internally.
+
+18
+00:00:38.03 --> 00:00:41.01
+In late 2015, they decided
+to share it with the world
+
+19
+00:00:41.01 --> 00:00:43.09
+and release it as an
+open source application.
+
+20
+00:00:43.09 --> 00:00:46.05
+TensorFlow is licensed
+under the Apache open source
+
+21
+00:00:46.05 --> 00:00:48.00
+software license.
+
+22
+00:00:48.00 --> 00:00:50.08
+That means you can use it,
+modify it, and even redistribute
+
+23
+00:00:50.08 --> 00:00:52.05
+modified version of it.
+
+24
+00:00:52.05 --> 00:00:55.09
+You don't have to pay any
+licensing fees to use TensorFlow.
+
+25
+00:00:55.09 --> 00:00:58.00
+TensorFlow gives you the
+basic building blocks
+
+26
+00:00:58.00 --> 00:00:59.09
+that you need to design, train,
+
+27
+00:00:59.09 --> 00:01:02.02
+and deploy machine learning models.
+
+28
+00:01:02.02 --> 00:01:04.01
+While it's flexible enough
+to be used for several
+
+29
+00:01:04.01 --> 00:01:06.04
+different types of machine
+learning types of algorithms,
+
+30
+00:01:06.04 --> 00:01:09.08
+it's typically used to
+build deep neural networks.
+
+31
+00:01:09.08 --> 00:01:11.05
+Deep neural networks built with TensorFlow
+
+32
+00:01:11.05 --> 00:01:14.01
+are used in many different areas like
+
+33
+00:01:14.01 --> 00:01:15.08
+image recognition, where you recognize
+
+34
+00:01:15.08 --> 00:01:17.07
+what objects appear in a picture.
+
+35
+00:01:17.07 --> 00:01:19.01
+Speech recognition
+
+36
+00:01:19.01 --> 00:01:21.02
+where you turn speech into text.
+
+37
+00:01:21.02 --> 00:01:22.06
+Image style transfer
+
+38
+00:01:22.06 --> 00:01:24.06
+where you can make a photograph
+look like it was painted
+
+39
+00:01:24.06 --> 00:01:26.05
+in the style of a famous artist,
+
+40
+00:01:26.05 --> 00:01:27.07
+or language translation
+
+41
+00:01:27.07 --> 00:01:29.01
+where you translate
+from one human language
+
+42
+00:01:29.01 --> 00:01:30.05
+to another.
+
+43
+00:01:30.05 --> 00:01:31.08
+In this particular course,
+
+44
+00:01:31.08 --> 00:01:34.07
+we'll use TensorFlow to solve
+a typical business problem
+
+45
+00:01:34.07 --> 00:01:36.01
+estimating sales.
+
+46
+00:01:36.01 --> 00:01:37.07
+We'll build a basic neural network
+
+47
+00:01:37.07 --> 00:01:40.00
+that can estimate the
+sales of a new video game
+
+48
+00:01:40.00 --> 00:01:41.04
+based on sales of past video games
+
+49
+00:01:41.04 --> 00:01:43.05
+with similar characteristics.
+
+50
+00:01:43.05 --> 00:01:45.04
+But everything we learn
+about building and deploying
+
+51
+00:01:45.04 --> 00:01:48.04
+with TensorFlow works the
+same way no matter what kind
+
+52
+00:01:48.04 --> 00:01:50.06
+of application you are using it for.
+
+53
+00:01:50.06 --> 00:01:53.02
+TensorFlow isn't the only
+option for deep learning.
+
+54
+00:01:53.02 --> 00:01:54.05
+TensorFlow is comparable to
+
+55
+00:01:54.05 --> 00:01:56.05
+other deep learning frameworks like
+
+56
+00:01:56.05 --> 00:01:59.02
+Theano, Torch, and Pytorch.
+
+57
+00:01:59.02 --> 00:02:01.04
+Each framework has its own pros and cons,
+
+58
+00:02:01.04 --> 00:02:03.07
+but all of them are popular
+within different research groups
+
+59
+00:02:03.07 --> 00:02:05.01
+and companies.
+
+60
+00:02:05.01 --> 00:02:07.01
+It's common for a machine
+learning researcher
+
+61
+00:02:07.01 --> 00:02:09.03
+to be familiar with several of them.
+
+62
+00:02:09.03 --> 00:02:11.04
+Since TensorFlow was Google solution,
+
+63
+00:02:11.04 --> 00:02:13.02
+Google has helped promote
+it, and its become
+
+64
+00:02:13.02 --> 00:02:15.00
+one of the more popular choices.
+
+65
+00:02:15.00 --> 00:02:16.09
+It also works well with
+many Google products
+
+66
+00:02:16.09 --> 00:02:18.08
+like their Cloud ML platform
+
+67
+00:02:18.08 --> 00:02:20.04
+and for deploying machine learning models
+
+68
+00:02:20.04 --> 00:02:22.05
+and Android mobile phones.
+
+69
+00:02:22.05 --> 00:02:24.05
+TensorFlow is a low level toolkit.
+
+70
+00:02:24.05 --> 00:02:26.00
+It can take quite a few lines of code
+
+71
+00:02:26.00 --> 00:02:28.07
+to build a machine learning
+model in TensorFlow.
+
+72
+00:02:28.07 --> 00:02:30.06
+Because of this, there are
+wrappers for TensorFlow
+
+73
+00:02:30.06 --> 00:02:33.01
+that simplify common operations.
+
+74
+00:02:33.01 --> 00:02:36.01
+The most popular wrapper
+for TensorFlow is Keras.
+
+75
+00:02:36.01 --> 00:02:38.06
+Keras is a high level programming toolkit
+
+76
+00:02:38.06 --> 00:02:40.06
+that makes it easy to
+build many different types
+
+77
+00:02:40.06 --> 00:02:43.04
+of neural networks with
+only a few lines of code.
+
+78
+00:02:43.04 --> 00:02:45.04
+Keras still uses TensorFlow
+behind the scenes
+
+79
+00:02:45.04 --> 00:02:47.02
+to actually do the processing.
+
+80
+00:02:47.02 --> 00:02:49.00
+It's a great choice if you
+don't need the low level
+
+81
+00:02:49.00 --> 00:02:51.04
+flexibility of TensorFlow.
+
+82
+00:02:51.04 --> 00:02:53.08
+My recommendation is to
+learn how to use TensorFlow
+
+83
+00:02:53.08 --> 00:02:56.00
+on its own first, to
+make sure you understand
+
+84
+00:02:56.00 --> 00:02:58.00
+what's going on behind the scenes.
+
+85
+00:02:58.00 --> 00:02:59.07
+But once you're familiar with TensorFlow,
+
+86
+00:02:59.07 --> 00:03:02.00
+it's great to also learn how to use Keras.
+
+87
+00:03:02.00 --> 00:03:04.02
+It makes many common tasks much easier
+
+88
+00:03:04.02 --> 00:03:06.03
+and it can be a great time saver.
+

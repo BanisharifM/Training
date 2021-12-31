@@ -1,0 +1,60 @@
+1
+00:00:00.07 --> 00:00:02.06
+- [Instructor] If you have
+access to the exercise files
+
+2
+00:00:02.06 --> 00:00:05.01
+for this course, you can
+download them to your desktop
+
+3
+00:00:05.01 --> 00:00:09.01
+as I've done here.
+
+4
+00:00:09.01 --> 00:00:11.02
+The files are organized by chapter.
+
+5
+00:00:11.02 --> 00:00:13.01
+All the code and data used in each video
+
+6
+00:00:13.01 --> 00:00:14.09
+can be found in the corresponding folder
+
+7
+00:00:14.09 --> 00:00:17.02
+based on the chapter name.
+
+8
+00:00:17.02 --> 00:00:19.01
+Each example program has an initial state
+
+9
+00:00:19.01 --> 00:00:21.01
+and a final state.
+
+10
+00:00:21.01 --> 00:00:23.02
+If you're viewing this
+course on a mobile device
+
+11
+00:00:23.02 --> 00:00:25.08
+a settop device or your
+membership doesn't provide
+
+12
+00:00:25.08 --> 00:00:27.02
+access to the exercise files,
+
+13
+00:00:27.02 --> 00:00:29.03
+that's okay, you can still follow along
+
+14
+00:00:29.03 --> 00:00:31.07
+by watching how I use the files.
+

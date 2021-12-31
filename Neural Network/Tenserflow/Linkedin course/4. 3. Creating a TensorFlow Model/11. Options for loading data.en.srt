@@ -1,0 +1,536 @@
+1
+00:00:00.05 --> 00:00:02.03
+- [Instructor] The first step
+of training a machine learning
+
+2
+00:00:02.03 --> 00:00:04.09
+algorithm is loading the training data.
+
+3
+00:00:04.09 --> 00:00:07.07
+TensorFlow supports different
+ways of loading datasets,
+
+4
+00:00:07.07 --> 00:00:10.04
+depending on how much
+data you are dealing with.
+
+5
+00:00:10.04 --> 00:00:13.09
+The more data that you have,
+the more complicated it gets.
+
+6
+00:00:13.09 --> 00:00:16.00
+The simplest method is
+to preload all your data
+
+7
+00:00:16.00 --> 00:00:19.08
+into memory and pass it to
+TensorFlow as a single array.
+
+8
+00:00:19.08 --> 00:00:21.03
+To do this, you just write
+
+9
+00:00:21.03 --> 00:00:23.05
+plain Python code to load your data.
+
+10
+00:00:23.05 --> 00:00:26.03
+There's nothing TensorFlow specific.
+
+11
+00:00:26.03 --> 00:00:29.01
+The second more complicated
+option is to write code
+
+12
+00:00:29.01 --> 00:00:31.05
+that feeds your training data step-by-step
+
+13
+00:00:31.05 --> 00:00:34.06
+into TensorFlow as TensorFlow requests it.
+
+14
+00:00:34.06 --> 00:00:37.07
+This gives you more control
+over when the data is loaded
+
+15
+00:00:37.07 --> 00:00:40.07
+but it requires you to
+manage everything yourself.
+
+16
+00:00:40.07 --> 00:00:42.01
+The third option is to set up
+
+17
+00:00:42.01 --> 00:00:44.06
+a custom data pipeline in TensorFlow.
+
+18
+00:00:44.06 --> 00:00:46.06
+This is the best option
+when you are working
+
+19
+00:00:46.06 --> 00:00:50.01
+with enormous datasets
+like millions of images.
+
+20
+00:00:50.01 --> 00:00:52.09
+A data pipeline allows
+TensorFlow to manage loading data
+
+21
+00:00:52.09 --> 00:00:55.06
+into memory itself as it needs it.
+
+22
+00:00:55.06 --> 00:00:58.01
+Let's take a deeper look at these options.
+
+23
+00:00:58.01 --> 00:01:00.00
+Preloading all your data into memory
+
+24
+00:01:00.00 --> 00:01:02.05
+is the most straightforward approach.
+
+25
+00:01:02.05 --> 00:01:04.09
+You simply read your
+data file into an array
+
+26
+00:01:04.09 --> 00:01:07.00
+and pass that array to TensorFlow.
+
+27
+00:01:07.00 --> 00:01:09.02
+This approach only works
+as long as the data
+
+28
+00:01:09.02 --> 00:01:11.09
+will fit into your
+computer's available memory.
+
+29
+00:01:11.09 --> 00:01:14.01
+For example, if you
+want to train the model
+
+30
+00:01:14.01 --> 00:01:16.05
+with a 100 gigabytes of financial data,
+
+31
+00:01:16.05 --> 00:01:19.01
+but your computer only
+has 32 gigabytes of RAM,
+
+32
+00:01:19.01 --> 00:01:20.08
+this approach won't work.
+
+33
+00:01:20.08 --> 00:01:22.06
+You won't be able to
+fit the entire dataset
+
+34
+00:01:22.06 --> 00:01:24.06
+into memory at once.
+
+35
+00:01:24.06 --> 00:01:26.05
+When you are loading
+your data into memory,
+
+36
+00:01:26.05 --> 00:01:28.07
+you code it however you
+want as long as the data
+
+37
+00:01:28.07 --> 00:01:31.04
+ends up in a multidimensional array.
+
+38
+00:01:31.04 --> 00:01:34.06
+You don't need to use any
+TensorFlow specific functions.
+
+39
+00:01:34.06 --> 00:01:36.08
+But you can use all the
+helpful Python libraries
+
+40
+00:01:36.08 --> 00:01:39.01
+that make it easy to work with data.
+
+41
+00:01:39.01 --> 00:01:41.09
+One of the most popular
+libraries is called pandas.
+
+42
+00:01:41.09 --> 00:01:44.06
+Pandas is great for
+loading data from CSV files
+
+43
+00:01:44.06 --> 00:01:46.02
+and then preprocessing that data
+
+44
+00:01:46.02 --> 00:01:48.06
+to get it ready for TensorFlow.
+
+45
+00:01:48.06 --> 00:01:50.08
+Feeding data step-by-step
+is a more complicated
+
+46
+00:01:50.08 --> 00:01:53.04
+version of preloading data.
+
+47
+00:01:53.04 --> 00:01:56.00
+Instead of preloading the
+entire dataset at once,
+
+48
+00:01:56.00 --> 00:01:58.08
+TensorFlow calls your
+customer data loader function
+
+49
+00:01:58.08 --> 00:02:01.05
+whenever it needs the next chunk of data.
+
+50
+00:02:01.05 --> 00:02:03.03
+It's up to you to write
+the code that loads
+
+51
+00:02:03.03 --> 00:02:05.05
+and returns that next chunk of data.
+
+52
+00:02:05.05 --> 00:02:07.07
+This approach gives you more control.
+
+53
+00:02:07.07 --> 00:02:09.06
+And since you only have
+to load one chunk of data
+
+54
+00:02:09.06 --> 00:02:12.08
+at a time, instead of
+preloading the entire dataset,
+
+55
+00:02:12.08 --> 00:02:15.09
+it's possible to process
+very large datasets.
+
+56
+00:02:15.09 --> 00:02:19.05
+But you have to write all the
+data loading code yourself.
+
+57
+00:02:19.05 --> 00:02:21.04
+The custom data loader function is written
+
+58
+00:02:21.04 --> 00:02:22.09
+in normal Python code.
+
+59
+00:02:22.09 --> 00:02:26.06
+You can make it as simple
+or as complex as you need.
+
+60
+00:02:26.06 --> 00:02:28.08
+TensorFlow data pipelines
+are designed to work
+
+61
+00:02:28.08 --> 00:02:31.05
+with loading very large datasets.
+
+62
+00:02:31.05 --> 00:02:34.02
+Because the data pipeline
+only loads data into memory
+
+63
+00:02:34.02 --> 00:02:38.07
+in small chunks, it can work
+with infinitely large datasets.
+
+64
+00:02:38.07 --> 00:02:40.05
+TensorFlow provides a lot of the plumbing
+
+65
+00:02:40.05 --> 00:02:43.02
+for setting up a data
+pipeline, but you still have
+
+66
+00:02:43.02 --> 00:02:45.03
+to write a good bit of code yourself.
+
+67
+00:02:45.03 --> 00:02:47.08
+The code will use
+TensorFlow-specific functions
+
+68
+00:02:47.08 --> 00:02:49.06
+which means you usually
+can't take advantage
+
+69
+00:02:49.06 --> 00:02:51.08
+of other Python data processing libraries
+
+70
+00:02:51.08 --> 00:02:54.04
+that would make the job easier.
+
+71
+00:02:54.04 --> 00:02:56.07
+The big advantage of
+building a data pipeline
+
+72
+00:02:56.07 --> 00:02:58.07
+is that you can take advantage
+of parallel processing
+
+73
+00:02:58.07 --> 00:03:00.05
+across multiple CPUs.
+
+74
+00:03:00.05 --> 00:03:03.01
+You can have several threads
+running at the same time
+
+75
+00:03:03.01 --> 00:03:05.02
+to load and preprocess data.
+
+76
+00:03:05.02 --> 00:03:07.03
+This means that the training
+process doesn't have
+
+77
+00:03:07.03 --> 00:03:10.04
+to stop and wait while the
+next chunk of data is loaded
+
+78
+00:03:10.04 --> 00:03:12.03
+for the next training pass.
+
+79
+00:03:12.03 --> 00:03:14.00
+This can make training much more efficient
+
+80
+00:03:14.00 --> 00:03:16.02
+with large datasets.
+
+81
+00:03:16.02 --> 00:03:18.08
+Let's take a look at a
+typical data pipeline.
+
+82
+00:03:18.08 --> 00:03:20.09
+Let's say our dataset
+is made up of hundreds
+
+83
+00:03:20.09 --> 00:03:23.00
+of separate CSV files.
+
+84
+00:03:23.00 --> 00:03:26.00
+The first step is to create
+a list of all the file names
+
+85
+00:03:26.00 --> 00:03:28.04
+of the data files that
+need to be processed.
+
+86
+00:03:28.04 --> 00:03:31.05
+Next, we shuffle the file
+names into a random order
+
+87
+00:03:31.05 --> 00:03:34.05
+and add the file names into
+a file processing queue.
+
+88
+00:03:34.05 --> 00:03:36.07
+Next, individual file names will be pulled
+
+89
+00:03:36.07 --> 00:03:38.04
+out of the file processing queue and sent
+
+90
+00:03:38.04 --> 00:03:40.06
+to the CSV file reader.
+
+91
+00:03:40.06 --> 00:03:44.03
+The CSV reader will parse the
+raw data out of the CSV file
+
+92
+00:03:44.03 --> 00:03:47.01
+and break it up into individual records.
+
+93
+00:03:47.01 --> 00:03:49.05
+From there, each record in the CSV file
+
+94
+00:03:49.05 --> 00:03:51.05
+is fed into the record decoder.
+
+95
+00:03:51.05 --> 00:03:53.07
+The record decoder pulls out and formats
+
+96
+00:03:53.07 --> 00:03:56.02
+the individual values from each record.
+
+97
+00:03:56.02 --> 00:03:59.04
+And finally, we'll queue up
+each record in the data queue
+
+98
+00:03:59.04 --> 00:04:00.06
+where it's ready to be fed into
+
+99
+00:04:00.06 --> 00:04:02.05
+your neural network for training.
+
+100
+00:04:02.05 --> 00:04:05.02
+TensorFlow provides functions
+and helpers to help you build
+
+101
+00:04:05.02 --> 00:04:07.09
+each step of this pipeline,
+and once you've built
+
+102
+00:04:07.09 --> 00:04:11.03
+the pipeline, TensorFlow
+will execute it for you.
+
+103
+00:04:11.03 --> 00:04:13.01
+So which solution should you use?
+
+104
+00:04:13.01 --> 00:04:15.01
+I'd recommend choosing
+the simplest solution
+
+105
+00:04:15.01 --> 00:04:16.07
+that works for your project.
+
+106
+00:04:16.07 --> 00:04:18.05
+If your dataset fits in the memory,
+
+107
+00:04:18.05 --> 00:04:20.03
+preload the entire dataset.
+
+108
+00:04:20.03 --> 00:04:22.03
+It require the least amount of code.
+
+109
+00:04:22.03 --> 00:04:25.06
+But if your dataset is huge,
+then set up a data pipeline.
+
+110
+00:04:25.06 --> 00:04:28.04
+It's the most efficient way
+to work with large datasets.
+
+111
+00:04:28.04 --> 00:04:30.01
+Data pipelines are especially common
+
+112
+00:04:30.01 --> 00:04:32.05
+for image-based datasets
+since images take up
+
+113
+00:04:32.05 --> 00:04:34.00
+a lot of the memory.
+
+114
+00:04:34.00 --> 00:04:35.08
+Just think of building a data pipeline
+
+115
+00:04:35.08 --> 00:04:38.04
+as additional complexity
+you only need to add
+
+116
+00:04:38.04 --> 00:04:40.02
+if other solutions won't work.
+
+117
+00:04:40.02 --> 00:04:41.08
+In this course, we'll be using preloading
+
+118
+00:04:41.08 --> 00:04:43.01
+to build a neural network,
+
+119
+00:04:43.01 --> 00:04:45.04
+since our data will fit into memory.
+

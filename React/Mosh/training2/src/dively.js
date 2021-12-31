@@ -15,7 +15,7 @@ class Dively extends Component {
   };
   render() {
     const { length: count } = this.state.movies;
-    if (count == 0)
+    if (count === 0)
       return (
         <React.Fragment>
           <p>There is no Movie to show</p>

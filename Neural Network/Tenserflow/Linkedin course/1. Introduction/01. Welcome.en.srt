@@ -1,0 +1,99 @@
+1
+00:00:00.06 --> 00:00:01.08
+- [Instructor] Do you
+want to learn how to use
+
+2
+00:00:01.08 --> 00:00:04.03
+deep learning in your applications?
+
+3
+00:00:04.03 --> 00:00:07.00
+Google's TensorFlow is one
+of the most popular tools
+
+4
+00:00:07.00 --> 00:00:08.06
+for deep learning.
+
+5
+00:00:08.06 --> 00:00:10.04
+With TensorFlow, you can build your own
+
+6
+00:00:10.04 --> 00:00:12.04
+state-of-the-art machine learning systems
+
+7
+00:00:12.04 --> 00:00:15.02
+and use them to power
+your own applications.
+
+8
+00:00:15.02 --> 00:00:16.08
+Hi, I'm Adam Geitgey.
+
+9
+00:00:16.08 --> 00:00:19.03
+In this course, we will
+learn how to use TensorFlow
+
+10
+00:00:19.03 --> 00:00:22.04
+to build and deploy
+machine learning models.
+
+11
+00:00:22.04 --> 00:00:25.00
+First, we will cover how
+to get TensorFlow installed
+
+12
+00:00:25.00 --> 00:00:26.07
+and running on your system.
+
+13
+00:00:26.07 --> 00:00:29.01
+Then, we will explore
+how to create and train
+
+14
+00:00:29.01 --> 00:00:31.09
+a machine learning model in TensorFlow.
+
+15
+00:00:31.09 --> 00:00:34.04
+Next, we will use TensorFlow's
+visualization tools
+
+16
+00:00:34.04 --> 00:00:37.07
+to analyze and improve our
+machine learning model.
+
+17
+00:00:37.07 --> 00:00:39.06
+Finally we will deploy
+the model to the cloud
+
+18
+00:00:39.06 --> 00:00:42.04
+where we can call it from any program.
+
+19
+00:00:42.04 --> 00:00:44.05
+If you want to learn how to
+incorporate machine learning
+
+20
+00:00:44.05 --> 00:00:46.02
+methods in your own applications,
+
+21
+00:00:46.02 --> 00:00:48.02
+this is the right place to start.
+
+22
+00:00:48.02 --> 00:00:49.03
+Let's dive in.
+

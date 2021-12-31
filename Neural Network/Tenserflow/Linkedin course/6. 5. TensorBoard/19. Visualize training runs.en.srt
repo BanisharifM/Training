@@ -1,0 +1,501 @@
+1
+00:00:00.06 --> 00:00:01.04
+- [Instructor] When you are building
+
+2
+00:00:01.04 --> 00:00:03.04
+machine learning models with TensorFlow,
+
+3
+00:00:03.04 --> 00:00:05.08
+you'll be spending a lot
+of time training the model
+
+4
+00:00:05.08 --> 00:00:07.06
+and then repeating the training process
+
+5
+00:00:07.06 --> 00:00:10.03
+with different parameters
+to see what works best.
+
+6
+00:00:10.03 --> 00:00:12.06
+Using TensorBoard we can visually monitor
+
+7
+00:00:12.06 --> 00:00:14.05
+the progress of training as it happens,
+
+8
+00:00:14.05 --> 00:00:17.01
+and even compare different
+training runs against each other.
+
+9
+00:00:17.01 --> 00:00:19.00
+Let's see how it works.
+
+10
+00:00:19.00 --> 00:00:22.09
+First, let's open up
+visualize_training.py.
+
+11
+00:00:22.09 --> 00:00:26.00
+Here we already have our
+computational graph defined
+
+12
+00:00:26.00 --> 00:00:27.09
+and we have a training loop defined.
+
+13
+00:00:27.09 --> 00:00:31.04
+And down here on line 104,
+
+14
+00:00:31.04 --> 00:00:33.02
+we've defined the training filewriter
+
+15
+00:00:33.02 --> 00:00:34.04
+and a testing filewriter
+
+16
+00:00:34.04 --> 00:00:36.07
+that will write out log
+files during training
+
+17
+00:00:36.07 --> 00:00:39.02
+that we can then view in TensorBoard.
+
+18
+00:00:39.02 --> 00:00:40.06
+Let's say that we want to retrain
+
+19
+00:00:40.06 --> 00:00:42.06
+this neural network several times,
+
+20
+00:00:42.06 --> 00:00:43.06
+with a different number of nodes
+
+21
+00:00:43.06 --> 00:00:45.05
+in the first layer each time.
+
+22
+00:00:45.05 --> 00:00:48.00
+Our goal is to find out
+which neural network design
+
+23
+00:00:48.00 --> 00:00:50.09
+gives us the best prediction accuracy.
+
+24
+00:00:50.09 --> 00:00:53.08
+The problem is that each time
+we run the training process,
+
+25
+00:00:53.08 --> 00:00:55.04
+additional log files will be created
+
+26
+00:00:55.04 --> 00:00:58.03
+with the same name as the old log files.
+
+27
+00:00:58.03 --> 00:01:01.05
+The new log files will
+mix with the old log files
+
+28
+00:01:01.05 --> 00:01:04.03
+and create overlapping
+graphs in TensorBoard.
+
+29
+00:01:04.03 --> 00:01:07.07
+We won't have any way to tell
+which training run was which.
+
+30
+00:01:07.07 --> 00:01:09.09
+We can fix this by using
+a different run name
+
+31
+00:01:09.09 --> 00:01:11.03
+for each training run.
+
+32
+00:01:11.03 --> 00:01:12.05
+Here's how it works.
+
+33
+00:01:12.05 --> 00:01:15.06
+First, if you already have a
+logs folder here in PyCharm,
+
+34
+00:01:15.06 --> 00:01:16.09
+let's right click and delete the folder
+
+35
+00:01:16.09 --> 00:01:18.03
+before we get started.
+
+36
+00:01:18.03 --> 00:01:24.00
+Right click, delete, and click delete.
+
+37
+00:01:24.00 --> 00:01:27.03
+Okay, let's go up to line 37.
+
+38
+00:01:27.03 --> 00:01:29.06
+Let's create the variable called RUN_NAME.
+
+39
+00:01:29.06 --> 00:01:30.04
+This will just be a string
+
+40
+00:01:30.04 --> 00:01:33.01
+where we can give a name to
+the current training run.
+
+41
+00:01:33.01 --> 00:01:37.08
+Let's start with "run 1 with 50 nodes".
+
+42
+00:01:37.08 --> 00:01:42.00
+Now let's go back down to line 104.
+
+43
+00:01:42.00 --> 00:01:45.01
+Currently every log file is
+named exactly the same way.
+
+44
+00:01:45.01 --> 00:01:47.04
+Let's change how we are
+creating the log file names,
+
+45
+00:01:47.04 --> 00:01:49.05
+so that we can separate them per run.
+
+46
+00:01:49.05 --> 00:01:52.06
+All we have to do is put each
+run in a different subfolder.
+
+47
+00:01:52.06 --> 00:01:54.04
+To do that, let's add in run name
+
+48
+00:01:54.04 --> 00:01:58.01
+to the path where we are
+saving the log files.
+
+49
+00:01:58.01 --> 00:02:02.00
+So here I'll add slash
+and then the placeholder,
+
+50
+00:02:02.00 --> 00:02:04.08
+and then I'll substitute
+that in by calling .format
+
+51
+00:02:04.08 --> 00:02:07.07
+and passing in the run name.
+
+52
+00:02:07.07 --> 00:02:11.08
+And we'll do the same thing
+for the testing writer.
+
+53
+00:02:11.08 --> 00:02:15.07
+.format, and pass in the run name.
+
+54
+00:02:15.07 --> 00:02:18.03
+Great, let's run the code and
+then train the neural network.
+
+55
+00:02:18.03 --> 00:02:21.07
+Right click, and run.
+
+56
+00:02:21.07 --> 00:02:24.01
+Okay, let's check the folder in PyCharm.
+
+57
+00:02:24.01 --> 00:02:26.09
+We can see it created
+the subfolder correctly.
+
+58
+00:02:26.09 --> 00:02:28.01
+Let's try tweaking our neural network
+
+59
+00:02:28.01 --> 00:02:29.08
+and doing a second run.
+
+60
+00:02:29.08 --> 00:02:31.09
+First, let's minimize the console
+
+61
+00:02:31.09 --> 00:02:36.07
+and go back to the top where
+we defined our run name,
+
+62
+00:02:36.07 --> 00:02:40.05
+and let's call this one
+"run 2 with 20 nodes".
+
+63
+00:02:40.05 --> 00:02:42.01
+And then let's edit the number of nodes
+
+64
+00:02:42.01 --> 00:02:44.06
+in the first layer to be 20.
+
+65
+00:02:44.06 --> 00:02:46.01
+Okay, let's run the code again
+
+66
+00:02:46.01 --> 00:02:48.02
+to train the neural network a second time.
+
+67
+00:02:48.02 --> 00:02:51.05
+Right click, run.
+
+68
+00:02:51.05 --> 00:02:55.02
+And now we have a second
+folder in PyCharm.
+
+69
+00:02:55.02 --> 00:02:58.02
+Now let's open up TensorBoard
+and see how these runs look.
+
+70
+00:02:58.02 --> 00:03:00.03
+Let's open up a terminal window.
+
+71
+00:03:00.03 --> 00:03:03.04
+Highlight in the bottom
+left, click terminal.
+
+72
+00:03:03.04 --> 00:03:04.06
+And now we'll run TensorBoard
+
+73
+00:03:04.06 --> 00:03:13.03
+by typing tensorboard --logdir=05/logs
+
+74
+00:03:13.03 --> 00:03:14.04
+and if you're using Windows
+
+75
+00:03:14.04 --> 00:03:16.05
+you'll want to use the
+backslash there instead,
+
+76
+00:03:16.05 --> 00:03:18.04
+and press enter.
+
+77
+00:03:18.04 --> 00:03:20.00
+When TensorBoard starts it will give you
+
+78
+00:03:20.00 --> 00:03:21.08
+a URL to open in your browser.
+
+79
+00:03:21.08 --> 00:03:26.04
+Copy and paste that into your web browser.
+
+80
+00:03:26.04 --> 00:03:29.01
+Okay, now click on
+logging to see our charts
+
+81
+00:03:29.01 --> 00:03:31.07
+and let's click to expand the chart.
+
+82
+00:03:31.07 --> 00:03:33.07
+Right now there are
+four lines on the chart,
+
+83
+00:03:33.07 --> 00:03:35.09
+but if you look at the bottom left,
+
+84
+00:03:35.09 --> 00:03:38.08
+you can see that each
+run is listed separately.
+
+85
+00:03:38.08 --> 00:03:40.04
+We have lines for the testing data
+
+86
+00:03:40.04 --> 00:03:42.05
+and the training data of each run.
+
+87
+00:03:42.05 --> 00:03:49.03
+You can click here to
+turn each line on or off.
+
+88
+00:03:49.03 --> 00:03:50.09
+You can also click toggle all runs
+
+89
+00:03:50.09 --> 00:03:53.02
+to turn them all on or off.
+
+90
+00:03:53.02 --> 00:03:55.08
+Let's compare the testing
+results for the two runs.
+
+91
+00:03:55.08 --> 00:03:58.01
+Let me turn on just those two lines.
+
+92
+00:03:58.01 --> 00:04:06.00
+So we'll turn on run 2
+testing and run 1 testing.
+
+93
+00:04:06.00 --> 00:04:08.04
+And we can also turn off
+smoothing if you like.
+
+94
+00:04:08.04 --> 00:04:10.08
+As we trace the line here,
+we can see that run 1
+
+95
+00:04:10.08 --> 00:04:14.03
+had a lower cost the
+entire time than run 2.
+
+96
+00:04:14.03 --> 00:04:16.05
+So it looks like having 50
+nodes in the first layer
+
+97
+00:04:16.05 --> 00:04:19.01
+is working better than having 20 nodes.
+
+98
+00:04:19.01 --> 00:04:21.00
+These graphs also update automatically
+
+99
+00:04:21.00 --> 00:04:22.07
+every minute as you train.
+
+100
+00:04:22.07 --> 00:04:24.09
+If you want, you can kick
+off additional training runs
+
+101
+00:04:24.09 --> 00:04:27.08
+and watch the progress live on
+this chart to quickly compare
+
+102
+00:04:27.08 --> 00:04:31.04
+how different neural network
+designs work with this data.
+
+103
+00:04:31.04 --> 00:04:33.02
+Once you find the settings that work best,
+
+104
+00:04:33.02 --> 00:04:34.05
+you might want to export this data
+
+105
+00:04:34.05 --> 00:04:37.05
+to another program to create a report.
+
+106
+00:04:37.05 --> 00:04:41.01
+To do that, click the show
+download data links button here.
+
+107
+00:04:41.01 --> 00:04:44.01
+That will enable a new selection
+box in the bottom right.
+
+108
+00:04:44.01 --> 00:04:46.03
+You can choose a single run,
+
+109
+00:04:46.03 --> 00:04:49.04
+and then you can export it
+as a csv file or a json file.
+
+110
+00:04:49.04 --> 00:04:51.01
+That file will have
+each point in the chart
+
+111
+00:04:51.01 --> 00:04:54.03
+in the format you can easily
+open in the spreadsheet.
+
+112
+00:04:54.03 --> 00:04:56.02
+When you're done, you
+can close TensorBoard
+
+113
+00:04:56.02 --> 00:04:59.04
+by going back to the terminal
+window and hitting CTRL+C.
+

@@ -1,0 +1,325 @@
+1
+00:00:00.06 --> 00:00:03.00
+- [Instructor] Let's
+open up training_loop.py
+
+2
+00:00:03.00 --> 00:00:06.02
+from the exercise files.
+
+3
+00:00:06.02 --> 00:00:09.00
+Once you have loaded your data
+set and defined your model,
+
+4
+00:00:09.00 --> 00:00:11.07
+you're ready to create a
+training loop to train the model.
+
+5
+00:00:11.07 --> 00:00:13.06
+Here, we've already defined the variable
+
+6
+00:00:13.06 --> 00:00:16.05
+called training_epochs on line 38.
+
+7
+00:00:16.05 --> 00:00:19.05
+An epoch is another name
+for one full training pass
+
+8
+00:00:19.05 --> 00:00:21.06
+over the training data set.
+
+9
+00:00:21.06 --> 00:00:24.07
+This means we will do 100
+iterations in our training loop
+
+10
+00:00:24.07 --> 00:00:26.09
+to train our neural network.
+
+11
+00:00:26.09 --> 00:00:29.07
+Okay, let's get started building
+the training loop itself.
+
+12
+00:00:29.07 --> 00:00:33.00
+Let's jump down to line 91.
+
+13
+00:00:33.00 --> 00:00:35.07
+To run any operation on
+the TensorFlow graph,
+
+14
+00:00:35.07 --> 00:00:37.07
+you first need to create a session.
+
+15
+00:00:37.07 --> 00:00:41.04
+We can create a new session
+by calling tf.Session.
+
+16
+00:00:41.04 --> 00:00:43.06
+Within a session, we can ask TensorFlow
+
+17
+00:00:43.06 --> 00:00:47.09
+to execute commands by
+calling session.run.
+
+18
+00:00:47.09 --> 00:00:50.04
+Session.run, and then we
+can pass in the command
+
+19
+00:00:50.04 --> 00:00:52.04
+we want TensorFlow to execute.
+
+20
+00:00:52.04 --> 00:00:55.07
+Those can either be global
+commands that TensorFlow provides
+
+21
+00:00:55.07 --> 00:00:58.09
+or specific nodes in our
+graph that we want to execute.
+
+22
+00:00:58.09 --> 00:01:00.06
+The first command we always run
+
+23
+00:01:00.06 --> 00:01:02.07
+is the built in command to tell TensorFlow
+
+24
+00:01:02.07 --> 00:01:04.09
+to initialize all variables in our graph
+
+25
+00:01:04.09 --> 00:01:06.04
+to their default values.
+
+26
+00:01:06.04 --> 00:01:10.08
+The command that's called
+tf.global_variables_initializer.
+
+27
+00:01:10.08 --> 00:01:12.06
+Global.
+
+28
+00:01:12.06 --> 00:01:15.00
+Now that all the variables
+in our graph are initialized,
+
+29
+00:01:15.00 --> 00:01:17.02
+we're ready to create our training loop.
+
+30
+00:01:17.02 --> 00:01:18.06
+To train our neural network,
+
+31
+00:01:18.06 --> 00:01:21.05
+we'll run its optimizer function
+over and over in the loop,
+
+32
+00:01:21.05 --> 00:01:23.02
+either a fixed number of times
+
+33
+00:01:23.02 --> 00:01:26.00
+or until it hits an
+accuracy level we want.
+
+34
+00:01:26.00 --> 00:01:29.01
+I've created the training loop on line 98.
+
+35
+00:01:29.01 --> 00:01:31.07
+This loop will execute 100 times.
+
+36
+00:01:31.07 --> 00:01:34.01
+Inside the loop we'll
+tell TensorFlow to execute
+
+37
+00:01:34.01 --> 00:01:36.05
+a single training pass
+over the training data
+
+38
+00:01:36.05 --> 00:01:39.01
+by calling the optimizer function.
+
+39
+00:01:39.01 --> 00:01:44.00
+We can do this by calling session.run
+
+40
+00:01:44.00 --> 00:01:46.01
+and then pass in a
+reference to the operation
+
+41
+00:01:46.01 --> 00:01:47.03
+that we want to call.
+
+42
+00:01:47.03 --> 00:01:49.04
+In this case, that's
+the optimizer operation
+
+43
+00:01:49.04 --> 00:01:51.09
+that we defined above.
+
+44
+00:01:51.09 --> 00:01:54.03
+The optimizer needs some
+additional data to run.
+
+45
+00:01:54.03 --> 00:01:56.05
+It needs the training data
+and the expected results
+
+46
+00:01:56.05 --> 00:01:58.05
+for this training pass.
+
+47
+00:01:58.05 --> 00:02:00.01
+In our computational graph,
+
+48
+00:02:00.01 --> 00:02:02.01
+we have a placeholder node called x
+
+49
+00:02:02.01 --> 00:02:03.06
+that accepts the training data
+
+50
+00:02:03.06 --> 00:02:05.02
+and a placeholder node called y
+
+51
+00:02:05.02 --> 00:02:07.07
+that accepts the expected results.
+
+52
+00:02:07.07 --> 00:02:09.06
+To feed values into a placeholder node,
+
+53
+00:02:09.06 --> 00:02:13.01
+we can pass them in as a
+parameter called feed_dict.
+
+54
+00:02:13.01 --> 00:02:15.05
+So I'll say feed_dict equals...
+
+55
+00:02:15.05 --> 00:02:18.01
+The feed_dict param
+accepts a Python dictionary
+
+56
+00:02:18.01 --> 00:02:20.04
+where we pass in the names
+of the placeholder nodes
+
+57
+00:02:20.04 --> 00:02:22.04
+we want to feed data into,
+
+58
+00:02:22.04 --> 00:02:24.06
+and the values we want to feed in.
+
+59
+00:02:24.06 --> 00:02:27.02
+So let's pass in our
+scaled training data as x
+
+60
+00:02:27.02 --> 00:02:30.01
+and our scaled expected output as y.
+
+61
+00:02:30.01 --> 00:02:32.07
+So I'll say x,
+
+62
+00:02:32.07 --> 00:02:37.05
+and we'll pass in x_scaled_training.
+
+63
+00:02:37.05 --> 00:02:39.05
+And then for y,
+
+64
+00:02:39.05 --> 00:02:43.04
+I'll pass in y_scaled_training.
+
+65
+00:02:43.04 --> 00:02:44.07
+On line 104,
+
+66
+00:02:44.07 --> 00:02:48.00
+let's print out a message each
+time we do a training pass.
+
+67
+00:02:48.00 --> 00:02:49.09
+And then at the end on line 107,
+
+68
+00:02:49.09 --> 00:02:52.04
+let's print out the message
+when training is complete.
+
+69
+00:02:52.04 --> 00:02:53.07
+All right, let's run the code.
+
+70
+00:02:53.07 --> 00:02:56.03
+Right click, choose run.
+
+71
+00:02:56.03 --> 00:02:58.07
+We can see that it runs
+100 loops of training.
+
+72
+00:02:58.07 --> 00:02:59.07
+In the next section,
+
+73
+00:02:59.07 --> 00:03:01.04
+we'll go deeper into the training process
+
+74
+00:03:01.04 --> 00:03:03.01
+and monitoring the results.
+

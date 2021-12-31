@@ -1,0 +1,699 @@
+1
+00:00:00.06 --> 00:00:01.05
+- [Instructor] In this course,
+
+2
+00:00:01.05 --> 00:00:04.03
+we'll be using TensorFlow
+to build and deploy
+
+3
+00:00:04.03 --> 00:00:06.05
+a supervised machine learning model.
+
+4
+00:00:06.05 --> 00:00:08.03
+Supervised machine learning is the branch
+
+5
+00:00:08.03 --> 00:00:10.02
+of machine learning where we train
+
+6
+00:00:10.02 --> 00:00:12.03
+the model by showing it input data
+
+7
+00:00:12.03 --> 00:00:14.06
+and the expected result for that data.
+
+8
+00:00:14.06 --> 00:00:17.00
+And it works out how
+to transform the input
+
+9
+00:00:17.00 --> 00:00:18.04
+into the output.
+
+10
+00:00:18.04 --> 00:00:19.09
+When building and using a supervised
+
+11
+00:00:19.09 --> 00:00:21.03
+machine learning model,
+
+12
+00:00:21.03 --> 00:00:22.09
+there's a process we always follow
+
+13
+00:00:22.09 --> 00:00:27.03
+called the model of train,
+test, evaluation flow.
+
+14
+00:00:27.03 --> 00:00:29.00
+First, we'll need to choose which
+
+15
+00:00:29.00 --> 00:00:30.09
+machine learning algorithm we want to use
+
+16
+00:00:30.09 --> 00:00:32.07
+to build our model.
+
+17
+00:00:32.07 --> 00:00:35.01
+We can pick any standard
+machine learning algorithm
+
+18
+00:00:35.01 --> 00:00:38.01
+but in this course we'll
+be using neural networks.
+
+19
+00:00:38.01 --> 00:00:40.09
+Then we can start with the train phase.
+
+20
+00:00:40.09 --> 00:00:43.08
+We train the algorithm by
+showing it training data
+
+21
+00:00:43.08 --> 00:00:46.03
+and the expected output for that data
+
+22
+00:00:46.03 --> 00:00:48.00
+and it has to figure out how to come up
+
+23
+00:00:48.00 --> 00:00:49.07
+with the expected result.
+
+24
+00:00:49.07 --> 00:00:50.05
+In other words,
+
+25
+00:00:50.05 --> 00:00:53.01
+the algorithm learns how
+to transform the input
+
+26
+00:00:53.01 --> 00:00:55.01
+to produce the correct output.
+
+27
+00:00:55.01 --> 00:00:57.04
+For example, we can train
+it to do multiplication
+
+28
+00:00:57.04 --> 00:00:59.02
+by showing it two numbers
+
+29
+00:00:59.02 --> 00:01:00.09
+and the expected result
+
+30
+00:01:00.09 --> 00:01:02.01
+and it will eventually work out
+
+31
+00:01:02.01 --> 00:01:05.00
+that we want to multiply the two numbers.
+
+32
+00:01:05.00 --> 00:01:06.05
+After we train the model,
+
+33
+00:01:06.05 --> 00:01:08.01
+we'll load up a second set of data
+
+34
+00:01:08.01 --> 00:01:11.02
+it has never seen before
+called the testing data set.
+
+35
+00:01:11.02 --> 00:01:12.07
+This is the test phase.
+
+36
+00:01:12.07 --> 00:01:15.05
+We'll feed this testing
+data through the model
+
+37
+00:01:15.05 --> 00:01:18.05
+and make sure it is able to
+predict the correct result
+
+38
+00:01:18.05 --> 00:01:21.04
+even though it has never
+seen this data before.
+
+39
+00:01:21.04 --> 00:01:23.04
+This shows that the model actually learned
+
+40
+00:01:23.04 --> 00:01:26.00
+how to solve the problem
+in the general way
+
+41
+00:01:26.00 --> 00:01:27.06
+and didn't just memorize the answers
+
+42
+00:01:27.06 --> 00:01:29.09
+for the training data.
+
+43
+00:01:29.09 --> 00:01:32.07
+Finally, once the model
+is trained and tested,
+
+44
+00:01:32.07 --> 00:01:34.02
+we can use it.
+
+45
+00:01:34.02 --> 00:01:36.08
+This is the evaluation phase.
+
+46
+00:01:36.08 --> 00:01:39.00
+We'll pass in new data and it will tell us
+
+47
+00:01:39.00 --> 00:01:41.03
+the answer it calculated.
+
+48
+00:01:41.03 --> 00:01:43.04
+In TensorFlow, we'll
+follow these same steps
+
+49
+00:01:43.04 --> 00:01:45.00
+when building a model.
+
+50
+00:01:45.00 --> 00:01:46.00
+But with TensorFlow,
+
+51
+00:01:46.00 --> 00:01:47.05
+we have to set up a lot of the mechanics
+
+52
+00:01:47.05 --> 00:01:49.02
+of this ourselves.
+
+53
+00:01:49.02 --> 00:01:51.08
+First we code our machine
+learning algorithm.
+
+54
+00:01:51.08 --> 00:01:53.09
+We'll do that by building
+a computational graph
+
+55
+00:01:53.09 --> 00:01:56.07
+of operations that TensorFlow can run.
+
+56
+00:01:56.07 --> 00:01:58.09
+Here's how we'll implement
+a neural network.
+
+57
+00:01:58.09 --> 00:02:02.04
+First we'll define each
+layer of the neural network
+
+58
+00:02:02.04 --> 00:02:04.04
+and connect them together
+so that data flows
+
+59
+00:02:04.04 --> 00:02:07.03
+from the first layer
+through to the last layer.
+
+60
+00:02:07.03 --> 00:02:09.03
+Then we'll add the placeholder node
+
+61
+00:02:09.03 --> 00:02:11.00
+that represents the data that will be fed
+
+62
+00:02:11.00 --> 00:02:13.05
+in as input to the neural network.
+
+63
+00:02:13.05 --> 00:02:16.02
+And another placeholder node
+that represents the output,
+
+64
+00:02:16.02 --> 00:02:18.09
+or values predicted by the neural network.
+
+65
+00:02:18.09 --> 00:02:21.03
+Next, we need a way to
+measure the accuracy
+
+66
+00:02:21.03 --> 00:02:23.02
+of the neural network's predictions.
+
+67
+00:02:23.02 --> 00:02:25.03
+We'll define the function
+that measures the accuracy
+
+68
+00:02:25.03 --> 00:02:28.00
+of each prediction during
+the training process.
+
+69
+00:02:28.00 --> 00:02:30.07
+This is called a loss function.
+
+70
+00:02:30.07 --> 00:02:32.02
+The loss function gets added to the graph
+
+71
+00:02:32.02 --> 00:02:34.01
+as its own operation.
+
+72
+00:02:34.01 --> 00:02:36.03
+Then we have to create
+an optimizer function
+
+73
+00:02:36.03 --> 00:02:39.06
+that tells TensorFlow how
+we want to train the model.
+
+74
+00:02:39.06 --> 00:02:40.06
+When we run this function,
+
+75
+00:02:40.06 --> 00:02:43.04
+it will perform one
+training step on our model.
+
+76
+00:02:43.04 --> 00:02:46.03
+TensorFlow provides many
+pre-built optimizer functions
+
+77
+00:02:46.03 --> 00:02:48.04
+so usually we just have to
+tell it which one to use
+
+78
+00:02:48.04 --> 00:02:51.02
+and we don't need to
+implement custom code.
+
+79
+00:02:51.02 --> 00:02:54.00
+We'll call this node
+the training operation.
+
+80
+00:02:54.00 --> 00:02:56.04
+The training operation will
+train the neural network
+
+81
+00:02:56.04 --> 00:02:58.07
+by looking at the results
+of the loss function
+
+82
+00:02:58.07 --> 00:03:00.09
+and using that to adjust
+the weights of each layer
+
+83
+00:03:00.09 --> 00:03:03.08
+in the neural network until
+they produce the desired output.
+
+84
+00:03:03.08 --> 00:03:05.09
+Because this is a computational graph,
+
+85
+00:03:05.09 --> 00:03:08.01
+there's no single start or end.
+
+86
+00:03:08.01 --> 00:03:11.05
+We can start processing
+at any node in the graph.
+
+87
+00:03:11.05 --> 00:03:12.07
+For example,
+
+88
+00:03:12.07 --> 00:03:14.07
+if we want to run one step of training,
+
+89
+00:03:14.07 --> 00:03:16.05
+we can run the training operation.
+
+90
+00:03:16.05 --> 00:03:18.09
+And if we want to make a
+prediction for new data,
+
+91
+00:03:18.09 --> 00:03:21.02
+we can run the output operation.
+
+92
+00:03:21.02 --> 00:03:22.06
+When you run an operation,
+
+93
+00:03:22.06 --> 00:03:24.04
+TensorFlow will push any needed data
+
+94
+00:03:24.04 --> 00:03:26.03
+through the network
+according to the pathways
+
+95
+00:03:26.03 --> 00:03:29.03
+you defined to make everything work.
+
+96
+00:03:29.03 --> 00:03:30.08
+Now that the machine learning algorithm
+
+97
+00:03:30.08 --> 00:03:33.04
+is fully defined as a computational graph,
+
+98
+00:03:33.04 --> 00:03:36.01
+we can move on to the training phase.
+
+99
+00:03:36.01 --> 00:03:38.01
+But before we can execute
+any of the operations
+
+100
+00:03:38.01 --> 00:03:39.02
+in our graph,
+
+101
+00:03:39.02 --> 00:03:41.07
+we have to create a Tensorflow session.
+
+102
+00:03:41.07 --> 00:03:43.08
+A session is an object intenser flow
+
+103
+00:03:43.08 --> 00:03:45.07
+that runs operations on the graph
+
+104
+00:03:45.07 --> 00:03:49.00
+and tracks the state of
+each node in the graph.
+
+105
+00:03:49.00 --> 00:03:50.09
+Once the session object is created,
+
+106
+00:03:50.09 --> 00:03:54.02
+we can ask it to run any
+operation in the graph.
+
+107
+00:03:54.02 --> 00:03:55.02
+To train the model,
+
+108
+00:03:55.02 --> 00:03:58.05
+we'll call the training
+operation over and over.
+
+109
+00:03:58.05 --> 00:04:00.05
+Each time the training operation runs,
+
+110
+00:04:00.05 --> 00:04:01.09
+we'll pass a new training data
+
+111
+00:04:01.09 --> 00:04:04.03
+that will be used for that training pass.
+
+112
+00:04:04.03 --> 00:04:06.01
+And then we'll check the current accuracy
+
+113
+00:04:06.01 --> 00:04:08.04
+by calling the loss function.
+
+114
+00:04:08.04 --> 00:04:10.00
+While the training process is running,
+
+115
+00:04:10.00 --> 00:04:11.09
+we can watch the results graphically
+
+116
+00:04:11.09 --> 00:04:14.01
+using a separate tool called TensorBoard.
+
+117
+00:04:14.01 --> 00:04:16.03
+TensorBoard is a web based application
+
+118
+00:04:16.03 --> 00:04:19.07
+that lets us visually monitor
+the system in real time.
+
+119
+00:04:19.07 --> 00:04:21.04
+We can use the graphs in TensorBoard
+
+120
+00:04:21.04 --> 00:04:23.07
+to monitor how the accuracy is improving
+
+121
+00:04:23.07 --> 00:04:26.03
+as the training process continues to run.
+
+122
+00:04:26.03 --> 00:04:27.08
+Now that the model is trained,
+
+123
+00:04:27.08 --> 00:04:29.09
+we can move on to the testing phase.
+
+124
+00:04:29.09 --> 00:04:31.07
+We pass in test data,
+
+125
+00:04:31.07 --> 00:04:32.09
+and then measure the accuracy
+
+126
+00:04:32.09 --> 00:04:35.00
+by calling the loss function.
+
+127
+00:04:35.00 --> 00:04:36.09
+The data will flow
+through the neural network
+
+128
+00:04:36.09 --> 00:04:38.07
+and into the loss function.
+
+129
+00:04:38.07 --> 00:04:40.00
+The loss function will tell us how
+
+130
+00:04:40.00 --> 00:04:41.05
+close the values predicted by
+
+131
+00:04:41.05 --> 00:04:44.07
+the neural network were
+to the real testing data.
+
+132
+00:04:44.07 --> 00:04:47.01
+Once we are happy with the
+accuracy of the predictions,
+
+133
+00:04:47.01 --> 00:04:49.05
+we can save this model to a file.
+
+134
+00:04:49.05 --> 00:04:51.00
+When we save a trained model,
+
+135
+00:04:51.00 --> 00:04:53.03
+we're actually writing
+out a copy of this graph,
+
+136
+00:04:53.03 --> 00:04:55.04
+and the state of all nodes in the graph.
+
+137
+00:04:55.04 --> 00:04:56.07
+When we load the model later,
+
+138
+00:04:56.07 --> 00:04:59.06
+we're just restoring the
+graph to it's previous state.
+
+139
+00:04:59.06 --> 00:05:01.03
+Now that we have a trained model,
+
+140
+00:05:01.03 --> 00:05:04.00
+we'll load it up to restore the graph.
+
+141
+00:05:04.00 --> 00:05:06.01
+To use the model to make new predictions,
+
+142
+00:05:06.01 --> 00:05:08.03
+we'll feed in data to the input node
+
+143
+00:05:08.03 --> 00:05:10.09
+and call the output operation.
+
+144
+00:05:10.09 --> 00:05:12.05
+The data will flow
+through the neural network
+
+145
+00:05:12.05 --> 00:05:14.00
+to the output node.
+
+146
+00:05:14.00 --> 00:05:14.09
+As you can see,
+
+147
+00:05:14.09 --> 00:05:16.09
+the different nodes of
+the computational graph
+
+148
+00:05:16.09 --> 00:05:18.02
+are used for different phases
+
+149
+00:05:18.02 --> 00:05:21.00
+of the train test evaluation flow.
+
+150
+00:05:21.00 --> 00:05:23.04
+In fact, when we are in
+the evaluation phase,
+
+151
+00:05:23.04 --> 00:05:26.00
+and only using the graph
+to make new predictions,
+
+152
+00:05:26.00 --> 00:05:27.07
+the loss function and
+the training operation
+
+153
+00:05:27.07 --> 00:05:30.01
+are no longer needed at all.
+
+154
+00:05:30.01 --> 00:05:31.04
+To make new predictions,
+
+155
+00:05:31.04 --> 00:05:32.07
+all we need are the nodes that make
+
+156
+00:05:32.07 --> 00:05:34.07
+up the neural network itself.
+
+157
+00:05:34.07 --> 00:05:37.00
+So when we deploy a trained neural network
+
+158
+00:05:37.00 --> 00:05:38.09
+to the cloud or to a mobile device,
+
+159
+00:05:38.09 --> 00:05:40.05
+we can strip out all the other parts
+
+160
+00:05:40.05 --> 00:05:41.09
+of the computational graph
+
+161
+00:05:41.09 --> 00:05:45.00
+and only include the parts
+we need to make predictions.
+

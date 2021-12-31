@@ -1,0 +1,538 @@
+1
+00:00:00.06 --> 00:00:01.07
+- [Instructor] Alright, so you build
+
+2
+00:00:01.07 --> 00:00:04.03
+a great model in TensorFlow
+and you want to deploy it
+
+3
+00:00:04.03 --> 00:00:05.07
+into a production environment.
+
+4
+00:00:05.07 --> 00:00:07.01
+What should you do?
+
+5
+00:00:07.01 --> 00:00:09.05
+Well, one of the best
+features of TensorFlow
+
+6
+00:00:09.05 --> 00:00:12.06
+is that we can take a model
+we've built, like this one,
+
+7
+00:00:12.06 --> 00:00:15.01
+and export it to a file
+and then run that file
+
+8
+00:00:15.01 --> 00:00:17.02
+on Google's cloud servers.
+
+9
+00:00:17.02 --> 00:00:19.06
+That let's us scale up any
+machine learning feature
+
+10
+00:00:19.06 --> 00:00:21.09
+we've built to an almost infinite scale
+
+11
+00:00:21.09 --> 00:00:24.05
+without having to
+maintain our own servers.
+
+12
+00:00:24.05 --> 00:00:26.07
+But in order to do that
+we have to tell Google
+
+13
+00:00:26.07 --> 00:00:29.03
+how we want to run our
+model in production.
+
+14
+00:00:29.03 --> 00:00:32.01
+Let's take a closer look at
+this model in TensorBoard.
+
+15
+00:00:32.01 --> 00:00:34.03
+There's several ways
+we can use this model.
+
+16
+00:00:34.03 --> 00:00:36.04
+First, if we want to
+initialize all the variables
+
+17
+00:00:36.04 --> 00:00:39.09
+to their default values,
+we call this init operator.
+
+18
+00:00:39.09 --> 00:00:42.02
+If we want to generate
+an output we can pass
+
+19
+00:00:42.02 --> 00:00:46.02
+an input data and then
+call the output operation.
+
+20
+00:00:46.02 --> 00:00:48.00
+And if we want to train the network
+
+21
+00:00:48.00 --> 00:00:49.08
+we can call the train operator.
+
+22
+00:00:49.08 --> 00:00:52.09
+If we export this model to
+a file using the normal way
+
+23
+00:00:52.09 --> 00:00:54.09
+of saving model checkpoint files,
+
+24
+00:00:54.09 --> 00:00:57.06
+Google won't know which
+function we want to run.
+
+25
+00:00:57.06 --> 00:01:00.07
+Instead, we need to export
+this model a special way
+
+26
+00:01:00.07 --> 00:01:03.02
+where define exactly
+what the start in point
+
+27
+00:01:03.02 --> 00:01:05.01
+of the model is that we want to run.
+
+28
+00:01:05.01 --> 00:01:06.00
+Let's take a look.
+
+29
+00:01:06.00 --> 00:01:07.05
+Let's switch to PyCharm
+
+30
+00:01:07.05 --> 00:01:13.00
+and let's open up
+export_model_for_cloud.py.
+
+31
+00:01:13.00 --> 00:01:14.04
+Here we've defined our model
+
+32
+00:01:14.04 --> 00:01:17.06
+with a normal computational
+graph and a training loop.
+
+33
+00:01:17.06 --> 00:01:19.00
+At the end of the training loop
+
+34
+00:01:19.00 --> 00:01:20.09
+we want to export the train model,
+
+35
+00:01:20.09 --> 00:01:23.00
+but because we want to use
+the model in the cloud,
+
+36
+00:01:23.00 --> 00:01:26.05
+we can't use the normal
+tf.train.saver function
+
+37
+00:01:26.05 --> 00:01:28.04
+to save the model.
+
+38
+00:01:28.04 --> 00:01:31.09
+Instead, we're going to use
+TensorFlow's saved model builder
+
+39
+00:01:31.09 --> 00:01:34.07
+that let's us customize
+how the model is exported.
+
+40
+00:01:34.07 --> 00:01:40.00
+First, let's go all the
+way down to line 149.
+
+41
+00:01:40.00 --> 00:01:42.07
+Now, let's create a new
+saved model builder object.
+
+42
+00:01:42.07 --> 00:01:51.08
+The full name is
+tf.saved_model.builder.SavedModelBuilder.
+
+43
+00:01:51.08 --> 00:01:54.01
+The only parameter we have
+to pass in is the name
+
+44
+00:01:54.01 --> 00:01:56.04
+of the folder we want to
+save the model file to.
+
+45
+00:01:56.04 --> 00:02:00.06
+I'm going to use exported model.
+
+46
+00:02:00.06 --> 00:02:02.09
+Now we're ready to define
+the inputs and outputs
+
+47
+00:02:02.09 --> 00:02:04.09
+of the model that we want Google to use
+
+48
+00:02:04.09 --> 00:02:07.05
+when it runs the model in the cloud.
+
+49
+00:02:07.05 --> 00:02:11.01
+First, we have a Python dictionary
+with a key called inputs.
+
+50
+00:02:11.01 --> 00:02:13.01
+In this dictionary, we'll list each tensor
+
+51
+00:02:13.01 --> 00:02:15.08
+that needs to be filled in
+when their model is run.
+
+52
+00:02:15.08 --> 00:02:19.00
+Our model takes in one tensor
+with nine values as input,
+
+53
+00:02:19.00 --> 00:02:21.02
+so that means our model
+will have one input.
+
+54
+00:02:21.02 --> 00:02:22.08
+We'll just call it input.
+
+55
+00:02:22.08 --> 00:02:24.04
+For the value of the input key,
+
+56
+00:02:24.04 --> 00:02:27.01
+we'll pass in the tensor
+we want data fed into.
+
+57
+00:02:27.01 --> 00:02:29.09
+In this case, it will be X,
+
+58
+00:02:29.09 --> 00:02:32.04
+but to make this work we
+also need to wrap that tensor
+
+59
+00:02:32.04 --> 00:02:34.01
+in the call to a function called
+
+60
+00:02:34.01 --> 00:02:42.03
+tf.saved_model.utils.build_tensor_info,
+like this,
+
+61
+00:02:42.03 --> 00:02:43.07
+and then pass in X.
+
+62
+00:02:43.07 --> 00:02:46.02
+Okay, now let's define
+the output the same way.
+
+63
+00:02:46.02 --> 00:02:48.06
+Our output is a single
+tensor with one value.
+
+64
+00:02:48.06 --> 00:02:50.00
+Let's call the output earnings
+
+65
+00:02:50.00 --> 00:02:53.03
+and pass in the prediction
+tensor as the tensor to output.
+
+66
+00:02:53.03 --> 00:02:54.04
+Again we'll make the call to
+
+67
+00:02:54.04 --> 00:02:59.03
+tf.saved_model.utils.build_tensor_info
+
+68
+00:02:59.03 --> 00:03:02.02
+and pass in prediction.
+
+69
+00:03:02.02 --> 00:03:04.05
+Next, on line 158, we have to define
+
+70
+00:03:04.05 --> 00:03:07.03
+what TensorFlow calls a signature def.
+
+71
+00:03:07.03 --> 00:03:09.04
+A signature def is sort of like a function
+
+72
+00:03:09.04 --> 00:03:12.06
+or method declaration in
+the programming language.
+
+73
+00:03:12.06 --> 00:03:14.09
+We're telling TensorFlow
+that to run the model
+
+74
+00:03:14.09 --> 00:03:18.00
+it should call a certain
+function with certain parameters.
+
+75
+00:03:18.00 --> 00:03:20.02
+We create the signature
+def by calling this
+
+76
+00:03:20.02 --> 00:03:26.02
+tf.saved_model.signature_def_utils.build_signature_def
+
+77
+00:03:26.02 --> 00:03:29.00
+then we'll pass in the inputs
+and outputs we just defined.
+
+78
+00:03:29.00 --> 00:03:32.03
+So the inputs will be
+the inputs dictionary
+
+79
+00:03:32.03 --> 00:03:35.08
+and the outputs will be
+the outputs dictionary.
+
+80
+00:03:35.08 --> 00:03:38.05
+Then we have to name the
+method we are defining,
+
+81
+00:03:38.05 --> 00:03:40.03
+but we won't make up a name,
+
+82
+00:03:40.03 --> 00:03:43.07
+we'll always use the special
+predefined function name called
+
+83
+00:03:43.07 --> 00:03:48.04
+tf.saved_model.signature_constants.PREDICT_METHOD_NAME.
+
+84
+00:03:48.04 --> 00:03:50.00
+That's the name Google
+will always look for
+
+85
+00:03:50.00 --> 00:03:52.04
+in order to execute our model.
+
+86
+00:03:52.04 --> 00:03:53.08
+Great, we've defined the inputs,
+
+87
+00:03:53.08 --> 00:03:55.08
+the outputs, and the signature def.
+
+88
+00:03:55.08 --> 00:03:57.08
+Now we're ready to
+configure the model builder
+
+89
+00:03:57.08 --> 00:04:01.01
+to tell it exactly how we
+want this model exported.
+
+90
+00:04:01.01 --> 00:04:05.01
+Let's go down to line
+164 and then we can call
+
+91
+00:04:05.01 --> 00:04:09.03
+the
+model_builder.add_meta_graph_and_variables
+function.
+
+92
+00:04:09.03 --> 00:04:12.02
+That names a mouthful, but
+meta graph is the structure
+
+93
+00:04:12.02 --> 00:04:14.05
+of our computational
+graph and the variables
+
+94
+00:04:14.05 --> 00:04:17.00
+are the values we set on
+each node in the graph.
+
+95
+00:04:17.00 --> 00:04:18.03
+So this is telling TensorFlow
+
+96
+00:04:18.03 --> 00:04:20.01
+that we want to export everything.
+
+97
+00:04:20.01 --> 00:04:23.01
+Next, it takes in the session
+
+98
+00:04:23.01 --> 00:04:25.04
+and then the tag name which
+is what Google looks for
+
+99
+00:04:25.04 --> 00:04:27.00
+when figuring out what to execute.
+
+100
+00:04:27.00 --> 00:04:33.02
+So it'll always be
+tf.saved_model.tag_constants.SERVING.
+
+101
+00:04:33.02 --> 00:04:35.00
+Next, we create a signature def map
+
+102
+00:04:35.00 --> 00:04:38.07
+that lists all the signature
+defs this model supports.
+
+103
+00:04:38.07 --> 00:04:41.03
+This map has an entry
+with a magic name called
+
+104
+00:04:41.03 --> 00:04:44.01
+tf.saved_model.signature_constants.
+
+105
+00:04:44.01 --> 00:04:46.07
+DEFAULT_SERVING_SIGNATURE_DEF_KEY.
+
+106
+00:04:46.07 --> 00:04:50.00
+That long name is what
+Google will be looking for.
+
+107
+00:04:50.00 --> 00:04:51.05
+That's it, all that's left to do
+
+108
+00:04:51.05 --> 00:04:53.01
+is call save on our model builder.
+
+109
+00:04:53.01 --> 00:04:56.06
+We'll do that on line 172
+and now we can run the code.
+
+110
+00:04:56.06 --> 00:05:01.03
+Right-click and choose run.
+
+111
+00:05:01.03 --> 00:05:04.06
+We can see here in PyCharm
+a new exported model folder
+
+112
+00:05:04.06 --> 00:05:08.00
+and inside is a file
+called saved_model.pb.
+
+113
+00:05:08.00 --> 00:05:10.00
+This file contains the
+structure of our model
+
+114
+00:05:10.00 --> 00:05:13.04
+in Google's special proto buff format.
+
+115
+00:05:13.04 --> 00:05:15.05
+There's also a variables
+subfolder that contains
+
+116
+00:05:15.05 --> 00:05:17.09
+a checkpoint of all the
+variables in our graph.
+
+117
+00:05:17.09 --> 00:05:21.01
+This model is now ready to be
+uploaded to the Google cloud.
+

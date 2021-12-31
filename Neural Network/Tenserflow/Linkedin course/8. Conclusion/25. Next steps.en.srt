@@ -1,0 +1,33 @@
+1
+00:00:00.06 --> 00:00:03.02
+- [Adam] Congratulations
+on completing this course.
+
+2
+00:00:03.02 --> 00:00:05.06
+Now that you've seen the
+basics of using TensorFlow,
+
+3
+00:00:05.06 --> 00:00:08.04
+you can try applying it
+to your own projects.
+
+4
+00:00:08.04 --> 00:00:10.04
+You might also want to check out Keras,
+
+5
+00:00:10.04 --> 00:00:12.05
+a wrapper library for TensorFlow.
+
+6
+00:00:12.05 --> 00:00:15.09
+It makes many common operations
+in TensorFlow a lot easier.
+
+7
+00:00:15.09 --> 00:00:18.06
+Thanks, and feel free to
+connect with me online.
+

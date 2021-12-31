@@ -1,0 +1,358 @@
+1
+00:00:00.08 --> 00:00:03.00
+- To work with the code
+examples in this course,
+
+2
+00:00:03.00 --> 00:00:05.07
+we need to install the Python
+3 programming language,
+
+3
+00:00:05.07 --> 00:00:08.03
+the PyCharm development environment,
+
+4
+00:00:08.03 --> 00:00:12.03
+and several software libraries,
+including TensorFlow.
+
+5
+00:00:12.03 --> 00:00:15.06
+This video will cover
+installation on Mac OS.
+
+6
+00:00:15.06 --> 00:00:18.01
+If you are using Windows,
+watch the separate video
+
+7
+00:00:18.01 --> 00:00:20.05
+covering Windows installation instead.
+
+8
+00:00:20.05 --> 00:00:22.05
+The method we'll use to install TensorFlow
+
+9
+00:00:22.05 --> 00:00:25.03
+will only install the
+core TensorFlow libraries.
+
+10
+00:00:25.03 --> 00:00:27.05
+It won't install the
+additional components needed
+
+11
+00:00:27.05 --> 00:00:30.01
+to take advantage of the video card's GPU
+
+12
+00:00:30.01 --> 00:00:32.03
+to accelerate processing.
+
+13
+00:00:32.03 --> 00:00:34.08
+Using a GPU requires special hardware
+
+14
+00:00:34.08 --> 00:00:37.02
+that won't be needed for this course,
+
+15
+00:00:37.02 --> 00:00:38.09
+but if you would like
+to install TensorFlow
+
+16
+00:00:38.09 --> 00:00:40.07
+with GPU support, please refer
+
+17
+00:00:40.07 --> 00:00:43.01
+to the more detailed
+installation instructions
+
+18
+00:00:43.01 --> 00:00:44.06
+on the TensorFlow website
+
+19
+00:00:44.06 --> 00:00:47.01
+for the additional steps
+you need to follow.
+
+20
+00:00:47.01 --> 00:00:48.05
+Okay, let's get to it.
+
+21
+00:00:48.05 --> 00:00:51.08
+First, let's install Python 3.
+
+22
+00:00:51.08 --> 00:00:54.01
+We're at the python.org website.
+
+23
+00:00:54.01 --> 00:00:58.08
+At the top of the page,
+click on Downloads.
+
+24
+00:00:58.08 --> 00:01:00.03
+Now, we'll see the newest version
+
+25
+00:01:00.03 --> 00:01:02.09
+of Python 3 available for Mac OS.
+
+26
+00:01:02.09 --> 00:01:06.01
+Click to download Python 3.
+
+27
+00:01:06.01 --> 00:01:09.05
+Click on the downloaded file
+to launch the installer.
+
+28
+00:01:09.05 --> 00:01:13.02
+We can accept all the default options.
+
+29
+00:01:13.02 --> 00:01:16.06
+Mac OS actually comes with
+Python 2 already installed,
+
+30
+00:01:16.06 --> 00:01:19.01
+but Python 3 is the
+current version of Python,
+
+31
+00:01:19.01 --> 00:01:21.00
+and it has several nice improvements,
+
+32
+00:01:21.00 --> 00:01:22.05
+like improved support for working
+
+33
+00:01:22.05 --> 00:01:24.04
+with text in different languages.
+
+34
+00:01:24.04 --> 00:01:26.02
+Either version can be
+used for machine learning,
+
+35
+00:01:26.02 --> 00:01:29.05
+but there's no reason not
+to use the latest version.
+
+36
+00:01:29.05 --> 00:01:33.01
+Great, the installation is complete.
+
+37
+00:01:33.01 --> 00:01:35.02
+Next, we need to install PyCharm.
+
+38
+00:01:35.02 --> 00:01:38.07
+PyCharm is an integrated
+development environment for Python.
+
+39
+00:01:38.07 --> 00:01:43.00
+Let's go to jetbrains.com/pycharm.
+
+40
+00:01:43.00 --> 00:01:46.04
+Okay, click Download Now,
+
+41
+00:01:46.04 --> 00:01:50.01
+and we'll choose the Mac version
+which is already selected.
+
+42
+00:01:50.01 --> 00:01:52.07
+We now have the choice of
+downloading the community edition
+
+43
+00:01:52.07 --> 00:01:54.07
+or the professional edition.
+
+44
+00:01:54.07 --> 00:01:57.01
+Either will work, but the
+community edition is free
+
+45
+00:01:57.01 --> 00:01:59.00
+and has all the features we need.
+
+46
+00:01:59.00 --> 00:02:05.02
+So let's download the community edition.
+
+47
+00:02:05.02 --> 00:02:10.06
+When the download completes,
+click on the file to open it.
+
+48
+00:02:10.06 --> 00:02:12.07
+To install it, just drag the application
+
+49
+00:02:12.07 --> 00:02:16.08
+to the applications folder.
+
+50
+00:02:16.08 --> 00:02:23.09
+Now, let's run PyCharm from
+the applications folder,
+
+51
+00:02:23.09 --> 00:02:27.06
+and click Open.
+
+52
+00:02:27.06 --> 00:02:29.03
+The first time we launch PyCharm,
+
+53
+00:02:29.03 --> 00:02:31.01
+it will ask us some questions.
+
+54
+00:02:31.01 --> 00:02:36.05
+We can just accept the
+defaults and move forward.
+
+55
+00:02:36.05 --> 00:02:38.08
+Now we are ready to create a new project.
+
+56
+00:02:38.08 --> 00:02:41.05
+Click Create New Project.
+
+57
+00:02:41.05 --> 00:02:43.04
+When you create the
+project, choose the folder
+
+58
+00:02:43.04 --> 00:02:45.05
+where you have downloaded
+the exercise files,
+
+59
+00:02:45.05 --> 00:02:48.04
+if you have them available.
+
+60
+00:02:48.04 --> 00:02:50.09
+For the interpreter, choose
+the version of Python 3
+
+61
+00:02:50.09 --> 00:02:52.08
+that you've just installed.
+
+62
+00:02:52.08 --> 00:02:55.09
+It will probably be selected by default,
+
+63
+00:02:55.09 --> 00:02:57.09
+and click Create.
+
+64
+00:02:57.09 --> 00:02:59.05
+It will pop up a dialogue that tells us
+
+65
+00:02:59.05 --> 00:03:01.01
+that the files already exist.
+
+66
+00:03:01.01 --> 00:03:03.09
+Just click Yes,
+
+67
+00:03:03.09 --> 00:03:06.04
+and you can close the tool tip window.
+
+68
+00:03:06.04 --> 00:03:09.07
+Now, let's open one of the exercise files.
+
+69
+00:03:09.07 --> 00:03:15.02
+I'll click on 02, and
+click on Edition Final.
+
+70
+00:03:15.02 --> 00:03:16.08
+As soon as we try to open the file,
+
+71
+00:03:16.08 --> 00:03:17.07
+PyCharm will tell us
+
+72
+00:03:17.07 --> 00:03:21.04
+that some package requirements
+are missing at the top.
+
+73
+00:03:21.04 --> 00:03:24.03
+Click Install Requirements,
+
+74
+00:03:24.03 --> 00:03:26.09
+and then click Install to confirm.
+
+75
+00:03:26.09 --> 00:03:29.01
+Depending on the version
+of Mac OS you are using,
+
+76
+00:03:29.01 --> 00:03:31.02
+this process may take quite a bit of time.
+
+77
+00:03:31.02 --> 00:03:32.07
+If there's no pre-compiled version
+
+78
+00:03:32.07 --> 00:03:35.00
+of scikit-learn available for your OS,
+
+79
+00:03:35.00 --> 00:03:37.00
+you'll have to recompile from scratch,
+
+80
+00:03:37.00 --> 00:03:38.08
+but just let it run until it's done.
+
+81
+00:03:38.08 --> 00:03:42.01
+You can monitor the progress
+in the bar at the bottom.
+
+82
+00:03:42.01 --> 00:03:44.03
+Great, we are ready to get started.
+

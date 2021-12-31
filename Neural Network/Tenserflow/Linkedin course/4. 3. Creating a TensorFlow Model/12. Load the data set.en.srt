@@ -1,0 +1,802 @@
+1
+00:00:00.04 --> 00:00:02.09
+- [Instructor] For this
+course I provided the data set
+
+2
+00:00:02.09 --> 00:00:06.03
+of video games sold by an
+imaginary video game retailer.
+
+3
+00:00:06.03 --> 00:00:08.08
+We'll use this data to
+train the neural network
+
+4
+00:00:08.08 --> 00:00:10.00
+that will predict how much money
+
+5
+00:00:10.00 --> 00:00:12.01
+we can expect future video games to earn
+
+6
+00:00:12.01 --> 00:00:14.03
+based on our historical data.
+
+7
+00:00:14.03 --> 00:00:16.02
+First, let's open up the data
+
+8
+00:00:16.02 --> 00:00:19.01
+and take a look at it in
+the spreadsheet application.
+
+9
+00:00:19.01 --> 00:00:22.08
+The data is in a file called
+sales_data_training.csv.
+
+10
+00:00:22.08 --> 00:00:23.07
+I've already opened it up
+
+11
+00:00:23.07 --> 00:00:26.02
+here in my spreadsheet application.
+
+12
+00:00:26.02 --> 00:00:29.06
+In this data set we have one
+row for each video game title
+
+13
+00:00:29.06 --> 00:00:31.08
+that our store has sold in the past.
+
+14
+00:00:31.08 --> 00:00:35.08
+For each video game, we've
+recorded several attributes.
+
+15
+00:00:35.08 --> 00:00:37.03
+First, we have critic_rating,
+
+16
+00:00:37.03 --> 00:00:40.06
+which is an average star
+rating out of the five stars.
+
+17
+00:00:40.06 --> 00:00:44.02
+Next, is_action, which tells
+us if this is an action game,
+
+18
+00:00:44.02 --> 00:00:46.00
+is_exclusive_to_us, which tells us
+
+19
+00:00:46.00 --> 00:00:48.07
+if we have an exclusive
+deal to sell this game,
+
+20
+00:00:48.07 --> 00:00:50.00
+is_portable, which tells us
+
+21
+00:00:50.00 --> 00:00:53.05
+if this game runs on the
+handheld video game player,
+
+22
+00:00:53.05 --> 00:00:54.09
+is_role_playing, which tells us
+
+23
+00:00:54.09 --> 00:00:56.03
+this is a role-playing game,
+
+24
+00:00:56.03 --> 00:00:58.08
+which is a genre of video games,
+
+25
+00:00:58.08 --> 00:01:00.01
+is_sequel, which tells us
+
+26
+00:01:00.01 --> 00:01:04.02
+this game was a sequel
+of an earlier video game,
+
+27
+00:01:04.02 --> 00:01:05.05
+is_sports, which tells us
+
+28
+00:01:05.05 --> 00:01:08.03
+this is a sports video game,
+
+29
+00:01:08.03 --> 00:01:09.09
+suitable_for_kids, which tells us
+
+30
+00:01:09.09 --> 00:01:12.08
+this game is appropriate for all ages.
+
+31
+00:01:12.08 --> 00:01:14.01
+We also have total_earnings,
+
+32
+00:01:14.01 --> 00:01:15.09
+which is how much total money we earned
+
+33
+00:01:15.09 --> 00:01:18.09
+from selling this game to all customers,
+
+34
+00:01:18.09 --> 00:01:20.04
+and unit_price, which tells us
+
+35
+00:01:20.04 --> 00:01:23.06
+how much money one copy
+of the game retailed for.
+
+36
+00:01:23.06 --> 00:01:25.09
+We'll use TensorFlow to
+build the neural network
+
+37
+00:01:25.09 --> 00:01:28.06
+that tries to predict the
+total earnings of a new game,
+
+38
+00:01:28.06 --> 00:01:31.01
+based on these characteristics.
+
+39
+00:01:31.01 --> 00:01:33.07
+Along with this file, we
+also have a second data file
+
+40
+00:01:33.07 --> 00:01:36.04
+called sales_data_test.csv.
+
+41
+00:01:36.04 --> 00:01:37.07
+I'm going to open it in the spreadsheet,
+
+42
+00:01:37.07 --> 00:01:39.04
+so we're going to flip to that now.
+
+43
+00:01:39.04 --> 00:01:40.03
+Here we go.
+
+44
+00:01:40.03 --> 00:01:42.02
+This file is exactly like the first one,
+
+45
+00:01:42.02 --> 00:01:44.00
+it just has different data.
+
+46
+00:01:44.00 --> 00:01:45.05
+I've gone ahead and split the data
+
+47
+00:01:45.05 --> 00:01:48.06
+into a training data
+set and a test data set.
+
+48
+00:01:48.06 --> 00:01:50.04
+The machine learning
+system will only get to see
+
+49
+00:01:50.04 --> 00:01:53.01
+the training data set
+during the training phase.
+
+50
+00:01:53.01 --> 00:01:55.05
+Then we'll use this test
+data to check the accuracy
+
+51
+00:01:55.05 --> 00:01:57.07
+of the predictions from
+our neural network.
+
+52
+00:01:57.07 --> 00:01:59.05
+Let's open up load_data.py,
+
+53
+00:01:59.05 --> 00:02:01.04
+and write the code to load this data.
+
+54
+00:02:01.04 --> 00:02:03.02
+Let's flip to PyCharm,
+
+55
+00:02:03.02 --> 00:02:07.07
+and we'll open up 03, load_data.py.
+
+56
+00:02:07.07 --> 00:02:10.08
+First, we're going to use pandas
+to read the training data.
+
+57
+00:02:10.08 --> 00:02:12.09
+Pandas is a Python
+library that makes it easy
+
+58
+00:02:12.09 --> 00:02:15.02
+to load data into memory
+and work with the data
+
+59
+00:02:15.02 --> 00:02:17.04
+as if it were in a virtual spreadsheet.
+
+60
+00:02:17.04 --> 00:02:18.08
+You can do many of the same things
+
+61
+00:02:18.08 --> 00:02:20.03
+as you do with a spreadsheet,
+
+62
+00:02:20.03 --> 00:02:21.07
+like sorting data,
+
+63
+00:02:21.07 --> 00:02:23.05
+pulling out specific columns of data,
+
+64
+00:02:23.05 --> 00:02:25.08
+or applying calculations.
+
+65
+00:02:25.08 --> 00:02:27.07
+Our training data set is
+stored in the file called
+
+66
+00:02:27.07 --> 00:02:30.00
+sales_data_training.csv.
+
+67
+00:02:30.00 --> 00:02:33.05
+We can load it by calling
+the pandas read csv function,
+
+68
+00:02:33.05 --> 00:02:38.08
+pd.read_csv, and passing in
+the file name we want to load,
+
+69
+00:02:38.08 --> 00:02:44.02
+sales_data_training.csv.
+
+70
+00:02:44.02 --> 00:02:47.06
+Pandas will then load the
+data into a DataFrame.
+
+71
+00:02:47.06 --> 00:02:49.08
+To prevent a warning from
+showing up at runtime,
+
+72
+00:02:49.08 --> 00:02:51.09
+we can also pass in a dtype parameter,
+
+73
+00:02:51.09 --> 00:02:54.05
+to tell it explicitly what
+type of data we are loading,
+
+74
+00:02:54.05 --> 00:02:56.04
+so I'll pass in dtype=float,
+
+75
+00:02:56.04 --> 00:03:02.00
+to tell it we are expecting
+floating-point numbers.
+
+76
+00:03:02.00 --> 00:03:04.07
+Next we need to split the
+training data into two groups,
+
+77
+00:03:04.07 --> 00:03:06.09
+the X group is data about each video game
+
+78
+00:03:06.09 --> 00:03:08.08
+that we'll pass into the neural network,
+
+79
+00:03:08.08 --> 00:03:11.03
+and the Y group are the
+values we want to predict.
+
+80
+00:03:11.03 --> 00:03:13.00
+In this case, that's how much money
+
+81
+00:03:13.00 --> 00:03:15.02
+we think each video game will earn.
+
+82
+00:03:15.02 --> 00:03:16.06
+Let's start on line 9.
+
+83
+00:03:16.06 --> 00:03:18.02
+To create the X training data,
+
+84
+00:03:18.02 --> 00:03:20.02
+we'll take all the columns
+in the training data,
+
+85
+00:03:20.02 --> 00:03:22.05
+and simply drop the total_earnings column.
+
+86
+00:03:22.05 --> 00:03:23.07
+That will give us all the columns
+
+87
+00:03:23.07 --> 00:03:25.08
+except the one we don't want.
+
+88
+00:03:25.08 --> 00:03:30.00
+So we'll call training_data_df.drop,
+
+89
+00:03:30.00 --> 00:03:34.02
+and we'll pass in the name
+of the column to drop,
+
+90
+00:03:34.02 --> 00:03:35.07
+total_earnings.
+
+91
+00:03:35.07 --> 00:03:38.04
+Then we also need to pass
+in an axis=1 parameter
+
+92
+00:03:38.04 --> 00:03:43.02
+that tells it we want to
+drop a column and not a row.
+
+93
+00:03:43.02 --> 00:03:44.08
+Finally, we'll call .values
+
+94
+00:03:44.08 --> 00:03:47.08
+to get back the result as an array.
+
+95
+00:03:47.08 --> 00:03:49.01
+To create the Y array,
+
+96
+00:03:49.01 --> 00:03:51.05
+we will only grab the
+total_earnings column,
+
+97
+00:03:51.05 --> 00:03:55.02
+so we'll call training_data_df,
+
+98
+00:03:55.02 --> 00:03:59.04
+and then we'll pass in
+the total_earnings column,
+
+99
+00:03:59.04 --> 00:04:03.08
+and then we'll call .values
+to get the result as an array.
+
+100
+00:04:03.08 --> 00:04:05.07
+Now we need to repeat
+the exact same process
+
+101
+00:04:05.07 --> 00:04:07.04
+to load the test data set.
+
+102
+00:04:07.04 --> 00:04:11.02
+Again, we'll use pandas read_csv
+function to load the data.
+
+103
+00:04:11.02 --> 00:04:13.06
+So on line 13,
+
+104
+00:04:13.06 --> 00:04:16.02
+pd.read_csv,
+
+105
+00:04:16.02 --> 00:04:19.02
+and we'll pass in the name of the file,
+
+106
+00:04:19.02 --> 00:04:21.07
+sales_data_test.csv,
+
+107
+00:04:21.07 --> 00:04:25.09
+and we'll in dtype=float.
+
+108
+00:04:25.09 --> 00:04:27.06
+And again, we'll drop
+the total_earnings column
+
+109
+00:04:27.06 --> 00:04:30.09
+to get the X array, so
+we'll say, on line 16,
+
+110
+00:04:30.09 --> 00:04:37.02
+x_testing = test_data_df.drop,
+
+111
+00:04:37.02 --> 00:04:39.05
+and we'll pass in the name
+of the column to drop,
+
+112
+00:04:39.05 --> 00:04:42.01
+total_earnings,
+
+113
+00:04:42.01 --> 00:04:45.07
+and axis=1,
+
+114
+00:04:45.07 --> 00:04:47.03
+and finally we'll call .values
+
+115
+00:04:47.03 --> 00:04:50.01
+to get the result as an array,
+
+116
+00:04:50.01 --> 00:04:51.07
+and we'll pull out the
+total_earnings column
+
+117
+00:04:51.07 --> 00:04:55.02
+to create the Y array, test_data_df,
+
+118
+00:04:55.02 --> 00:05:01.02
+and pass in the name of the
+column to grab, total_earnings,
+
+119
+00:05:01.02 --> 00:05:04.03
+and then we'll call .values
+to get the result as an array.
+
+120
+00:05:04.03 --> 00:05:06.06
+Now we need to pre-process our data.
+
+121
+00:05:06.06 --> 00:05:08.03
+In order to train the neural network,
+
+122
+00:05:08.03 --> 00:05:09.07
+we want to scale all the numbers
+
+123
+00:05:09.07 --> 00:05:11.05
+in each column of our data set
+
+124
+00:05:11.05 --> 00:05:14.04
+to be between the value of 0 and 1.
+
+125
+00:05:14.04 --> 00:05:16.05
+If the numbers in one column are large
+
+126
+00:05:16.05 --> 00:05:18.05
+but the numbers in
+another column are small,
+
+127
+00:05:18.05 --> 00:05:21.03
+the neural network training
+won't work very well.
+
+128
+00:05:21.03 --> 00:05:22.04
+One way we can do this
+
+129
+00:05:22.04 --> 00:05:24.06
+is to use the MinMaxScaler object
+
+130
+00:05:24.06 --> 00:05:26.09
+from the popular scikit-learn library.
+
+131
+00:05:26.09 --> 00:05:29.03
+It's designed for exactly this purpose.
+
+132
+00:05:29.03 --> 00:05:34.08
+So on line 21, first we'll
+create a new MinMaxScaler.
+
+133
+00:05:34.08 --> 00:05:37.02
+We just need to pass in a
+feature_range parameter,
+
+134
+00:05:37.02 --> 00:05:38.08
+which tells it that we want all numbers
+
+135
+00:05:38.08 --> 00:05:40.03
+scaled between 0 and 1.
+
+136
+00:05:40.03 --> 00:05:42.06
+So we'll say feature_range=
+
+137
+00:05:42.06 --> 00:05:46.01
+and then pass in a tuple (0, 1),
+
+138
+00:05:46.01 --> 00:05:48.02
+and then we'll do the same
+thing for the Y_scaler
+
+139
+00:05:48.02 --> 00:05:54.08
+MinMaxScaler(feature_range=(0, 1))
+
+140
+00:05:54.08 --> 00:05:56.02
+To actually scale our data,
+
+141
+00:05:56.02 --> 00:05:59.03
+we call the fit_transform
+function on the scaler object,
+
+142
+00:05:59.03 --> 00:06:01.03
+and pass in the data we want to scale.
+
+143
+00:06:01.03 --> 00:06:03.08
+The result will be the rescaled data.
+
+144
+00:06:03.08 --> 00:06:11.00
+So on line 25, we'll call
+X_scaler.fit_transform,
+
+145
+00:06:11.00 --> 00:06:15.07
+and we'll pass in X_training
+as the data to scale.
+
+146
+00:06:15.07 --> 00:06:16.06
+And then we'll do the same
+
+147
+00:06:16.06 --> 00:06:19.07
+for the Y_scaled_training data on line 26.
+
+148
+00:06:19.07 --> 00:06:24.09
+We'll say Y_scaler.fit_transform,
+
+149
+00:06:24.09 --> 00:06:31.04
+and we'll pass in the Y_training data.
+
+150
+00:06:31.04 --> 00:06:34.03
+Fit_transform means we want
+it to first fit to our data,
+
+151
+00:06:34.03 --> 00:06:35.01
+or figure out how much
+
+152
+00:06:35.01 --> 00:06:37.00
+to scale down the numbers in each column,
+
+153
+00:06:37.00 --> 00:06:38.08
+and then we want it to actually transform,
+
+154
+00:06:38.08 --> 00:06:40.01
+or scale the data.
+
+155
+00:06:40.01 --> 00:06:42.08
+Now we need to scale the
+test data in the same way.
+
+156
+00:06:42.08 --> 00:06:44.03
+We want to make sure the test data
+
+157
+00:06:44.03 --> 00:06:47.02
+is scaled by the same
+amount as the training data.
+
+158
+00:06:47.02 --> 00:06:48.01
+So in this case,
+
+159
+00:06:48.01 --> 00:06:50.02
+we'll just call transform
+on each scaler object,
+
+160
+00:06:50.02 --> 00:06:52.04
+instead of fit_transform.
+
+161
+00:06:52.04 --> 00:06:59.03
+So on line 29, we'll
+call X_scaler.transform,
+
+162
+00:06:59.03 --> 00:07:02.05
+and we'll pass in the X_testing data,
+
+163
+00:07:02.05 --> 00:07:07.06
+and then on line 30, Y_scaler.transform,
+
+164
+00:07:07.06 --> 00:07:11.05
+and we'll pass in the Y_testing data.
+
+165
+00:07:11.05 --> 00:07:14.05
+And now our data is ready
+to pass in the TensorFlow.
+
+166
+00:07:14.05 --> 00:07:15.09
+The scaler scales the data
+
+167
+00:07:15.09 --> 00:07:17.07
+by multiplying it by a constant number
+
+168
+00:07:17.07 --> 00:07:19.03
+and adding a constant number.
+
+169
+00:07:19.03 --> 00:07:23.06
+At the bottom here, I printed
+out how the Y data was scaled.
+
+170
+00:07:23.06 --> 00:07:24.05
+We can get these values
+
+171
+00:07:24.05 --> 00:07:27.00
+by looking at the
+Y_scaler.scale_[0] Object,
+
+172
+00:07:27.00 --> 00:07:30.01
+and the Y_scaler.min[0] Object.
+
+173
+00:07:30.01 --> 00:07:31.06
+This will be useful to know later,
+
+174
+00:07:31.06 --> 00:07:33.08
+when we want to make predictions
+with the neural network
+
+175
+00:07:33.08 --> 00:07:37.06
+and be able to unscale the data
+back to the original units.
+
+176
+00:07:37.06 --> 00:07:40.04
+Okay, we should run the
+code to make sure it works.
+
+177
+00:07:40.04 --> 00:07:41.04
+But before we run it,
+
+178
+00:07:41.04 --> 00:07:44.02
+I noticed I've made a
+small mistake on line 9.
+
+179
+00:07:44.02 --> 00:07:46.07
+I wrote total_earning, but
+there should be an s on that.
+
+180
+00:07:46.07 --> 00:07:48.02
+It should be total_earnings.
+
+181
+00:07:48.02 --> 00:07:49.04
+Let's add an s.
+
+182
+00:07:49.04 --> 00:07:53.00
+Okay, right click and run.
+
+183
+00:07:53.00 --> 00:07:56.04
+And we can see that the data
+was scaled by these two values.
+

@@ -1,0 +1,397 @@
+1
+00:00:00.06 --> 00:00:02.04
+- [Instructor] Now that we've
+set up the the training loop,
+
+2
+00:00:02.04 --> 00:00:04.04
+it's time to get to the actual training.
+
+3
+00:00:04.04 --> 00:00:08.02
+Let's open up training.py.
+
+4
+00:00:08.02 --> 00:00:11.02
+Here we have a neural network
+with a computational graph
+
+5
+00:00:11.02 --> 00:00:13.07
+and the basic training
+loop already defined.
+
+6
+00:00:13.07 --> 00:00:15.05
+Let's run the code and see how it works.
+
+7
+00:00:15.05 --> 00:00:16.07
+Right-click.
+
+8
+00:00:16.07 --> 00:00:18.07
+Choose Run.
+
+9
+00:00:18.07 --> 00:00:21.06
+Great, the training seems to
+have completed successfully.
+
+10
+00:00:21.06 --> 00:00:23.09
+But right now, we don't have a way to see
+
+11
+00:00:23.09 --> 00:00:27.04
+if the accuracy is improving
+over time during training.
+
+12
+00:00:27.04 --> 00:00:28.06
+Let's add some code to display
+
+13
+00:00:28.06 --> 00:00:30.04
+how the training is progressing.
+
+14
+00:00:30.04 --> 00:00:31.06
+Every five training steps,
+
+15
+00:00:31.06 --> 00:00:33.06
+let's print out the current accuracy.
+
+16
+00:00:33.06 --> 00:00:37.05
+First, let's click to
+minimize the console window.
+
+17
+00:00:37.05 --> 00:00:40.08
+Now, here on line 104,
+let's add this line of code.
+
+18
+00:00:40.08 --> 00:00:44.04
+If epoch mod, that's the percent sign,
+
+19
+00:00:44.04 --> 00:00:46.03
+five,
+
+20
+00:00:46.03 --> 00:00:48.05
+equal equal zero:
+
+21
+00:00:48.05 --> 00:00:50.07
+this simply says that
+for every five passes
+
+22
+00:00:50.07 --> 00:00:53.03
+in the training loop,
+we want to do something.
+
+23
+00:00:53.03 --> 00:00:54.07
+To get the current accuracy,
+
+24
+00:00:54.07 --> 00:00:56.08
+we can run the neural
+network's cost function
+
+25
+00:00:56.08 --> 00:00:58.05
+and print out the result.
+
+26
+00:00:58.05 --> 00:01:00.02
+So we'll call session.run and ask it
+
+27
+00:01:00.02 --> 00:01:02.03
+to call the cost function.
+
+28
+00:01:02.03 --> 00:01:05.05
+So we'll say training_cost,
+
+29
+00:01:05.05 --> 00:01:06.05
+equals,
+
+30
+00:01:06.05 --> 00:01:09.03
+and we'll call session.run,
+
+31
+00:01:09.03 --> 00:01:11.08
+then we'll pass in the cost function.
+
+32
+00:01:11.08 --> 00:01:14.05
+To call the cost function, we
+need to pass in a feed dict
+
+33
+00:01:14.05 --> 00:01:17.05
+containing the training
+data, so we'll say,
+
+34
+00:01:17.05 --> 00:01:19.07
+feed_dict equals,
+
+35
+00:01:19.07 --> 00:01:24.07
+and for X we'll pass in
+the X-scaled training data,
+
+36
+00:01:24.07 --> 00:01:25.09
+and we'll do the same for Y,
+
+37
+00:01:25.09 --> 00:01:30.05
+passing in the Y-scaled training data.
+
+38
+00:01:30.05 --> 00:01:31.07
+And that will give us the current cost
+
+39
+00:01:31.07 --> 00:01:33.03
+with the training data.
+
+40
+00:01:33.03 --> 00:01:35.08
+We can also monitor the current
+cost with the testing data
+
+41
+00:01:35.08 --> 00:01:39.04
+the same way, just by passing
+in the testing data instead.
+
+42
+00:01:39.04 --> 00:01:45.04
+So we'll say testing_cost
+equals session.run,
+
+43
+00:01:45.04 --> 00:01:48.06
+we'll pass in the cost function,
+
+44
+00:01:48.06 --> 00:01:49.09
+and then for the feed dict,
+
+45
+00:01:49.09 --> 00:01:52.01
+we'll pass in the X-scaled testing data
+
+46
+00:01:52.01 --> 00:01:54.07
+and the Y-scaled testing data this time.
+
+47
+00:01:54.07 --> 00:01:56.08
+So feed_dict equals,
+
+48
+00:01:56.08 --> 00:02:01.08
+for X we'll have X-scaled testing,
+
+49
+00:02:01.08 --> 00:02:03.07
+and for Y,
+
+50
+00:02:03.07 --> 00:02:08.04
+we'll have Y-scaled testing.
+
+51
+00:02:08.04 --> 00:02:10.01
+And now we'll print out those values.
+
+52
+00:02:10.01 --> 00:02:12.01
+We can do that with a
+regular print statement.
+
+53
+00:02:12.01 --> 00:02:13.08
+So we'll say print(),
+
+54
+00:02:13.08 --> 00:02:16.00
+and then pass in epoch,
+
+55
+00:02:16.00 --> 00:02:18.04
+training_cost,
+
+56
+00:02:18.04 --> 00:02:20.07
+and testing_cost.
+
+57
+00:02:20.07 --> 00:02:24.07
+Great, that will give us
+constant updates during training.
+
+58
+00:02:24.07 --> 00:02:26.03
+Once the training loop ends,
+
+59
+00:02:26.03 --> 00:02:28.09
+let's also print out a
+final accuracy value.
+
+60
+00:02:28.09 --> 00:02:30.09
+We can do that exactly the same way.
+
+61
+00:02:30.09 --> 00:02:32.00
+Let's cut and paste above
+
+62
+00:02:32.00 --> 00:02:34.09
+where we have training
+cost and testing cost.
+
+63
+00:02:34.09 --> 00:02:37.06
+So I'll highlight this, copy,
+
+64
+00:02:37.06 --> 00:02:40.04
+then I'll paste that at the bottom,
+
+65
+00:02:40.04 --> 00:02:42.02
+and tab it over,
+
+66
+00:02:42.02 --> 00:02:45.01
+but let's call these
+values final_training_cost
+
+67
+00:02:45.01 --> 00:02:48.00
+and final_testing_cost.
+
+68
+00:02:48.00 --> 00:02:49.07
+Great, and let's print those values out
+
+69
+00:02:49.07 --> 00:02:50.08
+so we can see what they are.
+
+70
+00:02:50.08 --> 00:02:55.03
+So we'll say print("Final Testing Cost"),
+
+71
+00:02:55.03 --> 00:02:56.04
+and then to format the string,
+
+72
+00:02:56.04 --> 00:02:57.09
+I'll just call Python's format function
+
+73
+00:02:57.09 --> 00:03:01.04
+and pass in the value, so
+let's say final_testing_cost,
+
+74
+00:03:01.04 --> 00:03:03.05
+and we can cut and paste
+this and do the same thing
+
+75
+00:03:03.05 --> 00:03:05.02
+for the training cost.
+
+76
+00:03:05.02 --> 00:03:07.07
+Just change the values.
+
+77
+00:03:07.07 --> 00:03:11.00
+Training cost, and final,
+
+78
+00:03:11.00 --> 00:03:13.09
+training cost.
+
+79
+00:03:13.09 --> 00:03:15.08
+Let's run the code and see how it works.
+
+80
+00:03:15.08 --> 00:03:20.02
+Right-click and choose run.
+
+81
+00:03:20.02 --> 00:03:22.08
+And let's scroll up to the
+top of the output here.
+
+82
+00:03:22.08 --> 00:03:24.07
+We can see how the cost
+decreases at each step
+
+83
+00:03:24.07 --> 00:03:26.02
+in the training process,
+
+84
+00:03:26.02 --> 00:03:28.02
+all the way down towards the end.
+
+85
+00:03:28.02 --> 00:03:30.03
+That means the neural network
+is getting more accurate
+
+86
+00:03:30.03 --> 00:03:31.07
+over time with training.
+
+87
+00:03:31.07 --> 00:03:35.06
+And here's the final cost, 0.00011.
+
+88
+00:03:35.06 --> 00:03:36.08
+That's not bad.
+
+89
+00:03:36.08 --> 00:03:38.07
+You'll of course see a
+slightly different value,
+
+90
+00:03:38.07 --> 00:03:40.00
+since there's randomness involved
+
+91
+00:03:40.00 --> 00:03:42.04
+with initializing and
+training a neural network.
+
+92
+00:03:42.04 --> 00:03:44.08
+But your values should
+be relatively close.
+

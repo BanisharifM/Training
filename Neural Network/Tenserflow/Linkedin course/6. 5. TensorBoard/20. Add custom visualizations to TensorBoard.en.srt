@@ -1,0 +1,487 @@
+1
+00:00:00.09 --> 00:00:03.04
+- [Instructor] TensorBoard
+allows you to create custom
+
+2
+00:00:03.04 --> 00:00:05.09
+visualizations beyond just line graphs.
+
+3
+00:00:05.09 --> 00:00:08.02
+You can use these visualizations
+to monitor your machine
+
+4
+00:00:08.02 --> 00:00:11.08
+learning model and what kind
+of data it's generating.
+
+5
+00:00:11.08 --> 00:00:14.03
+Currently TensorFlow supports
+these types of visualizations.
+
+6
+00:00:14.03 --> 00:00:17.08
+First, the image visualization
+allows you to see any
+
+7
+00:00:17.08 --> 00:00:19.08
+array of data as an image.
+
+8
+00:00:19.08 --> 00:00:21.07
+You create an image
+visualization by adding
+
+9
+00:00:21.07 --> 00:00:25.00
+a tf.summary.image object
+to your graph and passing it
+
+10
+00:00:25.00 --> 00:00:27.08
+the array you want to visualize.
+
+11
+00:00:27.08 --> 00:00:30.04
+This is helpful when you're
+building a neural network
+
+12
+00:00:30.04 --> 00:00:32.08
+that classifies or generates images.
+
+13
+00:00:32.08 --> 00:00:35.02
+In this example I was training
+a neural network to generate
+
+14
+00:00:35.02 --> 00:00:37.04
+new images from a data set.
+
+15
+00:00:37.04 --> 00:00:39.08
+Using the image visualization
+in TensorBoard, I was able
+
+16
+00:00:39.08 --> 00:00:42.03
+to monitor the images the
+system was generating during
+
+17
+00:00:42.03 --> 00:00:44.02
+the training process.
+
+18
+00:00:44.02 --> 00:00:47.00
+You can also listen to
+audio data in TensorBoard.
+
+19
+00:00:47.00 --> 00:00:49.03
+To add an audio player to
+TensorBoard, you create a new
+
+20
+00:00:49.03 --> 00:00:52.08
+tf.summary.audio object and you
+add it to your computational
+
+21
+00:00:52.08 --> 00:00:55.07
+graph, this is typically used
+when building models that
+
+22
+00:00:55.07 --> 00:00:58.07
+recognize speech or generate sounds.
+
+23
+00:00:58.07 --> 00:01:00.04
+It lets you hear the sound
+files that your model
+
+24
+00:01:00.04 --> 00:01:02.00
+is processing.
+
+25
+00:01:02.00 --> 00:01:04.06
+You can also create interactive
+histograms and distribution
+
+26
+00:01:04.06 --> 00:01:06.05
+graphs in TensorBoard.
+
+27
+00:01:06.05 --> 00:01:09.02
+When you add a
+tf.summary.histogram object to your
+
+28
+00:01:09.02 --> 00:01:12.04
+computational graph, it creates
+both a histogram like you
+
+29
+00:01:12.04 --> 00:01:14.07
+see here, and a distribution
+graph which we'll see
+
+30
+00:01:14.07 --> 00:01:16.02
+in a little bit.
+
+31
+00:01:16.02 --> 00:01:18.06
+Histograms are a powerful way
+to monitor ranges of values
+
+32
+00:01:18.06 --> 00:01:21.01
+over time, they show you
+not only the range of values
+
+33
+00:01:21.01 --> 00:01:23.09
+in the array of data but they
+can also display how these
+
+34
+00:01:23.09 --> 00:01:26.03
+data ranges vary through time.
+
+35
+00:01:26.03 --> 00:01:28.07
+Let's try adding a histagram
+summary to a neural network
+
+36
+00:01:28.07 --> 00:01:30.07
+and see how it works.
+
+37
+00:01:30.07 --> 00:01:32.07
+Let's switch the PyCharm and let's open up
+
+38
+00:01:32.07 --> 00:01:35.09
+custom_visualization.py.
+
+39
+00:01:35.09 --> 00:01:38.03
+Here we've already defined
+our computational graph
+
+40
+00:01:38.03 --> 00:01:40.09
+in the training loop.
+
+41
+00:01:40.09 --> 00:01:44.01
+And on line 93 we also
+already have a scalar summary
+
+42
+00:01:44.01 --> 00:01:46.05
+defined that monitors the
+cost of our neural network
+
+43
+00:01:46.05 --> 00:01:47.09
+as it's trained.
+
+44
+00:01:47.09 --> 00:01:50.00
+This will generate a line
+chart that shows the neural
+
+45
+00:01:50.00 --> 00:01:52.01
+network getting more
+accurate over time during
+
+46
+00:01:52.01 --> 00:01:54.01
+the training process.
+
+47
+00:01:54.01 --> 00:01:56.03
+But let's say we want to
+visualize the actual predictions
+
+48
+00:01:56.03 --> 00:01:58.06
+that our neural network is
+making during the training
+
+49
+00:01:58.06 --> 00:01:59.06
+process.
+
+50
+00:01:59.06 --> 00:02:01.09
+To do that, we can add a
+histogram that monitors our
+
+51
+00:02:01.09 --> 00:02:03.09
+predictions.
+
+52
+00:02:03.09 --> 00:02:07.02
+Let's create a new
+tf.summary.histogram node.
+
+53
+00:02:07.02 --> 00:02:11.04
+Tf.summary.histogram then
+we'll pass in the name for our
+
+54
+00:02:11.04 --> 00:02:16.09
+node in this case we'll
+use predicted value.
+
+55
+00:02:16.09 --> 00:02:18.08
+And then we pass in the node
+in our graph that we want
+
+56
+00:02:18.08 --> 00:02:21.03
+to monitor, which will be prediction.
+
+57
+00:02:21.03 --> 00:02:22.09
+And that's all we have to do.
+
+58
+00:02:22.09 --> 00:02:25.08
+Since we already called
+tf.summary.merge_all on the next
+
+59
+00:02:25.08 --> 00:02:28.08
+line, any new summary metrics
+we add to our graph will
+
+60
+00:02:28.08 --> 00:02:32.07
+automatically get picked up
+and added to our log files.
+
+61
+00:02:32.07 --> 00:02:35.00
+Let's run the code to train
+our network and generate
+
+62
+00:02:35.00 --> 00:02:37.08
+log files that we can view in TensorBoard.
+
+63
+00:02:37.08 --> 00:02:40.06
+But first, if you already have
+a log subfolder in PyCharm,
+
+64
+00:02:40.06 --> 00:02:43.00
+delete that before continuing.
+
+65
+00:02:43.00 --> 00:02:46.03
+Right click, Delete.
+
+66
+00:02:46.03 --> 00:02:50.05
+Okay let's run the code,
+right click and Run.
+
+67
+00:02:50.05 --> 00:02:53.02
+Okay the logs were created,
+now we're ready to open up
+
+68
+00:02:53.02 --> 00:02:56.00
+TensorBoard, open up a
+terminal window in PyCharm,
+
+69
+00:02:56.00 --> 00:02:59.01
+I like the bottom left,
+terminal, and we'll type
+
+70
+00:02:59.01 --> 00:03:08.09
+tensorboard--logdire equals
+and in this case 05/logs.
+
+71
+00:03:08.09 --> 00:03:10.07
+Note that on Windows you'll
+use a backslash instead of
+
+72
+00:03:10.07 --> 00:03:13.08
+a forward slash and then press Enter.
+
+73
+00:03:13.08 --> 00:03:16.04
+When TensorBoard it will give
+you a URL to open in your
+
+74
+00:03:16.04 --> 00:03:20.09
+browser, copy and paste
+that to your browser.
+
+75
+00:03:20.09 --> 00:03:26.05
+And now let's go to the
+web browser and paste.
+
+76
+00:03:26.05 --> 00:03:28.09
+At the top of TensorBoard
+click Histograms to see our new
+
+77
+00:03:28.09 --> 00:03:31.00
+histogram.
+
+78
+00:03:31.00 --> 00:03:33.06
+And then expand the logging subsection.
+
+79
+00:03:33.06 --> 00:03:35.04
+Now to look at one of these
+charts in more detail let's
+
+80
+00:03:35.04 --> 00:03:38.08
+click the Expand button.
+
+81
+00:03:38.08 --> 00:03:40.09
+This chart shows us the range
+of predictions our neural
+
+82
+00:03:40.09 --> 00:03:44.07
+network made each step during training.
+
+83
+00:03:44.07 --> 00:03:46.09
+Back here at step zero,
+we can see the predictions
+
+84
+00:03:46.09 --> 00:03:49.09
+made were very low and
+all grouped together.
+
+85
+00:03:49.09 --> 00:03:52.03
+But as we move forward in
+time, we can see that the learn
+
+86
+00:03:52.03 --> 00:03:55.03
+to make predictions with
+a wider range of values.
+
+87
+00:03:55.03 --> 00:03:57.05
+Because our data was scaled
+to the zero to one range,
+
+88
+00:03:57.05 --> 00:04:00.01
+we'd expect the predictions
+right out of the neural network
+
+89
+00:04:00.01 --> 00:04:03.04
+to roughly cover that
+same zero to one range.
+
+90
+00:04:03.04 --> 00:04:06.02
+TensorBoard also lets us
+visualize histograms as
+
+91
+00:04:06.02 --> 00:04:07.03
+a distribution chart.
+
+92
+00:04:07.03 --> 00:04:11.02
+Click on Distributions at the top.
+
+93
+00:04:11.02 --> 00:04:13.02
+And expand logging and
+let's expand this chart.
+
+94
+00:04:13.02 --> 00:04:17.03
+These graphs show the same
+data as a 2D chart over time.
+
+95
+00:04:17.03 --> 00:04:20.00
+We can see at the beginning of training,
+
+96
+00:04:20.00 --> 00:04:24.00
+all the predictions were small
+and grouped tightly together.
+
+97
+00:04:24.00 --> 00:04:26.04
+Then over time it learned
+to make a wider range
+
+98
+00:04:26.04 --> 00:04:28.09
+of predictions, when you're
+building your own machine
+
+99
+00:04:28.09 --> 00:04:31.03
+learning models, it's a great
+idea to add visualizations
+
+100
+00:04:31.03 --> 00:04:34.04
+of any inputs and outputs
+you want to model.
+
+101
+00:04:34.04 --> 00:04:36.03
+Doing that will make it a
+lot easier to understand what
+
+102
+00:04:36.03 --> 00:04:38.02
+your model is actually doing.
+
+103
+00:04:38.02 --> 00:04:40.01
+When you're done with
+TensorBoard, you can close it
+
+104
+00:04:40.01 --> 00:04:43.02
+by going back to the terminal
+window and hitting Control C.
+

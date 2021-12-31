@@ -1,0 +1,818 @@
+1
+00:00:00.04 --> 00:00:02.03
+- [Instructor] In TensorFlow,
+it can be difficult
+
+2
+00:00:02.03 --> 00:00:03.08
+to visualize exactly what's happening
+
+3
+00:00:03.08 --> 00:00:05.08
+during the training process.
+
+4
+00:00:05.08 --> 00:00:08.05
+Luckily, TensorFlow provides TensorBoard,
+
+5
+00:00:08.05 --> 00:00:10.07
+a web-based interface
+that lets us visualize
+
+6
+00:00:10.07 --> 00:00:13.04
+and monitor our machine-learning model.
+
+7
+00:00:13.04 --> 00:00:15.09
+One of the most useful
+features of TensorBoard
+
+8
+00:00:15.09 --> 00:00:17.05
+is that it lets us track the accuracy
+
+9
+00:00:17.05 --> 00:00:19.02
+of our model as it trains.
+
+10
+00:00:19.02 --> 00:00:21.08
+The first tab of TensorBoard
+is called Scalars.
+
+11
+00:00:21.08 --> 00:00:24.08
+The term scalar here
+just means a single value
+
+12
+00:00:24.08 --> 00:00:27.08
+as opposed to an array
+of multiple numbers.
+
+13
+00:00:27.08 --> 00:00:29.03
+This is the section of TensorBoard
+
+14
+00:00:29.03 --> 00:00:31.06
+where you can log single values over time
+
+15
+00:00:31.06 --> 00:00:33.06
+and view the results as graphs.
+
+16
+00:00:33.06 --> 00:00:35.06
+Here, I have a chart
+of the training process
+
+17
+00:00:35.06 --> 00:00:37.02
+for a neural network.
+
+18
+00:00:37.02 --> 00:00:40.00
+The chart shows the value of
+the cost function over time
+
+19
+00:00:40.00 --> 00:00:41.06
+while training the neural network.
+
+20
+00:00:41.06 --> 00:00:43.03
+You can see that the cost starts high
+
+21
+00:00:43.03 --> 00:00:46.02
+and then goes down over
+time until it levels off.
+
+22
+00:00:46.02 --> 00:00:48.01
+You can also see two lines here.
+
+23
+00:00:48.01 --> 00:00:50.07
+The blue line shows the accuracy
+for the training dataset
+
+24
+00:00:50.07 --> 00:00:52.04
+and the orange line shows the accuracy
+
+25
+00:00:52.04 --> 00:00:54.04
+for the testing dataset.
+
+26
+00:00:54.04 --> 00:00:56.03
+You can also toggle each
+line on and off here
+
+27
+00:00:56.03 --> 00:01:00.02
+with these checkboxes.
+
+28
+00:01:00.02 --> 00:01:02.02
+If you hover over a point on the graph,
+
+29
+00:01:02.02 --> 00:01:04.09
+you'll see that exact cost
+values at that point in time.
+
+30
+00:01:04.09 --> 00:01:07.08
+Being able to visualize
+your data is very helpful.
+
+31
+00:01:07.08 --> 00:01:09.06
+However, you have to tell TensorFlow
+
+32
+00:01:09.06 --> 00:01:11.05
+to log the values you want to visualize.
+
+33
+00:01:11.05 --> 00:01:14.02
+It won't automatically create
+charts like this for you.
+
+34
+00:01:14.02 --> 00:01:17.00
+Let's see how to add
+logging to a neural network.
+
+35
+00:01:17.00 --> 00:01:22.08
+Open up model_logging.py.
+
+36
+00:01:22.08 --> 00:01:24.06
+Here, we have already
+defined our neural network
+
+37
+00:01:24.06 --> 00:01:27.08
+and the training loop.
+
+38
+00:01:27.08 --> 00:01:30.06
+Down here on line 124,
+we're printing out the cost
+
+39
+00:01:30.06 --> 00:01:32.05
+to the console as we train.
+
+40
+00:01:32.05 --> 00:01:34.04
+But we're not saving any log files yet
+
+41
+00:01:34.04 --> 00:01:37.03
+so TensorBoard won't be
+able to show anything.
+
+42
+00:01:37.03 --> 00:01:39.00
+In TensorFlow, we log values
+
+43
+00:01:39.00 --> 00:01:41.02
+by creating special
+operations in our graph
+
+44
+00:01:41.02 --> 00:01:43.02
+called summary operations.
+
+45
+00:01:43.02 --> 00:01:45.03
+These operations take in the value
+
+46
+00:01:45.03 --> 00:01:46.06
+and create log data in a format
+
+47
+00:01:46.06 --> 00:01:48.09
+that TensorBoard can understand.
+
+48
+00:01:48.09 --> 00:01:51.00
+Then, we pass that summary data
+
+49
+00:01:51.00 --> 00:01:53.00
+to a TensorFlow file writer object
+
+50
+00:01:53.00 --> 00:01:54.08
+to save it to disk.
+
+51
+00:01:54.08 --> 00:01:56.04
+First, let's add the summary operation
+
+52
+00:01:56.04 --> 00:01:59.00
+to our computational graph
+that will log the cost.
+
+53
+00:01:59.00 --> 00:02:03.01
+We'll do that up on line 91.
+
+54
+00:02:03.01 --> 00:02:04.06
+To keep things organized,
+
+55
+00:02:04.06 --> 00:02:06.00
+I've created a new variable scope
+
+56
+00:02:06.00 --> 00:02:07.07
+to hold our logging operations.
+
+57
+00:02:07.07 --> 00:02:10.00
+We've just called it logging.
+
+58
+00:02:10.00 --> 00:02:13.06
+Now, let's add in a
+tf.summary.scalar object
+
+59
+00:02:13.06 --> 00:02:15.09
+that will represent the
+value we are logging.
+
+60
+00:02:15.09 --> 00:02:20.00
+So we'll say, tf.summary.scalar.
+
+61
+00:02:20.00 --> 00:02:21.08
+To log the value, we pass in the name,
+
+62
+00:02:21.08 --> 00:02:25.04
+let's call this current_cost,
+
+63
+00:02:25.04 --> 00:02:28.00
+and then, a reference
+to the operation to log.
+
+64
+00:02:28.00 --> 00:02:30.08
+In this case, cost.
+
+65
+00:02:30.08 --> 00:02:34.02
+So why did we use a
+tf.summary.scalar object?
+
+66
+00:02:34.02 --> 00:02:36.00
+A scalar is just a single number
+
+67
+00:02:36.00 --> 00:02:37.00
+so that's what you want to use
+
+68
+00:02:37.00 --> 00:02:38.09
+to log a single value like this.
+
+69
+00:02:38.09 --> 00:02:41.05
+TensorFlow also supports
+logging more complex objects
+
+70
+00:02:41.05 --> 00:02:44.03
+like histograms, pictures,
+and even sound files
+
+71
+00:02:44.03 --> 00:02:47.05
+but most of the time, you'll
+be logging single numbers.
+
+72
+00:02:47.05 --> 00:02:50.03
+We can run this node by
+calling session.run on it
+
+73
+00:02:50.03 --> 00:02:52.07
+just like any other node in our graph.
+
+74
+00:02:52.07 --> 00:02:54.03
+Running it will generate the log data
+
+75
+00:02:54.03 --> 00:02:55.07
+in the right format.
+
+76
+00:02:55.07 --> 00:02:58.00
+But while running this
+node directly is easy
+
+77
+00:02:58.00 --> 00:02:59.05
+when you only have one metric,
+
+78
+00:02:59.05 --> 00:03:02.01
+sometimes you'll want to
+log many different metrics.
+
+79
+00:03:02.01 --> 00:03:04.06
+It can be tedious to
+have to call session.run
+
+80
+00:03:04.06 --> 00:03:07.07
+on every single metric so
+TensorFlow has a shortcut.
+
+81
+00:03:07.07 --> 00:03:09.06
+We're going to define a new node
+
+82
+00:03:09.06 --> 00:03:12.06
+of type tf.summary.merge_all.
+
+83
+00:03:12.06 --> 00:03:16.07
+So we'll say summary equals
+
+84
+00:03:16.07 --> 00:03:22.03
+tf.summary.merge_all.
+
+85
+00:03:22.03 --> 00:03:23.09
+When you run this special node,
+
+86
+00:03:23.09 --> 00:03:25.04
+it'll automatically execute
+
+87
+00:03:25.04 --> 00:03:27.02
+all the summary nodes in your graph
+
+88
+00:03:27.02 --> 00:03:29.05
+without you having to
+explicitly list them all.
+
+89
+00:03:29.05 --> 00:03:31.05
+It's just a helper that makes life easier.
+
+90
+00:03:31.05 --> 00:03:35.05
+Now, let's move down to the
+training loop on line 104.
+
+91
+00:03:35.05 --> 00:03:38.06
+We also need to create the log
+files to save this data to.
+
+92
+00:03:38.06 --> 00:03:42.08
+We can do that by creating a
+tf.summary.FileWriter object.
+
+93
+00:03:42.08 --> 00:03:46.08
+First, we'll create one to
+write out our training accuracy.
+
+94
+00:03:46.08 --> 00:03:48.09
+So we'll say, training_writer equals
+
+95
+00:03:48.09 --> 00:03:53.08
+tf.summary.FileWriter.
+
+96
+00:03:53.08 --> 00:03:55.04
+You just need to pass in
+the name of the folder
+
+97
+00:03:55.04 --> 00:03:56.09
+you want to save the file to.
+
+98
+00:03:56.09 --> 00:04:03.06
+I'm going to use /logs/training.
+
+99
+00:04:03.06 --> 00:04:05.06
+And then, we need to pass in the reference
+
+100
+00:04:05.06 --> 00:04:10.06
+to our computational graph,
+that's just session.graph.
+
+101
+00:04:10.06 --> 00:04:12.01
+And then, we'll create a separate file
+
+102
+00:04:12.01 --> 00:04:15.08
+the same way to save our testing accuracy.
+
+103
+00:04:15.08 --> 00:04:19.06
+So that's tf.summary.FileWriter.
+
+104
+00:04:19.06 --> 00:04:24.04
+In this case, we'll use
+the path of /logs/testing.
+
+105
+00:04:24.04 --> 00:04:29.09
+And then, again, we'll
+pass in session.graph.
+
+106
+00:04:29.09 --> 00:04:33.03
+Notice that I put both log file
+in the same logs subfolder.
+
+107
+00:04:33.03 --> 00:04:36.01
+If you put multiple log files
+in the same top-level folder,
+
+108
+00:04:36.01 --> 00:04:38.01
+TensorBoard will show them all together
+
+109
+00:04:38.01 --> 00:04:40.00
+and let you flip between them.
+
+110
+00:04:40.00 --> 00:04:41.09
+Next, let's go down to
+where we were displaying
+
+111
+00:04:41.09 --> 00:04:46.02
+the accuracy of our model on line 117.
+
+112
+00:04:46.02 --> 00:04:47.03
+We need to add in calls
+
+113
+00:04:47.03 --> 00:04:49.06
+to run our new summary operation here
+
+114
+00:04:49.06 --> 00:04:51.09
+but instead of adding
+two new lines of code,
+
+115
+00:04:51.09 --> 00:04:53.08
+we can just update these two lines.
+
+116
+00:04:53.08 --> 00:04:56.02
+We can ask TensorFlow to
+run more than one operation
+
+117
+00:04:56.02 --> 00:04:58.06
+in the same session.run statement.
+
+118
+00:04:58.06 --> 00:05:00.06
+So we'll change this parameter from cost
+
+119
+00:05:00.06 --> 00:05:06.07
+to an array of cost, summary.
+
+120
+00:05:06.07 --> 00:05:09.05
+Now, session.run will return two results
+
+121
+00:05:09.05 --> 00:05:10.09
+so we can capture the new result
+
+122
+00:05:10.09 --> 00:05:16.06
+in the variable called training_summary.
+
+123
+00:05:16.06 --> 00:05:17.08
+This is telling TensorFlow
+
+124
+00:05:17.08 --> 00:05:19.08
+to run both operations at the same time
+
+125
+00:05:19.08 --> 00:05:21.02
+and we're capturing both results
+
+126
+00:05:21.02 --> 00:05:23.01
+in the two different variables.
+
+127
+00:05:23.01 --> 00:05:25.08
+Since both operations need
+the same input data anyway,
+
+128
+00:05:25.08 --> 00:05:27.03
+this is more efficient.
+
+129
+00:05:27.03 --> 00:05:30.00
+Now, let's do the same
+thing for testing_summary.
+
+130
+00:05:30.00 --> 00:05:35.00
+So we'll change cost to cost, summary.
+
+131
+00:05:35.00 --> 00:05:37.03
+And then, we'll capture the result
+
+132
+00:05:37.03 --> 00:05:40.06
+in a variable called testing_summary.
+
+133
+00:05:40.06 --> 00:05:42.00
+Great, now we have the data stored
+
+134
+00:05:42.00 --> 00:05:44.09
+in the training_summary and
+testing_summary variables.
+
+135
+00:05:44.09 --> 00:05:47.07
+The last step is to write
+that data into our log files.
+
+136
+00:05:47.07 --> 00:05:51.03
+We'll do that below on line 121.
+
+137
+00:05:51.03 --> 00:05:54.01
+We'll call training_writer
+
+138
+00:05:54.01 --> 00:05:57.00
+and we'll call .add_summary.
+
+139
+00:05:57.00 --> 00:06:00.02
+We'll pass in the training_summary
+variable we just created
+
+140
+00:06:00.02 --> 00:06:03.02
+and then we need to pass in
+the current epoch number.
+
+141
+00:06:03.02 --> 00:06:05.02
+This will be the X axis in out graph.
+
+142
+00:06:05.02 --> 00:06:06.09
+We'll pass in epoch.
+
+143
+00:06:06.09 --> 00:06:10.00
+And now, let's do the same
+thing for the testing_writer.
+
+144
+00:06:10.00 --> 00:06:13.04
+Testing_writer.add_summary.
+
+145
+00:06:13.04 --> 00:06:17.00
+We'll pass in the testing_summary
+variable we just created.
+
+146
+00:06:17.00 --> 00:06:21.00
+And then, again, the epoch.
+
+147
+00:06:21.00 --> 00:06:23.06
+That's it, let's run the code
+to generate the log files
+
+148
+00:06:23.06 --> 00:06:25.06
+that we can view in TensorBoard.
+
+149
+00:06:25.06 --> 00:06:28.02
+Right click, choose run.
+
+150
+00:06:28.02 --> 00:06:30.08
+Great, now let's look at
+the result in TensorBoard.
+
+151
+00:06:30.08 --> 00:06:33.04
+To run TensorBoard, we'll
+open up a terminal window
+
+152
+00:06:33.04 --> 00:06:34.07
+and navigate to the folder
+
+153
+00:06:34.07 --> 00:06:37.01
+where we've downloaded the example code.
+
+154
+00:06:37.01 --> 00:06:39.01
+In PyCharm, you can hover your mouse
+
+155
+00:06:39.01 --> 00:06:41.01
+on the bottom-left of the window
+
+156
+00:06:41.01 --> 00:06:44.00
+here, and then click Terminal
+
+157
+00:06:44.00 --> 00:06:46.09
+to open up a new system terminal window.
+
+158
+00:06:46.09 --> 00:06:49.01
+But if you prefer, you
+can also open a standard
+
+159
+00:06:49.01 --> 00:06:52.03
+operating system terminal
+window outside of PyCharm.
+
+160
+00:06:52.03 --> 00:06:56.04
+To run TensorBoard, we
+just type tensorboard
+
+161
+00:06:56.04 --> 00:06:58.09
+and then we have to supply
+a parameter called logdir
+
+162
+00:06:58.09 --> 00:07:01.07
+that tells it where to find the log files.
+
+163
+00:07:01.07 --> 00:07:05.00
+- -logdir equals, and now
+we have to give it the path
+
+164
+00:07:05.00 --> 00:07:07.01
+where we saved the log
+files in our program.
+
+165
+00:07:07.01 --> 00:07:11.01
+In this case, it's just 04/logs.
+
+166
+00:07:11.01 --> 00:07:12.08
+Note that on Windows,
+you'll use backslashes
+
+167
+00:07:12.08 --> 00:07:14.07
+instead of forward slashes here.
+
+168
+00:07:14.07 --> 00:07:16.09
+And then hit Enter to run it.
+
+169
+00:07:16.09 --> 00:07:18.04
+Now, TensorBoard gives us a URL
+
+170
+00:07:18.04 --> 00:07:20.08
+to open up in our browser here.
+
+171
+00:07:20.08 --> 00:07:22.09
+Your URL will be slightly different.
+
+172
+00:07:22.09 --> 00:07:24.06
+Copy and paste the URL
+
+173
+00:07:24.06 --> 00:07:30.00
+and then open up in your web browser.
+
+174
+00:07:30.00 --> 00:07:32.02
+You might notice that the
+port number in the URL
+
+175
+00:07:32.02 --> 00:07:34.07
+is always 6006.
+
+176
+00:07:34.07 --> 00:07:39.00
+That's because 6006 looks
+kind of like G-O-O-G
+
+177
+00:07:39.00 --> 00:07:41.02
+or goog for Google.
+
+178
+00:07:41.02 --> 00:07:44.05
+Once TensorBoard opens,
+click on the logging group.
+
+179
+00:07:44.05 --> 00:07:46.08
+Now, you'll see an interactive
+chart for the metric.
+
+180
+00:07:46.08 --> 00:07:48.00
+You can expand the chart
+
+181
+00:07:48.00 --> 00:07:50.07
+by clicking on the expand icon here.
+
+182
+00:07:50.07 --> 00:07:52.05
+You can use this exact same process
+
+183
+00:07:52.05 --> 00:07:54.08
+to log and monitor any metric you want.
+
+184
+00:07:54.08 --> 00:07:56.02
+When you're done with TensorBoard,
+
+185
+00:07:56.02 --> 00:07:58.04
+you can close it by going
+back to your terminal window
+
+186
+00:07:58.04 --> 00:08:00.00
+and hitting Ctrl+C.
+
+187
+00:08:00.00 --> 00:08:03.02
+So let's flip back to
+PyCharm and hit Ctrl+C.
+

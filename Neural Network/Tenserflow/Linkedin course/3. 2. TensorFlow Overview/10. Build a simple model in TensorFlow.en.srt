@@ -1,0 +1,603 @@
+1
+00:00:01.00 --> 00:00:02.07
+- [Voiceover] Let's
+practice the basic mechanics
+
+2
+00:00:02.07 --> 00:00:05.05
+of TensorFlow by starting
+with something simple.
+
+3
+00:00:05.05 --> 00:00:07.08
+Let's build a TensorFlow
+computational graph
+
+4
+00:00:07.08 --> 00:00:10.01
+that adds two numbers together.
+
+5
+00:00:10.01 --> 00:00:12.08
+Here's what the computational
+graph will look like.
+
+6
+00:00:12.08 --> 00:00:15.06
+This graph has two inputs, X and Y.
+
+7
+00:00:15.06 --> 00:00:18.06
+Those are the two numbers
+we want to add together.
+
+8
+00:00:18.06 --> 00:00:21.04
+This graph also has one
+operation called 'addition'.
+
+9
+00:00:21.04 --> 00:00:24.02
+That note simply adds together
+the tensors passed into it.
+
+10
+00:00:24.02 --> 00:00:27.03
+Once this graph is defined, we can use it
+
+11
+00:00:27.03 --> 00:00:29.09
+by creating a new TensorFlow session.
+
+12
+00:00:29.09 --> 00:00:32.01
+Then we'll feed in values for X and Y,
+
+13
+00:00:32.01 --> 00:00:34.00
+and we'll ask the session object
+
+14
+00:00:34.00 --> 00:00:36.02
+to execute the addition node.
+
+15
+00:00:36.02 --> 00:00:38.01
+The result we get back from executing
+
+16
+00:00:38.01 --> 00:00:40.02
+the addition node will be the answer.
+
+17
+00:00:40.02 --> 00:00:44.06
+Let's open up addition.py.
+
+18
+00:00:44.06 --> 00:00:47.01
+Here on line two, we've
+imported TensorFlow
+
+19
+00:00:47.01 --> 00:00:49.01
+so we have access to it.
+
+20
+00:00:49.01 --> 00:00:51.07
+It's standard practice to
+import it with the name 'TF'
+
+21
+00:00:51.07 --> 00:00:53.03
+so that we don't have to type out
+
+22
+00:00:53.03 --> 00:00:55.04
+the whole word 'TensorFlow' every time
+
+23
+00:00:55.04 --> 00:00:57.03
+we want to call a function.
+
+24
+00:00:57.03 --> 00:01:00.00
+Next on line five, notice that I've called
+
+25
+00:01:00.00 --> 00:01:02.08
+OS.Environ to set this
+environment variable to two.
+
+26
+00:01:02.08 --> 00:01:05.04
+This just tells TensorFlow
+not to output as many
+
+27
+00:01:05.04 --> 00:01:08.02
+log messages as it normally does.
+
+28
+00:01:08.02 --> 00:01:11.06
+By default, TensorFlow
+outputs a lot of log messages
+
+29
+00:01:11.06 --> 00:01:14.06
+to your console when you run the program.
+
+30
+00:01:14.06 --> 00:01:16.05
+The messages can sometimes be helpful,
+
+31
+00:01:16.05 --> 00:01:18.02
+but I've turned them off for these demos
+
+32
+00:01:18.02 --> 00:01:20.04
+to make the output easier to read.
+
+33
+00:01:20.04 --> 00:01:22.07
+Feel free to remove this
+line from any of the examples
+
+34
+00:01:22.07 --> 00:01:26.08
+if you want to see the full
+TensorFlow logging output.
+
+35
+00:01:26.08 --> 00:01:29.08
+Next, let's define the
+X and Y input nodes.
+
+36
+00:01:29.08 --> 00:01:32.05
+When you create a node in
+TensorFlow, you have to choose
+
+37
+00:01:32.05 --> 00:01:34.05
+what kind of node to create.
+
+38
+00:01:34.05 --> 00:01:36.02
+The X and Y nodes will
+be placeholder nodes
+
+39
+00:01:36.02 --> 00:01:38.03
+that get assigned a new value
+
+40
+00:01:38.03 --> 00:01:40.01
+every time we make a calculation,
+
+41
+00:01:40.01 --> 00:01:43.04
+so we'll create them as
+a TF.placeholder node
+
+42
+00:01:43.04 --> 00:01:46.03
+and I'll create the
+first node on line eight.
+
+43
+00:01:46.03 --> 00:01:49.05
+TF.placeholder...
+
+44
+00:01:49.05 --> 00:01:51.03
+When we create a placeholder node,
+
+45
+00:01:51.03 --> 00:01:53.01
+we have to pass on the data type.
+
+46
+00:01:53.01 --> 00:01:55.00
+We'll be adding numbers
+here, so we can use
+
+47
+00:01:55.00 --> 00:01:56.06
+a floating point data-type.
+
+48
+00:01:56.06 --> 00:02:01.04
+I'll use TF.float32.
+
+49
+00:02:01.04 --> 00:02:03.02
+We also need to give this node the name.
+
+50
+00:02:03.02 --> 00:02:05.00
+The name will show up when we look
+
+51
+00:02:05.00 --> 00:02:07.00
+at graphical visualizations of our model.
+
+52
+00:02:07.00 --> 00:02:09.02
+I'll name this node X by passing
+
+53
+00:02:09.02 --> 00:02:12.08
+in the parameter called
+'name' with a value of X,
+
+54
+00:02:12.08 --> 00:02:16.08
+and now let's define Y the same way.
+
+55
+00:02:16.08 --> 00:02:22.07
+TF.placeholder, pass in
+the data-type, TF.float32
+
+56
+00:02:22.07 --> 00:02:28.00
+and give the name, Name Y.
+
+57
+00:02:28.00 --> 00:02:29.09
+Now we can define the node that
+does the addition operation.
+
+58
+00:02:29.09 --> 00:02:33.09
+In TensorFlow we can do that
+by creating a TF.Add node,
+
+59
+00:02:33.09 --> 00:02:37.04
+let's do that on line eleven.
+
+60
+00:02:37.04 --> 00:02:39.02
+TF.add
+
+61
+00:02:39.02 --> 00:02:40.08
+Then we'll pass on the X and Y nodes
+
+62
+00:02:40.08 --> 00:02:43.07
+to the addition node,
+that tells TensorFlow
+
+63
+00:02:43.07 --> 00:02:46.05
+to link those nodes on
+the computational graph,
+
+64
+00:02:46.05 --> 00:02:48.04
+so we're asking it to pull
+the values from X and Y
+
+65
+00:02:48.04 --> 00:02:50.02
+and add the result.
+
+66
+00:02:50.02 --> 00:02:52.03
+Let's also give the
+addition node the name.
+
+67
+00:02:52.03 --> 00:02:55.09
+Name equals addition.
+
+68
+00:02:55.09 --> 00:02:57.03
+And that's the entire definition
+
+69
+00:02:57.03 --> 00:03:00.06
+for our simple computational graph.
+
+70
+00:03:00.06 --> 00:03:02.03
+The model only has three nodes,
+
+71
+00:03:02.03 --> 00:03:04.06
+so we can define it with
+just three lines of code
+
+72
+00:03:04.06 --> 00:03:06.04
+but when you're building
+more complex models,
+
+73
+00:03:06.04 --> 00:03:09.00
+this code can get quite complicated.
+
+74
+00:03:09.00 --> 00:03:10.08
+To execute operations in the graph,
+
+75
+00:03:10.08 --> 00:03:12.04
+we have to create a session.
+
+76
+00:03:12.04 --> 00:03:14.09
+We create a session
+object this way on line 15
+
+77
+00:03:14.09 --> 00:03:17.06
+with TF.session as session.
+
+78
+00:03:17.06 --> 00:03:20.06
+Now that we have a session,
+we can ask the session
+
+79
+00:03:20.06 --> 00:03:22.09
+to run operations on
+their computational graph
+
+80
+00:03:22.09 --> 00:03:24.09
+by calling Session.run.
+
+81
+00:03:24.09 --> 00:03:28.05
+On line 17, we'll say
+result equals session.run,
+
+82
+00:03:28.05 --> 00:03:32.01
+then we need to pass on the
+operation we want to run,
+
+83
+00:03:32.01 --> 00:03:35.06
+in this case addition.
+
+84
+00:03:35.06 --> 00:03:37.04
+When the addition operation runs,
+
+85
+00:03:37.04 --> 00:03:39.07
+it's going to see that it
+needs to grab the values
+
+86
+00:03:39.07 --> 00:03:42.06
+of the X and Y nodes, so we also need
+
+87
+00:03:42.06 --> 00:03:44.03
+to feed in values for X and Y.
+
+88
+00:03:44.03 --> 00:03:47.04
+We can do that by supplying a
+parameter called 'feed dict'
+
+89
+00:03:47.04 --> 00:03:51.03
+so on line 17 I'll add
+a feed dict parameter
+
+90
+00:03:51.03 --> 00:03:54.09
+and then we'll pass in X and give them
+
+91
+00:03:54.09 --> 00:03:59.00
+the ray value of one, and Y,
+
+92
+00:03:59.00 --> 00:04:02.03
+and pass in a value of four as a ray.
+
+93
+00:04:02.03 --> 00:04:04.01
+And then finally in line 19,
+we'll just print the result.
+
+94
+00:04:04.01 --> 00:04:08.01
+Let's run this code, I'm going
+to right-click and choose 'run'
+
+95
+00:04:08.01 --> 00:04:10.06
+we're choosing run from the context menu
+
+96
+00:04:10.06 --> 00:04:12.04
+because the keyboard
+shortcuts are different
+
+97
+00:04:12.04 --> 00:04:14.05
+on each operating system, but feel free
+
+98
+00:04:14.05 --> 00:04:17.02
+to learn and use the keyboard
+shortcut if you'd like.
+
+99
+00:04:17.02 --> 00:04:20.09
+Okay, click 'run', and
+the result is down here
+
+100
+00:04:20.09 --> 00:04:23.05
+in the console, we can see
+we got the right answer,
+
+101
+00:04:23.05 --> 00:04:25.01
+which is five.
+
+102
+00:04:25.01 --> 00:04:27.08
+Notice that I passed
+in the rays on line 17
+
+103
+00:04:27.08 --> 00:04:30.07
+for the values of X and Y, and the result
+
+104
+00:04:30.07 --> 00:04:33.03
+we got back from TensorFlow
+is also in the ray.
+
+105
+00:04:33.03 --> 00:04:35.01
+That's because TensorFlow
+always works with tensors,
+
+106
+00:04:35.01 --> 00:04:37.05
+which are multi-dimensional rays.
+
+107
+00:04:37.05 --> 00:04:39.04
+It's expecting us to feed in the rays
+
+108
+00:04:39.04 --> 00:04:42.00
+and it will return rays, that means
+
+109
+00:04:42.00 --> 00:04:43.08
+we can feed in multiple numbers at once
+
+110
+00:04:43.08 --> 00:04:47.08
+for X and Y, let's feed in
+some more numbers on line 17.
+
+111
+00:04:47.08 --> 00:04:51.06
+For X we're going to
+feed in one, two, ten,
+
+112
+00:04:51.06 --> 00:04:58.03
+and for Y we're going to
+feed in four, two, ten.
+
+113
+00:04:58.03 --> 00:05:03.00
+And let's run the code
+again by right-click 'run'.
+
+114
+00:05:03.00 --> 00:05:04.07
+Now in the console we can see
+
+115
+00:05:04.07 --> 00:05:08.01
+that we got back three separate
+sums, five, four and twenty.
+
+116
+00:05:08.01 --> 00:05:10.02
+We could even pass in
+multi-dimensional rays
+
+117
+00:05:10.02 --> 00:05:12.07
+for X and Y and it would
+still work the same way
+
+118
+00:05:12.07 --> 00:05:15.01
+because we aren't just
+adding together two numbers,
+
+119
+00:05:15.01 --> 00:05:17.09
+we're actually adding
+together two tensors.
+
+120
+00:05:17.09 --> 00:05:19.04
+This might seem like a lot of work
+
+121
+00:05:19.04 --> 00:05:22.03
+to add some numbers together,
+just to do addition,
+
+122
+00:05:22.03 --> 00:05:24.06
+we had to define the
+model, create a session,
+
+123
+00:05:24.06 --> 00:05:26.08
+pass in data, and then send it off
+
+124
+00:05:26.08 --> 00:05:30.05
+to the TensorFlow execution
+engine and wait for the result.
+
+125
+00:05:30.05 --> 00:05:32.07
+But TensorFlow's real value
+is when we are working
+
+126
+00:05:32.07 --> 00:05:34.04
+with large data sets
+
+127
+00:05:34.04 --> 00:05:36.09
+and computationally intensive operations.
+
+128
+00:05:36.09 --> 00:05:38.07
+It can take the same operational graph
+
+129
+00:05:38.07 --> 00:05:41.07
+we've defined here, and execute
+it across multiple machines
+
+130
+00:05:41.07 --> 00:05:43.09
+who are using graphics cards with GPUs
+
+131
+00:05:43.09 --> 00:05:45.08
+to accelerate processing.
+
+132
+00:05:45.08 --> 00:05:47.07
+The same code in TensorFlow can scale
+
+133
+00:05:47.07 --> 00:05:50.01
+from running on a low power
+device like a cell phone,
+
+134
+00:05:50.01 --> 00:05:52.05
+all the way up to running
+on multiple servers
+
+135
+00:05:52.05 --> 00:05:54.00
+in a massive data center.
+

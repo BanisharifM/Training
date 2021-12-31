@@ -1,0 +1,53 @@
+1
+00:00:00.06 --> 00:00:02.03
+- [Instructor] Before
+starting this course,
+
+2
+00:00:02.03 --> 00:00:05.02
+it will be helpful to have
+some programming experience.
+
+3
+00:00:05.02 --> 00:00:07.04
+The examples are written in Python 3,
+
+4
+00:00:07.04 --> 00:00:09.00
+so it's also helpful if you have
+
+5
+00:00:09.00 --> 00:00:12.03
+some familiarity with Python syntax.
+
+6
+00:00:12.03 --> 00:00:13.09
+Regardless, I'll explain things
+
+7
+00:00:13.09 --> 00:00:15.06
+in the way that will be accessible,
+
+8
+00:00:15.06 --> 00:00:18.07
+even if you don't have a
+lot of experience in Python.
+
+9
+00:00:18.07 --> 00:00:20.05
+Also, it will be helpful if you have
+
+10
+00:00:20.05 --> 00:00:22.07
+some basic experience
+with machine learning.
+
+11
+00:00:22.07 --> 00:00:24.05
+If you're brand new to machine learning,
+
+12
+00:00:24.05 --> 00:00:27.04
+you can check out machine
+learning courses in the library.
+

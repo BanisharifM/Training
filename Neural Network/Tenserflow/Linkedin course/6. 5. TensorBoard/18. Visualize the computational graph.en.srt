@@ -1,0 +1,501 @@
+1
+00:00:00.05 --> 00:00:02.00
+- [Narrator] It's always
+helpful to visualize
+
+2
+00:00:02.00 --> 00:00:03.07
+what's happening with your data.
+
+3
+00:00:03.07 --> 00:00:05.04
+This is where TensorBoard comes in.
+
+4
+00:00:05.04 --> 00:00:06.09
+It takes what we do in TensorFlow
+
+5
+00:00:06.09 --> 00:00:09.02
+and creates a graphical
+representation of it.
+
+6
+00:00:09.02 --> 00:00:11.00
+Before we can open up TensorBoard,
+
+7
+00:00:11.00 --> 00:00:13.00
+we need some log files to look at.
+
+8
+00:00:13.00 --> 00:00:16.07
+Let's open up train_model.py
+
+9
+00:00:16.07 --> 00:00:18.04
+and let's run it.
+
+10
+00:00:18.04 --> 00:00:20.02
+When we run it, this will
+train the neural network
+
+11
+00:00:20.02 --> 00:00:22.02
+and save log files that we'll be able
+
+12
+00:00:22.02 --> 00:00:23.09
+to view with TensorBoard.
+
+13
+00:00:23.09 --> 00:00:28.05
+Right click, choose run.
+
+14
+00:00:28.05 --> 00:00:30.03
+You can see here in Pycharm
+
+15
+00:00:30.03 --> 00:00:34.03
+the new logs folder has been
+created with the log files.
+
+16
+00:00:34.03 --> 00:00:36.02
+Alright, lets run TensorBoard.
+
+17
+00:00:36.02 --> 00:00:38.09
+To run TensorBoard, let's
+open up a Terminal window.
+
+18
+00:00:38.09 --> 00:00:42.02
+In Pycharm you can hover
+your mouse on the bottom left
+
+19
+00:00:42.02 --> 00:00:43.08
+and then click Terminal,
+
+20
+00:00:43.08 --> 00:00:46.09
+but if you prefer, you
+can also open the standard
+
+21
+00:00:46.09 --> 00:00:50.06
+operating system Terminal
+window outside of Pycharm.
+
+22
+00:00:50.06 --> 00:00:53.02
+To run TensorBoard, type TensorBoard
+
+23
+00:00:53.02 --> 00:00:57.04
+and then --logdir.
+
+24
+00:00:57.04 --> 00:01:00.03
+And we'll give the folder
+where our logs are written,
+
+25
+00:01:00.03 --> 00:01:04.06
+in this case, 05/logs,
+note that on Windows,
+
+26
+00:01:04.06 --> 00:01:07.05
+you'll use backslashes
+instead of forward slashes.
+
+27
+00:01:07.05 --> 00:01:11.01
+Now hit enter, now
+TensorBoard gives us a URL.
+
+28
+00:01:11.01 --> 00:01:16.02
+Copy that URL and open
+it in your web browser.
+
+29
+00:01:16.02 --> 00:01:18.02
+To see our computational graph,
+
+30
+00:01:18.02 --> 00:01:22.07
+click on the graphs tab at the top.
+
+31
+00:01:22.07 --> 00:01:26.04
+This is a visual representation
+of our computational graph.
+
+32
+00:01:26.04 --> 00:01:29.06
+Each variable scope or
+operation in our neural network
+
+33
+00:01:29.06 --> 00:01:34.06
+is represented by a box in this diagram.
+
+34
+00:01:34.06 --> 00:01:37.05
+Here is the input layer
+of our neural network,
+
+35
+00:01:37.05 --> 00:01:40.06
+which is connected to layer
+one, and then layer two,
+
+36
+00:01:40.06 --> 00:01:44.03
+and layer three, and then
+finally to the output layer.
+
+37
+00:01:44.03 --> 00:01:47.05
+Note that layer one, two,
+and three are all blue.
+
+38
+00:01:47.05 --> 00:01:51.01
+That means these boxes have
+the same internal structure,
+
+39
+00:01:51.01 --> 00:01:53.04
+so at a glance, we can
+tell that all three layers
+
+40
+00:01:53.04 --> 00:01:56.01
+perform the same basic
+operations on the data.
+
+41
+00:01:56.01 --> 00:01:59.01
+Now, let's zoom in to the
+connections between those.
+
+42
+00:01:59.01 --> 00:02:03.00
+Each line represents a
+tensor or a ray of data
+
+43
+00:02:03.00 --> 00:02:06.06
+being passed between the nodes.
+
+44
+00:02:06.06 --> 00:02:08.04
+We can see that the input layer
+
+45
+00:02:08.04 --> 00:02:11.06
+passes nine values to the first
+layer of the neural network.
+
+46
+00:02:11.06 --> 00:02:13.06
+That makes sense, because
+we have nine input features
+
+47
+00:02:13.06 --> 00:02:15.06
+in the neural network.
+
+48
+00:02:15.06 --> 00:02:17.02
+The first number represented here
+
+49
+00:02:17.02 --> 00:02:19.05
+with a question mark is the batch size.
+
+50
+00:02:19.05 --> 00:02:21.02
+The batch size can vary each time,
+
+51
+00:02:21.02 --> 00:02:23.01
+so that's why it's shown
+as a question mark.
+
+52
+00:02:23.01 --> 00:02:27.08
+If we followed the line
+to the output layer,
+
+53
+00:02:27.08 --> 00:02:30.08
+we can see that the output
+layer returns a single number.
+
+54
+00:02:30.08 --> 00:02:33.08
+This is the final prediction
+from our neural network.
+
+55
+00:02:33.08 --> 00:02:37.01
+We can also zoom in to each
+node to see more detail.
+
+56
+00:02:37.01 --> 00:02:40.08
+Let's go back in the input node
+
+57
+00:02:40.08 --> 00:02:45.00
+and we'll click to expand
+it on the plus sign.
+
+58
+00:02:45.00 --> 00:02:47.02
+You can see that inside the input layer
+
+59
+00:02:47.02 --> 00:02:49.03
+is the placeholder value we pass in,
+
+60
+00:02:49.03 --> 00:02:51.05
+let's take a look at a
+more complicated node.
+
+61
+00:02:51.05 --> 00:02:54.01
+Let's open up layer one.
+
+62
+00:02:54.01 --> 00:02:56.08
+Click and expand, and
+we'll zoom out a little bit
+
+63
+00:02:56.08 --> 00:03:00.01
+so we can see it better.
+
+64
+00:03:00.01 --> 00:03:02.02
+This shows us exactly what is happening
+
+65
+00:03:02.02 --> 00:03:04.05
+inside a layer of the neural network.
+
+66
+00:03:04.05 --> 00:03:06.05
+The input values feed in here
+
+67
+00:03:06.05 --> 00:03:09.05
+and then their matrix
+multiplied by the weights,
+
+68
+00:03:09.05 --> 00:03:12.06
+then the bias value is added,
+
+69
+00:03:12.06 --> 00:03:15.01
+and then a ReLU, a
+rectified linear activation
+
+70
+00:03:15.01 --> 00:03:17.02
+function is applied and the result
+
+71
+00:03:17.02 --> 00:03:19.09
+is sent to the next layer.
+
+72
+00:03:19.09 --> 00:03:21.09
+Finally, let's take a
+look at the cost node.
+
+73
+00:03:21.09 --> 00:03:28.00
+Let's zoom out, go to the
+cost node, and expand it.
+
+74
+00:03:28.00 --> 00:03:30.01
+We can see that the output
+of the neural network
+
+75
+00:03:30.01 --> 00:03:31.07
+feeds into the cost function,
+
+76
+00:03:31.07 --> 00:03:35.00
+where the current cost of the
+neural network is calculated.
+
+77
+00:03:35.00 --> 00:03:37.06
+We can also see here that the
+value is saved as a metric
+
+78
+00:03:37.06 --> 00:03:39.02
+called, current cost.
+
+79
+00:03:39.02 --> 00:03:41.05
+If we look at a scalars
+tab, we'll be able to
+
+80
+00:03:41.05 --> 00:03:43.01
+see the graph for this metric.
+
+81
+00:03:43.01 --> 00:03:46.01
+Let's take a look.
+
+82
+00:03:46.01 --> 00:03:48.00
+And here's that metric.
+
+83
+00:03:48.00 --> 00:03:51.03
+Alright, let's switch
+back to the graphs tab,
+
+84
+00:03:51.03 --> 00:03:57.02
+and zoom back out, and close these notes.
+
+85
+00:03:57.02 --> 00:03:59.06
+Another great feature of TensorBoard,
+
+86
+00:03:59.06 --> 00:04:02.07
+is the ability to trace the
+path of data through the graph.
+
+87
+00:04:02.07 --> 00:04:04.07
+Let's say we want to see what is required
+
+88
+00:04:04.07 --> 00:04:06.01
+to generate the output.
+
+89
+00:04:06.01 --> 00:04:08.00
+Click on the output node and then
+
+90
+00:04:08.00 --> 00:04:10.00
+click this trace input slider.
+
+91
+00:04:10.00 --> 00:04:13.01
+This highlights exactly
+the path data flows through
+
+92
+00:04:13.01 --> 00:04:15.06
+to generate the output
+of the neural network.
+
+93
+00:04:15.06 --> 00:04:17.07
+This is a very helpful
+way to debug a graph
+
+94
+00:04:17.07 --> 00:04:19.08
+if things aren't working as expected.
+
+95
+00:04:19.08 --> 00:04:21.08
+If we click on the cost node,
+
+96
+00:04:21.08 --> 00:04:24.05
+we can see how the display changes.
+
+97
+00:04:24.05 --> 00:04:27.02
+So we can see the path of data
+used to generate the costs.
+
+98
+00:04:27.02 --> 00:04:30.04
+If we click over here on the
+init node, on the right side,
+
+99
+00:04:30.04 --> 00:04:32.04
+this shows us which
+nodes will be initialized
+
+100
+00:04:32.04 --> 00:04:34.08
+when we start a new session in our graph.
+
+101
+00:04:34.08 --> 00:04:36.09
+TensorBoard is a great tool for exploring
+
+102
+00:04:36.09 --> 00:04:38.03
+the structure of your models
+
+103
+00:04:38.03 --> 00:04:40.03
+and understanding how data flows.
+
+104
+00:04:40.03 --> 00:04:42.03
+It's also very helpful for debugging.
+
+105
+00:04:42.03 --> 00:04:45.03
+Click around and get a feel
+for how things are connected.
+
+106
+00:04:45.03 --> 00:04:46.09
+Try comparing what you see here
+
+107
+00:04:46.09 --> 00:04:49.02
+with the code and train_model.py
+
+108
+00:04:49.02 --> 00:04:51.02
+and see if you can figure
+out where each connection
+
+109
+00:04:51.02 --> 00:04:52.08
+in the diagram comes from.
+
+110
+00:04:52.08 --> 00:04:54.09
+When you're done, you
+can close TensorBoard
+
+111
+00:04:54.09 --> 00:04:56.08
+by going back to the Terminal window
+
+112
+00:04:56.08 --> 00:04:59.00
+and hitting Control + C.
+
