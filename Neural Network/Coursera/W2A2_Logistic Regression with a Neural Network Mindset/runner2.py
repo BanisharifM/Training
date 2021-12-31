@@ -43,9 +43,7 @@ test_set_x = test_set_x_flatten / 255.
 
 
 def sigmoid(z):
-
     s = 1/(1+np.exp(-z))
-
     return s
 
 
@@ -184,12 +182,13 @@ info = input_group('Training config', [
 ])
 put_markdown("Your model is training ...")
 
-print(info)
+# print(info)
 logistic_regression_model = model(train_set_x, train_set_y, test_set_x,
                                   test_set_y, info['number'], info['rate'], print_cost=True)
 
 with popup("Training Result:"):
     put_text("Here is your model! Lets test it!")
+testing = True
 
 
 def get_py_files():
@@ -200,19 +199,23 @@ def get_py_files():
     return file_name
 
 
-my_image = get_py_files()
-# We preprocess the image to fit your algorithm.
-fname = "images/" + my_image
-image = np.array(Image.open(fname).resize((num_px, num_px)))
-plt.imshow(image)
-image = image / 255.
-image = image.reshape((1, num_px * num_px * 3)).T
-my_predicted_image = predict(
-    logistic_regression_model["w"], logistic_regression_model["b"], image)
-result = "Your algorithm predicts a \"" + \
-    classes[int(np.squeeze(my_predicted_image)),
-            ].decode("utf-8") + "\" picture."
-print("y = " + str(np.squeeze(my_predicted_image)) + result)
-with popup("Detecting Result:"):
-    put_text(result)
-plt.show()
+while testing:
+
+    my_image = get_py_files()
+    fname = "images/" + my_image
+    image = np.array(Image.open(fname).resize((num_px, num_px)))
+    plt.imshow(image)
+    image = image / 255.
+    image = image.reshape((1, num_px * num_px * 3)).T
+    my_predicted_image = predict(
+        logistic_regression_model["w"], logistic_regression_model["b"], image)
+    result = "Your algorithm predicts a \"" + \
+        classes[int(np.squeeze(my_predicted_image)),
+                ].decode("utf-8") + "\" picture."
+    print("y = " + str(np.squeeze(my_predicted_image)) + result)
+    with popup("Detecting Result:"):
+        put_text(""+result)
+    plt.show()
+    testing = actions(label="Would you like to test another image?",
+                      buttons=[{'label': 'Yes', 'value': True},
+                               {'label': 'No', 'value': False}])
