@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <title>Light</title>
+  </head>
+  <body>
+    <h1>This is a light</h1>
+    <p>It can be turned on and off</p>
+    <h2 id="light_stat">Off</h2>
+    <button id="off_btn" onclick="turnOff()">Turn Off</button>
+    <img id="light" src="./img/off.gif" alt="light" />
+    <button id="on_btn" onclick="turnOn()">Turn On</button>
+    <script>
+      function turnOff() {
+        document.getElementById("light").src = "./img/off.gif";
+        document.getElementById("light_stat").textContent = "Off";
+        alert("The light is turned off");
+        console.log("The light is Off now");
+      }
+      function turnOn() {
+        document.getElementById("light").src = "./img/on.gif";
+        document.getElementById("light_stat").textContent = "On";
+        alert("The light is turned on");
+        console.log("The light is On now");
+      }
+    </script>
+  </body>
+</html>

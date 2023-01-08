@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [1, 3, 5, 7, 8];
+      let item = 10,
+        k = 4,
+        n = 5;
+
+      // Print Array elements
+      console.log("The original array elements are :\n");
+      //       for (t in arr) {
+      //         console.log("Array[%s] =%s  \n", t, arr[t]);
+      //       }
+      //       for (i; i < n; i++) {
+      //         console.log("Array[%s] =%s  \n", i, arr[i]);
+      //       }
+      arr.forEach((item, index) =>
+        console.log("Array[%s] =%s  \n", index, item)
+      );
+
+      //Insert Element
+      for (let i = n; i > k; i--) {
+        arr[i] = arr[i - 1];
+      }
+      arr[k] = item;
+      n++;
+      console.log("Array after inserting item=10");
+      printArr(arr);
+
+      arr.splice(3, 0, 4, 6);
+      console.log("Array after inserting 4,6");
+      printArr(arr);
+
+      // Delet Element
+      arr.splice(k - 1, 1);
+      console.log("Array after deleting the %s'th item", k);
+      printArr(arr);
+
+      //Search Element
+      let j = 0;
+      while (j < arr.length) {
+        if (arr[j] == item) break;
+        j++;
+      }
+      console.log("Found element %s at position %s\n", item, j + 1);
+
+      let index = arr.indexOf(item);
+      console.log("Found element %s at position %s\n", item, index + 1);
+
+      function printArr(arr) {
+        arr.forEach((item, index) =>
+          console.log("Array[%s] = %s \n", index, item)
+        );
+      }
+    </script>
+  </body>
+</html>

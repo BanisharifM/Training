@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkedList</title>
+  </head>
+  <body>
+    <script>
+      class LinkedList {
+        constructor(head = null) {
+          this.head = head;
+          this.size = 0;
+        }
+        add(element) {
+          let node = new Node(element);
+          let current;
+          if (this.head == null) this.head = node;
+          else {
+            current = this.head;
+            while (current.next) {
+              current = current.next;
+            }
+            current.next = node;
+          }
+          this.size++;
+        }
+        addAt(index, element) {
+          if (index < 0 || index > this.size) console.log("Enter valid index");
+          else {
+            let node = new Node(element);
+            let curr, prev;
+            if (index == 0) {
+              node.next = this.head;
+              this.head = node;
+            } else {
+              curr = this.head;
+              let it = 0;
+              while (it < index) {
+                it++;
+                prev = curr;
+                curr = curr.next;
+              }
+              node.next = curr;
+              prev.next = node;
+            }
+            this.size++;
+          }
+        }
+        removeFrom(index) {
+          if (index < 0 || index > this.size) console.log("Enter valid index");
+          else {
+            let node = this.head;
+            if (index == 0) this.head = node.next;
+            else {
+              let it = 0;
+              while (it < index - 1) {
+                it++;
+                node = node.next;
+              }
+              node.next = node.next.next;
+            }
+            this.size--;
+          }
+        }
+        getNode(index) {
+          if (index < 0 || index > this.size) console.log("Enter valid index");
+          else {
+            if (index == 0) return this.head;
+            else {
+              let node = this.head;
+              let it = 0;
+              while (it < index - 1) {
+                it++;
+                node = node.next;
+              }
+              return node;
+            }
+          }
+        }
+        clear() {
+          this.head = null;
+        }
+        reverse() {
+          let prevNode = null;
+          let currentNode = this.head;
+          if (currentNode === null) return;
+
+          let nextNode;
+          while (currentNode) {
+            nextNode = currentNode.next;
+
+            currentNode.next = prevNode;
+            prevNode = currentNode;
+
+            currentNode = nextNode;
+          }
+          this.head = prevNode;
+        }
+        indexOf(data) {
+          let curr = this.head;
+          let index = 0;
+          while (curr) {
+            if (curr.data == data) return index;
+            index++;
+            curr = curr.next;
+          }
+          return -1;
+        }
+        isEmpty() {
+          return this.head == null;
+        }
+        listSize() {
+          return this.size;
+        }
+        getFirst() {
+          return this.head;
+        }
+        getLast() {
+          let curr = this.head;
+          while (curr.next) curr = curr.next;
+          return curr;
+        }
+        printList() {
+          let node = this.head;
+          let str = "HEAD->";
+          while (node) {
+            str += node.data + "->";
+            node = node.next;
+          }
+          str += "NULL";
+          console.log(str);
+          console.log("LinkedList size is : %s", this.size);
+        }
+      }
+      class Node {
+        constructor(data) {
+          this.data = data;
+          this.next = null;
+        }
+      }
+      myList = new LinkedList();
+      myList.add(1);
+      myList.add(2);
+      myList.add(3);
+      myList.add(4);
+      myList.addAt(3, 3.5);
+      myList.printList();
+      myList.removeFrom(3);
+      myList.printList();
+      console.log(myList.getNode(3));
+      myList.reverse();
+      myList.printList();
+      console.log(myList.indexOf(2));
+      console.log(myList.getLast());
+    </script>
+  </body>
+</html>
