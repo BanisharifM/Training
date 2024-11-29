@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "bootstrap": "^4.4.1",
     "font-awesome": "^4.7.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "prop-type": "0.0.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
